@@ -1,0 +1,324 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: piwigopress HU\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-06 15:51+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: vpiwigo <vpiwigo@gmail.com>\n"
+"Language-Team: Piwigo Hungarian team <info@cmsaward.hu>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplural=2; plural(n !=1);\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;_c\n"
+"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-SearchPath-0: trunk\n"
+
+#: trunk/piwigopress.php:56
+msgid ""
+"PiwigoPress shortcode attribute \"id\" is required and must be positive."
+msgstr ""
+"Az shortcode \"id\" PiwigoPress attribútuma van szükség, és pozitívnak kell "
+"lennie."
+
+#: trunk/piwigopress.php:96
+msgid ""
+"Adds a thumbnail and its link (to the picture) inside your blog sidebar."
+msgstr "Egy bélyegképet és linkjét adja (a képhez) a blog oldalsávján belül"
+
+#: trunk/piwigopress.php:195
+msgid "FAQ"
+msgstr ""
+
+#: trunk/piwigopress.php:196
+msgid "PiwigoPress Support"
+msgstr ""
+
+#: trunk/piwigopress.php:197
+msgid "Piwigo site"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:38
+msgid "Piwigo gallery URL:"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:39
+msgid ""
+"Folder URL of any up-to-date Piwigo Gallery with public photos and opened "
+"webservices (MUST END with a \"/\")"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:40
+msgid "Start with 5 recent pics"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:41
+msgid ""
+"Load or reload the 5 most latest squared thumbnails from the url (might be "
+"changed or not)"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:42
+msgid "Get more"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:43
+msgid ""
+"Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, "
+"and continues by 100"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:44
+msgid "Hide 50%"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:45
+#, php-format
+msgid "Hide 50% or less of current available squared thumbnails"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:46
+msgid "Show hidden"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:47
+msgid "Display all currently hidden squared thumbnails"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:48
+msgid "Drop one or several thumbnails over the blue border here above !"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:49
+msgid "Loaded, hidden & dropped vs. Requested thumbnails: "
+msgstr ""
+
+#: trunk/piwigopress_admin.php:50
+msgid "Shortcode options"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:51
+#, fuzzy
+msgid "Picture size"
+msgstr "Képek kategóriái"
+
+#: trunk/piwigopress_admin.php:52 trunk/PiwigoPress_options.php:69
+msgid "Square"
+msgstr "Négyzetes "
+
+#: trunk/piwigopress_admin.php:53 trunk/PiwigoPress_options.php:72
+msgid "Thumbnail"
+msgstr "Bélyegkép"
+
+#: trunk/piwigopress_admin.php:54 trunk/PiwigoPress_options.php:78
+msgid "XS - extra small"
+msgstr "XS - kissebb "
+
+#: trunk/piwigopress_admin.php:55 trunk/PiwigoPress_options.php:75
+msgid "XXS - tiny"
+msgstr "XXS - legkissebb \t\t"
+
+#: trunk/piwigopress_admin.php:56 trunk/PiwigoPress_options.php:88
+msgid "S - small"
+msgstr "S - kicsi "
+
+#: trunk/piwigopress_admin.php:57 trunk/PiwigoPress_options.php:91
+msgid "M - medium"
+msgstr "M - közepes "
+
+#: trunk/piwigopress_admin.php:58 trunk/PiwigoPress_options.php:94
+msgid "L - large"
+msgstr "L - nagy"
+
+#: trunk/piwigopress_admin.php:59 trunk/PiwigoPress_options.php:97
+msgid "XL - extra large"
+msgstr "XL - nagyobb"
+
+#: trunk/piwigopress_admin.php:60 trunk/PiwigoPress_options.php:100
+msgid "XXL - huge"
+msgstr "XXL - legnagyobb"
+
+#: trunk/piwigopress_admin.php:71
+msgid "Display description"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:72 trunk/PiwigoPress_options.php:187
+msgid "CSS DIV class"
+msgstr "CSS DIV class"
+
+#: trunk/piwigopress_admin.php:73
+msgid "Generate and insert"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:74
+msgid "Generate shortcodes of all dropped squared thumbnails"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:75
+msgid "Reset dropping zone"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:76
+msgid "Remove all squared thumbnails from the dropping zone"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:81 trunk/PiwigoPress_options.php:124
+msgid "Link type"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:82 trunk/PiwigoPress_options.php:125
+msgid "No link"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:83
+msgid "Album page"
+msgstr ""
+
+#: trunk/piwigopress_admin.php:84 trunk/PiwigoPress_options.php:131
+#, fuzzy
+msgid "Picture page"
+msgstr "Képek kategóriái"
+
+#: trunk/piwigopress_admin.php:170
+msgid "Insert a PiwigoPress shortcode from a Piwigo dragged photo"
+msgstr ""
+
+#: trunk/PiwigoPress_code.php:107
+msgid "Pictures categories"
+msgstr "Képek kategóriái"
+
+#: trunk/PiwigoPress_code.php:120 trunk/PiwigoPress_options.php:144
+msgid "Most visited"
+msgstr "Legnézettebb"
+
+#: trunk/PiwigoPress_code.php:123 trunk/PiwigoPress_options.php:146
+msgid "Best rated"
+msgstr "Legjobban értékelt"
+
+#: trunk/PiwigoPress_code.php:126 trunk/PiwigoPress_options.php:148
+msgid "Most commented"
+msgstr "Legtöbb hozzászólás"
+
+#: trunk/PiwigoPress_code.php:129 trunk/PiwigoPress_options.php:150
+msgid "Random"
+msgstr "Véletlen"
+
+#: trunk/PiwigoPress_code.php:132 trunk/PiwigoPress_options.php:152
+msgid "Recent pics"
+msgstr "Legutóbbi képek"
+
+#: trunk/PiwigoPress_code.php:135 trunk/PiwigoPress_options.php:154
+msgid "Calendar"
+msgstr "Naptár"
+
+#: trunk/PiwigoPress_code.php:138 trunk/PiwigoPress_options.php:156
+msgid "Tags"
+msgstr "Címkék"
+
+#: trunk/PiwigoPress_code.php:141 trunk/PiwigoPress_options.php:158
+msgid "Comments"
+msgstr "Hozzászólások"
+
+#: trunk/PiwigoPress_options.php:8
+msgid "Random picture"
+msgstr "Véletlen kép"
+
+#: trunk/PiwigoPress_options.php:51
+msgid "Title"
+msgstr "Cím"
+
+#: trunk/PiwigoPress_options.php:55
+msgid "<strong>Local</strong> directory (if local)"
+msgstr "<strong>Helyi</strong> könyvtár (ha helyi)"
+
+#: trunk/PiwigoPress_options.php:59
+msgid "(or) <strong>External</strong> gallery URL"
+msgstr "(vagy) <strong>Külső</strong> képtár URL"
+
+#: trunk/PiwigoPress_options.php:68
+msgid "Size"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:84
+msgid "Select a larger sized picture"
+msgstr "Válasszon egy nagy méretű kép"
+
+#: trunk/PiwigoPress_options.php:84
+msgid "Large sizes"
+msgstr "Nagy méretben"
+
+#: trunk/PiwigoPress_options.php:112
+msgid "Format"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:113
+msgid "Any orientation"
+msgstr "Tetszôleges"
+
+#: trunk/PiwigoPress_options.php:116
+msgid "Portrait only"
+msgstr "Portré csak"
+
+#: trunk/PiwigoPress_options.php:119
+msgid "Landscape only"
+msgstr "Fekvő csak"
+
+#: trunk/PiwigoPress_options.php:128
+msgid "Album page if one selected"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:133
+msgid "Forced option if selected album id is 0 (see below)"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:138
+msgid "Menu"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:139
+msgid "Select all"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:139
+msgid "Unselect all"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:142
+msgid "Categories menu"
+msgstr "Kategóriák menü"
+
+#: trunk/PiwigoPress_options.php:161
+msgid "Since X months (0=all)"
+msgstr "X hónap óta (0 = összes)"
+
+#: trunk/PiwigoPress_options.php:166
+#, fuzzy
+msgid "Album id (0=all)"
+msgstr "Kategória ID (0 = összes)"
+
+#: trunk/PiwigoPress_options.php:168
+msgid ""
+"If Album id = 0 (all): Link type \"album\" is going to switch to \"picture\""
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:171
+msgid "Number of pictures (0=none)"
+msgstr "Képek száma (0 = nincs)"
+
+#: trunk/PiwigoPress_options.php:177
+msgid "Caption"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:178
+msgid "Automatically add paragraphs"
+msgstr ""
+
+#: trunk/PiwigoPress_options.php:190
+msgid "CSS IMG class"
+msgstr "CSS IMG class"
+
+#~ msgid "Optional parameters"
+#~ msgstr "Opcionális értékek"
