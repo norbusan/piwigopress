@@ -58,7 +58,11 @@ if ($thumbnail) {
 			. $options . '&recursive=true&order=random&f_with_thumbnail=true');
 	$thumbc = unserialize($response);
 	if ($thumbc["stat"] == 'ok') {
+		/* fix from http://wordpress.org/support/topic/piwigo-260-and-piwigopress-223
+		** for piwigo 2.6
 		$pictures = $thumbc["result"]["images"]["_content"];
+		*/
+		$pictures = $thumbc["result"]["images"];
 		foreach ($pictures as $picture) {
 			if (isset($picture['derivatives']['square']['url'])) {
 				$picture['tn_url'] = $picture['derivatives']['thumb']['url'] ;

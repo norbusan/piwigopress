@@ -24,7 +24,9 @@
 		$page++;
 		$thumbc = unserialize($response);
 		if ($thumbc["stat"] == 'ok') {
-			$pictures = $thumbc["result"]["images"]["_content"];
+			/* try to fix loading for piwigo 2.6
+			** $pictures = $thumbc["result"][ "images"]["_content"]; */
+			$pictures = $thumbc["result"][ "images"];
 			if (!isset($pictures[0]['derivatives']['square']['url'])) {
 				echo "<li>Warning: No available public picture or Piwigo release < 2.4.x</li>\n"; // How POedit that ???
 				return;
