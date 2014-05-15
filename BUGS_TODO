@@ -1,0 +1,9 @@
+Bugs
+====
+* insertion of several images with WP2.8 and above stopped working, only the first is inserted
+
+Todo
+====
+* allow using of "/foo/bar" (relative links) in the url in shortcode, and
+  url fields, to get http/https separation and local access
+
