@@ -139,6 +139,10 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 
 == Changelog ==
 
+= 2.23np =
+* fix compatibility with piwigo 1.6
+* allow url to be "/foo/bar" like on local server, preserving http(s)
+
 = 2.23 =
 * WordPress 3.5.1 support  
 * Bug: WordPress corrupted RSS feeds ( http://wordpress.org/support/topic/rss-feed-100?replies=4 ) 
