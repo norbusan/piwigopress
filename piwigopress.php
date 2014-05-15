@@ -150,11 +150,11 @@ function PiwigoPress_load_in_head() {
 	define('PWGP_CSS_FILE','');
 	if ( is_admin() ) {
 		echo '<link media="all" type="text/css" href="' . 
-			WP_PLUGIN_URL . '/piwigopress/css/piwigopress_adm.min.css?ver=' . PWGP_VERSION . '" id="piwigopress_a-css" rel="stylesheet">'; // that's fine
+			plugins_url( 'piwigopress/css/piwigopress_adm.min.css?ver=') . PWGP_VERSION . '" id="piwigopress_a-css" rel="stylesheet">'; // that's fine
 	}
 	else {
 		echo '<link media="all" type="text/css" href="' . 
-			WP_PLUGIN_URL . '/piwigopress/css/piwigopress.css?ver=' . PWGP_VERSION . '" id="piwigopress_c-css" rel="stylesheet">'; // that's fine
+			plugins_url( 'piwigopress/css/piwigopress.css?ver=') . PWGP_VERSION . '" id="piwigopress_c-css" rel="stylesheet">'; // that's fine
 	}
 }
 add_action('wp_head',  PWGP_NAME . '_load_in_head');
@@ -162,10 +162,10 @@ add_action('wp_head',  PWGP_NAME . '_load_in_head');
 // Script to be used
 function PiwigoPress_load_in_footer() {
 	/* Scripts */
-	wp_register_script( 'piwigopress_s', WP_PLUGIN_URL . '/piwigopress/js/piwigopress.js', array('jquery'), PWGP_VERSION );
+	wp_register_script( 'piwigopress_s', plugins_url( 'piwigopress/js/piwigopress.js'), array('jquery'), PWGP_VERSION );
 	wp_enqueue_script( 'jquery'); // include it even if it's done
 	if ( is_admin() ) {
-		wp_register_script( 'piwigopress_a', WP_PLUGIN_URL . '/piwigopress/js/piwigopress_adm.min.js', array('jquery'), PWGP_VERSION );
+		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.min.js'), array('jquery'), PWGP_VERSION );
 		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'jquery-ui-droppable' );
 		wp_enqueue_script( 'piwigopress_a' );

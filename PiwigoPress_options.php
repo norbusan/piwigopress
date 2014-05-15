@@ -2,7 +2,7 @@
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 
-	wp_register_script( 'piwigopress_ws', WP_PLUGIN_URL . '/piwigopress/js/piwigopress_widgets.js', array('jquery'), PWGP_VERSION );
+	wp_register_script( 'piwigopress_ws', plugins_url( 'piwigopress/js/piwigopress_widgets.js'), array('jquery'), PWGP_VERSION );
 	wp_enqueue_script( 'piwigopress_ws' );
 	// Defaults
 	$gallery = wp_parse_args( (array) $gallery, array('title'=>__('Random picture'), 
