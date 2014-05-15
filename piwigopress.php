@@ -48,7 +48,10 @@ function PiwigoPress_photoblog($parm) {
 		add_option( 'PiwigoPress_previous_url', $previous_url );
 	}
 	if ($url == '') $url = $previous_url;
-	if (substr($url,0,4)!='http') $url = 'http://' . $url;
+	# do not force http:// protocol, but allow for both
+	# local (starting with one slash) urls as well as
+	# remote but same protocol (starting with //)
+	#if (substr($url,0,4)!='http') $url = 'http://' . $url;
 	if (substr($url,-1)!='/') $url .= '/';
 	if ($previous_url != $url) update_option( 'PiwigoPress_previous_url', $url );
 	if ( !is_numeric($id) or $id < 1) {

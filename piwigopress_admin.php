@@ -22,7 +22,8 @@ if(!class_exists('PiwigoPress_Admin')){
 				'photo_class'		=>  (string) $_POST['photo_class'],
 				'link_type'			=>  (string) $_POST['link_type'],
 			));
-			if ( strlen($_POST['piwigopress_url']) > 6 ) update_option( 'PiwigoPress_previous_options', $PWGP_options );
+			# support local path, too
+			if ( strlen($_POST['piwigopress_url']) > 1 ) update_option( 'PiwigoPress_previous_options', $PWGP_options );
 		}
 		function Add_new_button($context=''){
 			$PWGP_options = serialize(array(

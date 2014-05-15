@@ -5,15 +5,33 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 if (!isset($pwg_mode)) $pwg_mode = ''; // Remind which process is working well
 $pwg_prev_host = ''; // Remind last requested gallery 
 
+function pwg_ret_protocol() {
+        if ( isset($_SERVER['HTTPS']) ) {
+                if ( 'on' == strtolower($_SERVER['HTTPS']) )
+                        return "https://";
+                if ( '1' == $_SERVER['HTTPS'] )
+                        return "https://";
+        } elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
+                return "https://";
+        }
+        return "http://";
+}
+
 function pwg_get_contents($url, $mode='', $timeout=5) {
 
 	global $pwg_mode, $pwg_prev_host;
 
-	$host = (strtolower(substr($url,0,7)) == 'http://') ? substr($url,7) : $url;
+	# support same-host piwigo
+	if ((strtolower(substr($url,0,7)) !== 'http://') and 
+	    (strtolower(substr($url,0,8)) !== 'https://')) {
+	  $fullurl = pwg_ret_protocol() . $_SERVER['HTTP_HOST'] . $url;
+	} else {
+	  $fullurl = $url;
+	}
+	$host = (strtolower(substr($fullurl,0,7)) == 'http://') ? substr($fullurl,7) : $fullurl;
 	$host = (strtolower(substr($host,0,8)) == 'https://') ? substr($host,8) : $host;
 	$doc = substr($host, strpos($host, '/'));
 	$host = substr($host, 0, strpos($host, '/'));
-
 	if ($pwg_prev_host != $host) $pwg_mode = ''; // What was possible with one website could be different with another
 	$pwg_prev_host = $host;
 	if ($mode == '') $mode = $pwg_mode; // Can be forced by the requester
@@ -24,7 +42,7 @@ function pwg_get_contents($url, $mode='', $timeout=5) {
 //      ; Whether to allow the treatment of URLs (like http:// or ftp://) as files.
 //      allow_url_fopen = On
 	if ( $mode == '' and true === (bool) ini_get('allow_url_fopen') ) { 
-			$value = @file_get_contents($url);
+			$value = @file_get_contents($fullurl);
 			if ( $value !== false) return $value;
 	}
 	if ( $mode == '' ) $mode = 'fs';
@@ -54,7 +72,7 @@ function pwg_get_contents($url, $mode='', $timeout=5) {
 	if ($mode !== 'Err' and function_exists('curl_init')) {
 		$ch = @curl_init();
 		@curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-		@curl_setopt($ch, CURLOPT_URL, $url);
+		@curl_setopt($ch, CURLOPT_URL, $fullurl);
 		@curl_setopt($ch, CURLOPT_HEADER, 1);
 		@curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
 		@curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
