@@ -139,7 +139,9 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 
 == Changelog ==
 
-= 2.23np =
+= 2.23.1 =
+(changes either from formum for initial piwigo 1.6 compatibility,
+or developed by Norbert Preining)
 * fix compatibility with piwigo 1.6
 * allow url to be "/foo/bar" like on local server, preserving http(s)
 * fix compatibility with tinyMCE v4 (WordPress 1.9)
