@@ -142,6 +142,7 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 = 2.23np =
 * fix compatibility with piwigo 1.6
 * allow url to be "/foo/bar" like on local server, preserving http(s)
+* fix compatibility with tinyMCE v4 (WordPress 1.9)
 
 = 2.23 =
 * WordPress 3.5.1 support  

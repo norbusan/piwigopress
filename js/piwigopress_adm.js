@@ -120,6 +120,7 @@ Compiler on http://refresh-sf.com/yui/
 								var $list = $( "ul", $trash );
 								$item.appendTo( $list ).fadeIn(); // Available to be shortcoded
 								$("a#PWGP_Gen").unbind().click(function () {
+									var tmce_ver=window.tinyMCE.majorVersion;
 									$("img", $trash).each(function () {
 										var $Shortcode = $(this).attr('title').split(']');
 										var $scode = $Shortcode[0];
@@ -133,10 +134,16 @@ Compiler on http://refresh-sf.com/yui/
 										var $lnktype = $('#link_type input[type=radio][name=link_type]:checked').attr('value');
 										if ( $lnktype != 'picture' ) $scode += " lnktype='"+$lnktype+"'";
 										var $scode = "\t"+$scode+"] \n\r";
+
 										// HTML Editor only insert statement
 										$('#content').insertAtCaret( $scode );
 										// Visual Editor Only insert statement
-										tinyMCE.execInstanceCommand('content', "mceInsertContent", false, $scode ); 
+										if (tmce_ver>="4") {
+											tinyMCE.execCommand('mceInsertContent', false, $scode);
+										} else {
+											tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, $scode);
+										}
+
 										// If you are using another WordPress Post Editor 
 										// and if you already found its right insert statement, 
 										// please, for all PiwigoPress users, share it through a dedicate topic there: 
