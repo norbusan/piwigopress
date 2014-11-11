@@ -8,13 +8,13 @@ $pwg_prev_host = ''; // Remind last requested gallery
 function pwg_ret_protocol() {
         if ( isset($_SERVER['HTTPS']) ) {
                 if ( 'on' == strtolower($_SERVER['HTTPS']) )
-                        return "https://";
+                        return "https:";
                 if ( '1' == $_SERVER['HTTPS'] )
-                        return "https://";
+                        return "https:";
         } elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
-                return "https://";
+                return "https:";
         }
-        return "http://";
+        return "http:";
 }
 
 function pwg_get_contents($url, $mode='', $timeout=5) {
@@ -22,9 +22,13 @@ function pwg_get_contents($url, $mode='', $timeout=5) {
 	global $pwg_mode, $pwg_prev_host;
 
 	# support same-host piwigo
-	if ((strtolower(substr($url,0,7)) !== 'http://') and 
+	if (substr($url,0,2) == '//') {
+	  # support protocol ignorant URLs
+	  $fullurl = pwg_ret_protocol() . $url;
+	} elseif ((strtolower(substr($url,0,7)) !== 'http://') and 
 	    (strtolower(substr($url,0,8)) !== 'https://')) {
-	  $fullurl = pwg_ret_protocol() . $_SERVER['HTTP_HOST'] . $url;
+	  # support local path only
+	  $fullurl = pwg_ret_protocol() . "//" . $_SERVER['HTTP_HOST'] . $url;
 	} else {
 	  $fullurl = $url;
 	}

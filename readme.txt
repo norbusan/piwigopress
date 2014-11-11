@@ -145,6 +145,7 @@ or developed by Norbert Preining)
 * fix compatibility with piwigo 1.6
 * allow url to be "/foo/bar" like on local server, preserving http(s)
 * fix compatibility with tinyMCE v4 (WordPress 1.9)
+* support //host/path and use either http or https
 
 = 2.23 =
 * WordPress 3.5.1 support  
