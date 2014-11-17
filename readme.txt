@@ -3,8 +3,8 @@ Contributors: vpiwigo
 Donate link: http://www.vdigital.org/sharing/
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 2.8.4
-Tested up to: 3.5.1
-Stable tag: 2.2.3
+Tested up to: 4.0.0
+Stable tag: 2.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
