@@ -42,7 +42,7 @@ $tags = empty($gallery['tags']) ? '' : $gallery['tags'];
 $comments = empty($gallery['comments']) ? '' : $gallery['comments'];
 $lnktype = empty($gallery['lnktype']) ? 'picture' : $gallery['lnktype'];
 $category = empty($gallery['category']) ? 0 : $gallery['category'];
-if ( $category==0 and ($lnktype=='album' || $lnktype=='albumpicture') $lnktype = 'picture';
+if ( $category==0 and ($lnktype=='album' || $lnktype=='albumpicture')) $lnktype = 'picture';
 $filter = empty($gallery['filter']) ? 'true' : $gallery['filter'];
 $text = empty($gallery['text']) ? '' : $gallery['text'];
 $text = ( $filter == 'true' ) ? wpautop( $text ) : $text;
@@ -86,6 +86,11 @@ if ($thumbnail) {
 					. $piwigo_url . 'index.php?/category/' . $category . '" target="_blank"><img class="PWGP_thumb '
 					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt=""/>';
 				$lnktype='picture';
+			}
+			if ( $lnktype=='albumpicture' ) {
+				echo '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
+					. $piwigo_url . 'picture.php?/' . $picture['id'] . '/category/' . $category . '" target="_blank"><img class="PWGP_thumb '
+					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt=""/>';
 			}
 				
 			if (isset( $picture['comment'] )) { 
