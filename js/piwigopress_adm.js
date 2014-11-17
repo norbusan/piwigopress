@@ -48,6 +48,19 @@ Compiler on http://refresh-sf.com/yui/
 					$("#PWGP_hide").hide();
 					$("#PWGP_show").hide();
 					$("#PWGP_show_stats").hide();
+					$("#PWGP_catscroll").hide();
+				});
+				$('#PWGP_loadcat').unbind().click(function() {
+					var url = $("#PWGP_finder").val(), // New URL to load
+						loaded = 5,
+						$gallery = $( "#PWGP_dragger" ),
+						$dragli = $( "#PWGP_dragger li" ),
+						$trash = $( "#PWGP_dropping" );
+					$('.PWGP_system').show(500);
+
+					$('#PWGP_Load_Active').show(); // Busy icon is on
+					// call ajax.... on ws.php loading the categories ..
+					// filling the dropdown options and make it visible.
 				});
 				$("#PWGP_load").unbind().click(function () {
 					var url = $("#PWGP_finder").val(), // New URL to load

@@ -90,6 +90,8 @@ if(!class_exists('PiwigoPress_Admin')){
 <div id="PWGP_Gal_finder" style="display:none">
 	<label>$url
 	<input id="PWGP_finder" type="text" value="$previous_url" name="piwigopress_url" style="width: 250px;" title="$recommendation"></label>
+	&nbsp;  <select id="PWGP_catscroll" name="piwigo_catsel" rel="nofollow" href="javascript:void(0);" class="hidden"></select>
+	&nbsp;	<a id="PWGP_loadcat" rel="nofollow" href="javascript:void(0);" class="hidden button" title="Load categories">Load cats</a>
 	&nbsp;	<a id="PWGP_more" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$moredesc">$more</a>
 	&nbsp;	<a id="PWGP_hide" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$hidedesc">$hide</a>
 	&nbsp;	<a id="PWGP_show" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$showdesc">$show</a>
