@@ -94,6 +94,8 @@ if(!class_exists('PiwigoPress_Admin')){
 	&nbsp;	<a id="PWGP_hide" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$hidedesc">$hide</a>
 	&nbsp;	<a id="PWGP_show" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$showdesc">$show</a>
 	&nbsp;	<a id="PWGP_load" rel="nofollow" href="javascript:void(0);" class="button" title="$loaddesc">$load</a>
+	&nbsp;	<label>CatID
+		<input id="PWGP_CatId" type="number" value="0" name="piwigo_catid" title="0 for all, otherwise catid"></label>
 	<ul class='hidden'></ul>
 	<div class="PWGP_system" style="display:none">
 		<div class="PWGP_gallery">

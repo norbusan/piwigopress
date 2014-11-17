@@ -40,7 +40,7 @@ function pwg_get_contents($url, $mode='', $timeout=5) {
 	$pwg_prev_host = $host;
 	if ($mode == '') $mode = $pwg_mode; // Can be forced by the requester
 	// $mode = 'fs'; // Test purpose only =>  '' all, 'fs' fsockopen, 'ch' cURL
-	echo "\n		<!-- *** PiwigoPress Getmode = " . $mode . " *** -->\n";
+	//echo "\n		<!-- *** PiwigoPress Getmode = " . $mode . " *** -->\n";
 // 1 - The simplest solution: file_get_contents
 // Contraint: php.ini
 //      ; Whether to allow the treatment of URLs (like http:// or ftp://) as files.

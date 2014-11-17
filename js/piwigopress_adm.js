@@ -60,7 +60,10 @@ Compiler on http://refresh-sf.com/yui/
 					$('#PWGP_Load_Active').show(); // Busy icon is on
 
 					// Ready to Load and generate
-					$gallery.load('../wp-content/plugins/piwigopress/thumbnails_reloader.php?&url='+url, function() {
+					// TODO norbert that somehow does not worek???
+					var catid = $('#PWGP_CatId').val();
+					if (!catid) { catid = 0 } ;
+					$gallery.load('../wp-content/plugins/piwigopress/thumbnails_reloader.php?&url='+url+'&category='+catid, function() {
 						$("#PWGP_more").show().unbind().click(function () {
 							Get_more();
 						});
@@ -82,8 +85,12 @@ Compiler on http://refresh-sf.com/yui/
 						
 						function Get_more() {
 							$('#PWGP_Load_Active').show();
+							catid = $('#PWGP_CatId').val();
+							if (!catid) { catid = 0 } ;
+							// here we need to add the category id if set to the argument list, for now only category
+							// and recursive is also necessary!!
 							$.ajax({
-							  url: '../wp-content/plugins/piwigopress/thumbnails_reloader.php?&loaded='+loaded+'&url='+url,
+							  url: '../wp-content/plugins/piwigopress/thumbnails_reloader.php?&loaded='+loaded+'&url='+url+'&category='+catid+'&recursive=1',
 							  cache: false,
 							  success: function(html){
 								Drag_n_Drop(html);

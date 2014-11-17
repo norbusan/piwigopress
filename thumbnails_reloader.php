@@ -7,7 +7,12 @@
 	if (!function_exists('pwg_get_contents')) include 'PiwigoPress_get.php';
 	$url = PWGP_secure($_GET['url']); // Sanitised
 
+// echo '<li> REQUEST_URI = '.$_SERVER['REQUEST_URI'].'</li>\n';
+
 	$loaded = ( isset($_GET['loaded']) ) ? ((int) $_GET['loaded']) : 0; 
+	$catid  = ( isset($_GET['category']) ) ? ((int) $_GET['category']) : 0;
+	$recur  = ( isset($_GET['recursive']) ) ? ((int) $_GET['recursive']) : 1;
+	$recur  = ( $recur==1 ? "true" : "false" ) ;
 	
     $by = 5; 
 	if ($loaded > 9) $by = 10; 
@@ -20,7 +25,15 @@
 
  	$loop = floor( $more / $by ); // 1, Only one loop now
 	for ($i = 1; $i <= $loop; $i++) {
-		$response = pwg_get_contents( $url.'ws.php?method=pwg.categories.getImages&format=php&per_page='.$by.'&order=id%20desc&page='.$page );
+		// Here we need to select/add the correct category id if set in the surrounding
+		// TODO norbert
+		if ($catid == 0) {
+			$catstr = "" ;
+		} else {
+			$catstr = "&cat_id=$catid" ;
+		}
+		// echo "<li>loading : ".$url."ws.php?method=pwg.categories.getImages".$catstr.'&recursive='.$recur.'&format=php&per_page='.$by.'&order=id%20desc&page='.$page."</li>\n";
+		$response = pwg_get_contents( $url.'ws.php?method=pwg.categories.getImages'.$catstr.'&recursive='.$recur.'&format=php&per_page='.$by.'&order=id%20desc&page='.$page );
 		$page++;
 		$thumbc = unserialize($response);
 		if ($thumbc["stat"] == 'ok') {
