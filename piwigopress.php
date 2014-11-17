@@ -67,14 +67,21 @@ function PiwigoPress_photoblog($parm) {
 		$picture = $thumbc["result"];
 		//var_dump($picture);
 		if (isset($picture['derivatives']['square']['url'])) {
+			$cats = array_reverse($picture['categories']);
 			$picture['tn_url'] = $picture['derivatives'][$deriv[$size]]['url'] ;
+			$catlink = '/category/' ;
+			if (isset($cats[0]['permalink'])) {
+				$catlink .= $cats[0]['permalink'];
+			} else {
+				$catlink .= $cats[0]['id'];
+			}
+			$targetlink = $url . 'picture.php?/' . $picture['id'] . $catlink;
 			$atag = '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
-				. $url . 'picture.php?/' . $picture['id'] . '" target="_blank">';
+				. $targetlink . '" target="_blank">';
 			if ( $lnktype == 'none' ) $atag = '';
 			if ( $lnktype == 'album' ) {
-				$cats = array_reverse($picture['categories']);
 				$atag = '<a title="' . htmlspecialchars($cats[0]['name']) . '" href="' 
-				. $url . 'index.php?/category/' . $cats[0]['id'] . '" target="_blank">';
+				. $url . 'index.php?' . $catlink . '" target="_blank">';
 			}
 			$div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img  class="PWGP_photo" src="' . $picture['tn_url'] . '" alt=""/>';
 			if (isset( $picture['comment'] ) and $desc) { 
