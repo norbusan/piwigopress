@@ -42,7 +42,7 @@ $tags = empty($gallery['tags']) ? '' : $gallery['tags'];
 $comments = empty($gallery['comments']) ? '' : $gallery['comments'];
 $lnktype = empty($gallery['lnktype']) ? 'picture' : $gallery['lnktype'];
 $category = empty($gallery['category']) ? 0 : $gallery['category'];
-if ( $category==0 and $lnktype=='album' ) $lnktype = 'picture';
+if ( $category==0 and ($lnktype=='album' || $lnktype=='albumpicture') $lnktype = 'picture';
 $filter = empty($gallery['filter']) ? 'true' : $gallery['filter'];
 $text = empty($gallery['text']) ? '' : $gallery['text'];
 $text = ( $filter == 'true' ) ? wpautop( $text ) : $text;

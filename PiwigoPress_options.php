@@ -130,7 +130,10 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 				. checked($lnktype,'album',false) . '><br>
 			<label>' . __('Picture page','pwg') . ' </label> 
 			<input type="radio" value="picture" id="'. $this->get_field_id('lnktype') .'" class="post-format" name="'. $this->get_field_name('lnktype') .'" ' 
-				. checked($lnktype,'picture',false) . ' title="' . __('Forced option if selected album id is 0 (see below)') . '">
+				. checked($lnktype,'picture',false) . ' title="' . __('Forced option if selected album id is 0 (see below)') . '"><br>
+			<label>' . __('Picture page in Album','pwg') . ' </label> 
+			<input type="radio" value="albumpicture" id="'. $this->get_field_id('lnktype') .'" class="post-format" name="'. $this->get_field_name('lnktype') .'" ' 
+				. checked($lnktype,'albumpicture',false) . '>
 		</fieldset></td>';
 	// The categories menu
 	echo '<td>

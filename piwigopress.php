@@ -3,8 +3,8 @@
 Plugin Name: PiwigoPress
 Plugin URI: http://wordpress.org/extend/plugins/piwigopress/
 Description: PiwigoPress from any open API Piwigo gallery, swiftly includes your photos in Posts/Pages and/or add randomized thumbnails and menus in your sidebar.
-Version: 2.23.1
-Author: vpiwigo ( for The Piwigo Team )
+Version: 2.24
+Author: vpiwigo ( for The Piwigo Team ) and Norbert Preining
 Author URI: http://www.vdigital.org/sharing/
 */
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo */
