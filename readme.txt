@@ -91,7 +91,7 @@ Explanation of Plugin Shortcode attributes.
 * style: (optional) any additional CSS rules at DIV tag level (e.g. style="background-color: rgba(16, 64, 192, 0.05);")
 * desc: (0,1) (0 by default) add the photo description in a blockquote from description field 
 in the Edit photo [Properties] admin page if there is a filled description there
-* lnktype: (string, default lnktype='picture') 'none' : no link, 'picture' : link to picture.php, 'album' : link to index.php/category
+* lnktype: (string, default lnktype='picture') 'none' : no link, 'picture' : link to picture.php, 'album' : link to index.php/category, 'albumpicture' : link to picture.php within the album
 
 "style" is not used by the Shortcode generator
 
@@ -140,14 +140,14 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 == Changelog ==
 
 = 2.24 =
-(changes either from formum for initial piwigo 1.6 compatibility,
-or developed by Norbert Preining)
+* new maintainership
 * fix compatibility with piwigo 1.6
 * allow url to be "/foo/bar" like on local server, preserving http(s)
 * fix compatibility with tinyMCE v4 (WordPress 1.9)
 * support //host/path and use either http or https
 * link tagets to photo are now within the first category of the photo
 * permalinks are used for categories as far as possible
+* support pulling from a specific category instead of only from all photos
 
 = 2.23 =
 * WordPress 3.5.1 support  
