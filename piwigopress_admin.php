@@ -91,14 +91,12 @@ if(!class_exists('PiwigoPress_Admin')){
 <div id="PWGP_Gal_finder" style="display:none">
 	<label>$url
 	<input id="PWGP_finder" type="text" value="$previous_url" name="piwigopress_url" style="width: 250px;" title="$recommendation"></label>
-	&nbsp;  <select id="PWGP_catscroll" name="piwigo_catsel" rel="nofollow" href="javascript:void(0);" class="hidden"></select>
-	&nbsp;	<a id="PWGP_loadcat" rel="nofollow" href="javascript:void(0);" class="hidden button" title="Load categories">Load cats</a>
-	&nbsp;	<a id="PWGP_more" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$moredesc">$more</a>
+	&nbsp;  <select id="PWGP_catscroll" name="piwigo_catsel" rel="nofollow" href="javascript:void(0);" class="hidden"><option value="0">All categories/photos</option></select>
+	&nbsp;	<a id="PWGP_loadcat" rel="nofollow" href="javascript:void(0);" class="button" title="Load categories">Load cats</a>
+	<br><a id="PWGP_more" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$moredesc">$more</a>
 	&nbsp;	<a id="PWGP_hide" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$hidedesc">$hide</a>
 	&nbsp;	<a id="PWGP_show" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$showdesc">$show</a>
 	&nbsp;	<a id="PWGP_load" rel="nofollow" href="javascript:void(0);" class="button" title="$loaddesc">$load</a>
-	&nbsp;	<label>CatID
-		<input id="PWGP_CatId" type="number" value="0" name="piwigo_catid" title="$catiddesc"></label>
 	<ul class='hidden'></ul>
 	<div class="PWGP_system" style="display:none">
 		<div class="PWGP_gallery">

@@ -43,12 +43,11 @@ Compiler on http://refresh-sf.com/yui/
 				} else { // Just show Drag & Drop zones
 					$("#PWGP_shortcoder").show();
 				}
-				$('#PWGP_CatId').change(function() { // changing the catid hides buttons
+				$('#PWGP_catscroll').change(function() { // changing the catid hides buttons
 					$("#PWGP_more").hide();
 					$("#PWGP_hide").hide();
 					$("#PWGP_show").hide();
 					$("#PWGP_show_stats").hide();
-					$("#PWGP_catscroll").hide();
 				});
 				$('#PWGP_finder').focusin(function() { // Changing Gallery URL hides buttons
 					$("#PWGP_more").hide();
@@ -56,18 +55,37 @@ Compiler on http://refresh-sf.com/yui/
 					$("#PWGP_show").hide();
 					$("#PWGP_show_stats").hide();
 					$("#PWGP_catscroll").hide();
+					$('#PWGP_loadcat').show();
 				});
 				$('#PWGP_loadcat').unbind().click(function() {
-					var url = $("#PWGP_finder").val(), // New URL to load
-						loaded = 5,
-						$gallery = $( "#PWGP_dragger" ),
-						$dragli = $( "#PWGP_dragger li" ),
-						$trash = $( "#PWGP_dropping" );
-					$('.PWGP_system').show(500);
-
+					var url = $("#PWGP_finder").val(); // New URL to load
 					$('#PWGP_Load_Active').show(); // Busy icon is on
-					// call ajax.... on ws.php loading the categories ..
-					// filling the dropdown options and make it visible.
+					$.ajax({
+						url: url+'ws.php?format=json&method=pwg.categories.getList&recursive=true',
+						type: "POST",
+						success: function(data) {
+						  var data = jQuery.parseJSON(data);
+						  var $dropper = $('#PWGP_catscroll');
+						  $dropper.empty();
+						  $dropper.append('<option value="0">All categories/photos</option>');
+						  // console.log('loading remote categories');
+						  if (data.stat == 'ok') {
+						    var cats = data.result.categories;
+						    // console.log('response ok length ='+cats.length);
+						    for (var c = 0; c < cats.length; c++) {
+						      var nm = cats[c].name;
+						      var id = cats[c].id;
+						      $dropper.append('<option value='+id+'>'+nm+'</option>');
+						    }
+						  }
+						},
+						error: function(jqXHR, textStatus, errorThrows) {
+						  console.log('cannot load list of piwigo categories: ' + textStatus + ' ' + errorThrows + ' ' + jqXHR.responseText);
+						}
+					});
+					$('#PWGP_Load_Active').hide();
+					$('#PWGP_loadcat').hide();
+					$('#PWGP_catscroll').show();
 				});
 				$("#PWGP_load").unbind().click(function () {
 					var url = $("#PWGP_finder").val(), // New URL to load
@@ -81,7 +99,8 @@ Compiler on http://refresh-sf.com/yui/
 
 					// Ready to Load and generate
 					// TODO norbert that somehow does not worek???
-					var catid = $('#PWGP_CatId').val();
+					var catid = $('#PWGP_catscroll').val();
+					// console.log('catid='+catid);
 					if (!catid) { catid = 0 } ;
 					$gallery.load('../wp-content/plugins/piwigopress/thumbnails_reloader.php?&url='+url+'&category='+catid, function() {
 						$("#PWGP_more").show().unbind().click(function () {
@@ -105,7 +124,7 @@ Compiler on http://refresh-sf.com/yui/
 						
 						function Get_more() {
 							$('#PWGP_Load_Active').show();
-							catid = $('#PWGP_CatId').val();
+							catid = $('#PWGP_catscroll').val();
 							if (!catid) { catid = 0 } ;
 							// here we need to add the category id if set to the argument list, for now only category
 							// and recursive is also necessary!!
