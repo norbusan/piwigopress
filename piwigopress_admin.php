@@ -49,6 +49,7 @@ if(!class_exists('PiwigoPress_Admin')){
 			$drop = __('Drop one or several thumbnails over the blue border here above !','pwg');
 			$loadreq = __('Loaded, hidden & dropped vs. Requested thumbnails: ','pwg');
 			$desc_options = __('Shortcode options','pwg');
+			$catiddesc = __("This is the Category/Album ID from where pictures will be obtained; use 0 for 'all albums' (most recent pictures first, regardless of album), use a specific Category ID number (e.g. 123) to get pictures from the specific album with that ID (CatID=123 in the example)",'pwg');
 			$Lib_size =  __('Picture size','pwg');
 			$Lib_sq =  __('Square','pwg');
 			$Lib_th =  __('Thumbnail','pwg');
@@ -97,7 +98,7 @@ if(!class_exists('PiwigoPress_Admin')){
 	&nbsp;	<a id="PWGP_show" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$showdesc">$show</a>
 	&nbsp;	<a id="PWGP_load" rel="nofollow" href="javascript:void(0);" class="button" title="$loaddesc">$load</a>
 	&nbsp;	<label>CatID
-		<input id="PWGP_CatId" type="number" value="0" name="piwigo_catid" title="0 for all, otherwise catid"></label>
+		<input id="PWGP_CatId" type="number" value="0" name="piwigo_catid" title="$catiddesc"></label>
 	<ul class='hidden'></ul>
 	<div class="PWGP_system" style="display:none">
 		<div class="PWGP_gallery">
