@@ -79,10 +79,12 @@ if(!class_exists('PiwigoPress_Admin')){
 			$clnkno  = checked($link_type,'none',false);
 			$clnkalb = checked($link_type,'album',false);
 			$clnkpic = checked($link_type,'picture',false);
+			$clnkalbpicp = checked($link_type,'albumpicture',false);
 			$Lib_lnktype =  __('Link type','pwg');
 			$Lib_link_no  =  __('No link','pwg');
 			$Lib_link_alb =  __('Album page','pwg');
 			$Lib_link_pic =  __('Picture page','pwg');
+			$Lib_link_albpic = __('Picture in album page', 'pwg');
 			
 			echo <<<EOF
 <div id="PWGP_Gal_finder" style="display:none">
@@ -146,6 +148,7 @@ if(!class_exists('PiwigoPress_Admin')){
 						<label>$Lib_link_no &nbsp; <input type="radio" value="none" class="post-format" name="link_type" $clnkno></label><br>	
 						<label>$Lib_link_alb &nbsp; <input type="radio" value="album" class="post-format" name="link_type" $clnkalb></label><br>	
 						<label>$Lib_link_pic &nbsp; <input type="radio" value="picture" class="post-format" name="link_type" $clnkpic></label><br>	
+						<label>$Lib_link_albpic &nbsp; <input type="radio" value="albumpicture" class="post-format" name="link_type" $clnkalbpic></label><br>	
 					</div><br>
 					
 					<div style="text-align:right;">

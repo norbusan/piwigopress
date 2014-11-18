@@ -75,7 +75,8 @@ function PiwigoPress_photoblog($parm) {
 			} else {
 				$catlink .= $cats[0]['id'];
 			}
-			$targetlink = $url . 'picture.php?/' . $picture['id'] . $catlink;
+			$targetlink = $url . 'picture.php?/' . $picture['id'];
+			if ( $lnktype == 'albumpicture' ) $targetlink .= $catlink ;
 			$atag = '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
 				. $targetlink . '" target="_blank">';
 			if ( $lnktype == 'none' ) $atag = '';
@@ -109,7 +110,7 @@ class PiwigoPress extends WP_Widget
 	}
 	// Code generator
 	function widget($args, $gallery){
-		include 'PiwigoPress_code.php';
+		include 'PiwigoPress_widget.php';
 	}
 	function update($new_gallery, $old_gallery){
 		$gallery = $old_gallery;
