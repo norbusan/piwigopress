@@ -43,6 +43,13 @@ Compiler on http://refresh-sf.com/yui/
 				} else { // Just show Drag & Drop zones
 					$("#PWGP_shortcoder").show();
 				}
+				$('#PWGP_CatId').change(function() { // changing the catid hides buttons
+					$("#PWGP_more").hide();
+					$("#PWGP_hide").hide();
+					$("#PWGP_show").hide();
+					$("#PWGP_show_stats").hide();
+					$("#PWGP_catscroll").hide();
+				});
 				$('#PWGP_finder').focusin(function() { // Changing Gallery URL hides buttons
 					$("#PWGP_more").hide();
 					$("#PWGP_hide").hide();
