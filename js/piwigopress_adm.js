@@ -66,8 +66,8 @@ Compiler on http://refresh-sf.com/yui/
 						success: function(data) {
 						  var data = jQuery.parseJSON(data);
 						  var $dropper = $('#PWGP_catscroll');
-						  $dropper.empty();
-						  $dropper.append('<option value="0">All categories/photos</option>');
+						  // remove all but the 0 value which is translated!
+						  $('#PWGP_catscroll option[value!="0"]').remove();
 						  // console.log('loading remote categories');
 						  if (data.stat == 'ok') {
 						    var cats = data.result.categories;
