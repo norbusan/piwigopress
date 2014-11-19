@@ -37,9 +37,13 @@ if(!class_exists('PiwigoPress_Admin')){
 			extract( unserialize($previous_options) );
 			if ( !in_array($thumbnail_size, array('sq','th','xs','2s','sm','me','la','xl','xx'))) $thumbnail_size='la';
 			$url  = __('Piwigo gallery URL:','pwg');
+			$actions = __('Actions:','pwg');
 			$recommendation = __('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','pwg');
 			$load = __('Start with 5 recent pics','pwg');
 			$loaddesc = __('Load or reload the 5 most latest squared thumbnails from the url (might be changed or not)','pwg');
+			$loadcat = __('Load list of categories','pwg');
+			$loadcatdesc = __('After loading the list of categories, photos can be loaded from one of them','pwg');
+			$allcats = __('All categories/photos','pwg');
 			$more = __('Get more','pwg');
 			$moredesc = __('Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, and continues by 100','pwg');
 			$hide = __('Hide 50%','pwg');
@@ -89,14 +93,14 @@ if(!class_exists('PiwigoPress_Admin')){
 			
 			echo <<<EOF
 <div id="PWGP_Gal_finder" style="display:none">
-	<label>$url
-	<input id="PWGP_finder" type="text" value="$previous_url" name="piwigopress_url" style="width: 250px;" title="$recommendation"></label>
-	&nbsp;  <select id="PWGP_catscroll" name="piwigo_catsel" rel="nofollow" href="javascript:void(0);" class="hidden"><option value="0">All categories/photos</option></select>
-	&nbsp;	<a id="PWGP_loadcat" rel="nofollow" href="javascript:void(0);" class="button" title="Load categories">Load cats</a>
-	<br><a id="PWGP_more" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$moredesc">$more</a>
-	&nbsp;	<a id="PWGP_hide" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$hidedesc">$hide</a>
-	&nbsp;	<a id="PWGP_show" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$showdesc">$show</a>
-	&nbsp;	<a id="PWGP_load" rel="nofollow" href="javascript:void(0);" class="button" title="$loaddesc">$load</a>
+	<label id="PWGP_label">$url
+	<input id="PWGP_finder" type="text" value="$previous_url" name="piwigopress_url" style="width: 250px;" title="$recommendation">
+	&nbsp;  <select id="PWGP_catscroll" name="piwigo_catsel" rel="nofollow" href="javascript:void(0);" class="hidden"><option value="0">$allcats</option></select>
+	&nbsp;	<a id="PWGP_loadcat" rel="nofollow" href="javascript:void(0);" class="button" title="$loadcatdesc">$loadcat</a></label>
+	<br><label id="PWGP_label">$actions <a id="PWGP_more" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$moredesc">$more</a>
+	<a id="PWGP_hide" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$hidedesc">$hide</a>
+	<a id="PWGP_show" rel="nofollow" href="javascript:void(0);" class="hidden button" title="$showdesc">$show</a>
+	<a id="PWGP_load" rel="nofollow" href="javascript:void(0);" class="button" title="$loaddesc">$load</a></label>
 	<ul class='hidden'></ul>
 	<div class="PWGP_system" style="display:none">
 		<div class="PWGP_gallery">

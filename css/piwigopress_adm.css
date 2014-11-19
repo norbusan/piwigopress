@@ -140,6 +140,41 @@
 }
 a#PWGP_more.button { 
     padding: 3px 40px;
+    height: 30px;
+    text-align: center;
+    margin: 6px;
+    box-sizing: border-box;  // This line
+    vertical-align: middle;  // and this line
+}
+a#PWGP_hide.button { 
+    padding: 3px 40px;
+    height: 30px;
+    text-align: center;
+    margin: 6px;
+}
+#PWGP_finder {
+    margin: 6px 0px;
+    height: 30px;
+}
+#PWGP_label {
+    text-align: center;
+    height: 30px;
+    margin: 6px 0px;
+}
+a#PWGP_show.button { 
+    padding: 3px 40px;
+    text-align: center;
+    height: 30px;
+    margin: 6px;
+}
+a#PWGP_load.button { 
+    text-align: center;
+    height: 30px;
+}
+a#PWGP_loadcat.button { 
+    text-align: center;
+    height: 30px;
+    margin: 6px;
 }
 #PWGP_show_stats {
     clear: both;
