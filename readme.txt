@@ -4,7 +4,7 @@ Donate link: http://www.vdigital.org/sharing/
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 2.8.4
 Tested up to: 4.0.0
-Stable tag: 2.2.4
+Stable tag: 2.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,10 +45,12 @@ follow the full installation procedure. When ready, if you are a bit lost,
 just try Photos add page sheets (Web form, Applications, FTP + Synchronization) 
 in your Piwigo gallery administration page.
 
-PiwigoPress is a Plugin/Widget signed and supported by a Former Piwigo Team 
-member.
+Development of PiwigoPress is open to contributions, please use the
+[github page][] for patches, bug reports, and issues.
+
 [demonstration gallery]: http://piwigo.org/demo/  "The demonstration gallery"
 [download page]: http://piwigo.org/basics/downloads  "Piwigo download page"
+[github page]: https://github.com/norbusan/piwigopress
 
 == Installation ==
 
@@ -150,7 +152,7 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 
 = 2.24 =
 * new maintainership
-* fix compatibility with piwigo 1.6
+* fix compatibility with piwigo 1.6 and wordpress 4.0
 * allow url to be "/foo/bar" like on local server, preserving http(s)
 * fix compatibility with tinyMCE v4 (WordPress 1.9)
 * support //host/path and use either http or https
