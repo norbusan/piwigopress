@@ -43,11 +43,15 @@ Compiler on http://refresh-sf.com/yui/
 				} else { // Just show Drag & Drop zones
 					$("#PWGP_shortcoder").show();
 				}
-				$('#PWGP_catscroll').change(function() { // changing the catid hides buttons
-					$("#PWGP_more").hide();
-					$("#PWGP_hide").hide();
-					$("#PWGP_show").hide();
-					$("#PWGP_show_stats").hide();
+				$('#PWGP_catscroll').on('focus', function () {
+					current_catid = this.value;
+				}).change(function() { // changing the catid hides buttons
+					if (current_catid != this.value) {
+						$("#PWGP_more").hide();
+						$("#PWGP_hide").hide();
+						$("#PWGP_show").hide();
+						$("#PWGP_show_stats").hide();
+					}
 				});
 				$('#PWGP_finder').focusin(function() { // Changing Gallery URL hides buttons
 					$("#PWGP_more").hide();
@@ -56,6 +60,7 @@ Compiler on http://refresh-sf.com/yui/
 					$("#PWGP_show_stats").hide();
 					$("#PWGP_catscroll").hide();
 					$('#PWGP_loadcat').show();
+					$('#PWGP_catscroll').val(0);
 				});
 				$('#PWGP_loadcat').unbind().click(function() {
 					var url = $("#PWGP_finder").val(); // New URL to load
