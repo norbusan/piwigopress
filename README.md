@@ -3,8 +3,8 @@
 **Donate link:** http://www.vdigital.org/sharing/  
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
-**Tested up to:** 4.0.0  
-**Stable tag:** 2.24  
+**Tested up to:** 4.1.0  
+**Stable tag:** 2.25  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -167,6 +167,10 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 
 
 ## Changelog ##
+
+### 2.25 ###
+* fix some peculiarities with the category list download
+* update compatibility to 4.1
 
 ### 2.24 ###
 * new maintainership
