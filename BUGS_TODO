@@ -1,3 +1,13 @@
+TODO
+====
+- support for oembed, register as oembed provider???
+  http://codex.wordpress.org/Embeds
+  http://codex.wordpress.org/Function_Reference/wp_oembed_add_provider
+  http://codex.wordpress.org/Function_Reference/wp_embed_register_handler
 - export the created IMG also as // instead of http(s)://
 - allow for a mode to include the actual html code instead of a short
   code - this is necessary for open graph photo scrambler
+
+BUGS
+====
+- default for image in category is not saved
