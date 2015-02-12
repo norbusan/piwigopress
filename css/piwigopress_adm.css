@@ -206,5 +206,6 @@ a#PWGP_loadcat.button {
 	box-shadow: -12px 20px 20px #888888;
 }
 .pwgp_shadow .widget-inside {
-	background: url(../img/PiwigoPress-widget-bg.png) no-repeat scroll 1px 2px transparent;
+	/* background: url(../img/PiwigoPress-widget-bg.png) no-repeat scroll 1px 2px transparent; */
+	background-color: white;
 }
