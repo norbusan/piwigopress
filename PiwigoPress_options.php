@@ -12,6 +12,7 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 		'most_commented' => 'true', 'random' => 'true', 'recent_pics' => 'true',
 		'calendar' => 'true', 'tags' => 'true', 'comments' => 'true', 'allsel' => 'true', 
 		'mbcategories' => 'true', 'filter' => 'true', 'text' => '', 'lnktype' => 'picture',
+		'opntype' => '_blank',
 		 ) );
 
 	$title = htmlspecialchars($gallery['title']);
@@ -41,6 +42,7 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 	$filter = (htmlspecialchars($gallery['filter']) == 'true') ? 'checked="checked"':'';
 	$text = htmlspecialchars($gallery['text']);
 	$lnktype = htmlspecialchars($gallery['lnktype']);
+	$opntype = htmlspecialchars($gallery['opntype']);
 	$allsel = (htmlspecialchars($gallery['allsel']) == 'true') ? 'checked="checked"':'';
 	$allchk = (htmlspecialchars($gallery['allsel']) == 'true') ? 'display: none;':'';
 	$allunchk = (htmlspecialchars($gallery['allsel']) == 'true') ? '':'display: none;';
@@ -104,8 +106,16 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 				echo '</span>';
 			}
 			echo '
+		</fieldset><br>
+		<fieldset class="edge">
+			<legend><span> ' . __('Open type') . ' </span></legend>
+			<label>' . __('New windows/tab','pwg') . ' </label> 
+			<input type="radio" value="_blank" id="'. $this->get_field_id('opntype') .'" class="post-format" name="'. $this->get_field_name('opntype') .'" ' 
+				. checked($opntype,'_blank',false) . '><br>
+			<label>' . __('Same window','pwg') . ' </label> 
+			<input type="radio" value="_self" id="'. $this->get_field_id('opntype') .'" class="post-format" name="'. $this->get_field_name('opntype') .'" ' 
+				. checked($opntype,'_self',false) . '>
 		</fieldset></td>';
-
 	// Orientation
 		echo '<td>
 		<fieldset class="edge">

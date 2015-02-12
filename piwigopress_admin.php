@@ -21,6 +21,7 @@ if(!class_exists('PiwigoPress_Admin')){
 				'desc_check'		=>  (bool) $_POST['desc_check'],
 				'photo_class'		=>  (string) $_POST['photo_class'],
 				'link_type'			=>  (string) $_POST['link_type'],
+				'open_type'			=>  (string) $_POST['open_type'],
 			));
 			# support local path, too
 			if ( strlen($_POST['piwigopress_url']) > 1 ) update_option( 'PiwigoPress_previous_options', $PWGP_options );
@@ -32,6 +33,7 @@ if(!class_exists('PiwigoPress_Admin')){
 				'desc_check'		=> (bool) true,
 				'photo_class'		=> 'img-shadow',
 				'link_type'			=> 'picture',
+				'open_type'			=> '_blank',
 			));
 			$previous_options = get_option( 'PiwigoPress_previous_options', $PWGP_options );
 			extract( unserialize($previous_options) );
@@ -80,6 +82,7 @@ if(!class_exists('PiwigoPress_Admin')){
 			$gendesc = __('Generate shortcodes of all dropped squared thumbnails','pwg');
 			$Reset_drop =  __('Reset dropping zone','pwg');
 			$rstdesc = __('Remove all squared thumbnails from the dropping zone','pwg');
+
 			if ( !in_array($link_type, array('album','none','picture'))) $link_type='picture';
 			$clnkno  = checked($link_type,'none',false);
 			$clnkalb = checked($link_type,'album',false);
@@ -90,6 +93,13 @@ if(!class_exists('PiwigoPress_Admin')){
 			$Lib_link_alb =  __('Album page','pwg');
 			$Lib_link_pic =  __('Picture page','pwg');
 			$Lib_link_albpic = __('Picture in album page', 'pwg');
+
+			if ( !in_array($open_type, array('_blank','_self'))) $open_type='_blank';
+			$copnnew  = checked($open_type,'_blank',false);
+			$copnsel = checked($open_type,'_new',false);
+			$Lib_opntype =  __('Open type','pwg');
+			$Lib_open_new = __('New window/tab','pwg');
+			$Lib_open_self = __('Same window','pwg');
 			
 			echo <<<EOF
 <div id="PWGP_Gal_finder" style="display:none">
@@ -147,6 +157,13 @@ if(!class_exists('PiwigoPress_Admin')){
 						<label>$Lib_desc  &nbsp; 
 							<input id="desc_check" style="width: 30px;" name="desc_check" type="checkbox" $descrip_check value="true" />
 						</label>
+					</div>
+				</td>
+				<td>
+					<div class="legend">$Lib_opntype</div>
+					<div id="open_type" class="fieldset" style="text-align:right;">
+						<label>$Lib_open_new &nbsp; <input type="radio" value="_blank" class="post-format" name="open_type" $copnnew></label><br>	
+						<label>$Lib_open_self &nbsp; <input type="radio" value="_self" class="post-format" name="open_type" $copnsel></label><br>	
 					</div>
 				</td>
 				<td>

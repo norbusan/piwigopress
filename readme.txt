@@ -150,6 +150,9 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 
 == Changelog ==
 
+= 2.26DEV =
+* new parameter for widget and shortcode: opntype: '_blank' (open in new window/tab) or '_self' (open in same) (Issue 10)
+
 = 2.25 =
 * fix some peculiarities with the category list download
 * update compatibility to 4.1

@@ -39,7 +39,8 @@ function PiwigoPress_photoblog($parm) {
 				'desc' => 0, 	// Generate picture description
 				'class' => '',	// Specific class
 				'style' => '',	// Specific style
-				'lnktype' => 'picture' // Default generated link 
+				'lnktype' => 'picture', // Default generated link 
+				'opntype' => '_blank' // Default open type
 		);
 	$parm = array_change_key_case( $parm );
 	extract( shortcode_atts( $default, $parm ) );
@@ -79,11 +80,11 @@ function PiwigoPress_photoblog($parm) {
 			$targetlink = $url . 'picture.php?/' . $picture['id'];
 			if ( $lnktype == 'albumpicture' ) $targetlink .= $catlink ;
 			$atag = '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
-				. $targetlink . '" target="_blank">';
+				. $targetlink . '" target="' . $opntype . '">';
 			if ( $lnktype == 'none' ) $atag = '';
 			if ( $lnktype == 'album' ) {
 				$atag = '<a title="' . htmlspecialchars($cats[0]['name']) . '" href="' 
-				. $url . 'index.php?' . $catlink . '" target="_blank">';
+				. $url . 'index.php?' . $catlink . '" target="' . $opntype . '">';
 			}
 			$div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img  class="PWGP_photo" src="' . $picture['tn_url'] . '" alt=""/>';
 			if (isset( $picture['comment'] ) and $desc) { 
@@ -138,6 +139,7 @@ class PiwigoPress extends WP_Widget
 		$gallery['allsel'] = (strip_tags(stripslashes($new_gallery['allsel'])) == 'true') ? 'true':'false';
 		$gallery['filter'] = (strip_tags(stripslashes($new_gallery['filter'])) == 'true') ? 'true':'false';
 		$gallery['lnktype'] = strip_tags(stripslashes($new_gallery['lnktype']));
+		$gallery['opntype'] = strip_tags(stripslashes($new_gallery['opntype']));
 		if ( current_user_can('unfiltered_html') )
 			$gallery['text'] =  $new_gallery['text'];
 		else

@@ -184,6 +184,9 @@ Compiler on http://refresh-sf.com/yui/
 										if ( $hclass != '' ) $scode += " class='"+$hclass+"'";
 										var $lnktype = $('#link_type input[type=radio][name=link_type]:checked').attr('value');
 										if ( $lnktype != 'picture' ) $scode += " lnktype='"+$lnktype+"'";
+										var $opntype = $('#open_type input[type=radio][name=open_type]:checked').attr('value');
+										if ( $opntype != '' ) $scode += " opntype='"+$opntype+"'";
+
 										var $scode = "\t"+$scode+"] \n\r";
 
 										// HTML Editor only insert statement
