@@ -76,22 +76,26 @@ if ($thumbnail) {
 				if ($thumbnail_size == 'xl') $picture['tn_url'] = $picture['derivatives']['xlarge']['url'] ;
 				if ($thumbnail_size == 'xx') $picture['tn_url'] = $picture['derivatives']['xxlarge']['url'] ;
 			}
+			// value of alt tag: title + comment (if present)
+			$alt = htmlspecialchars($picture['name']);
+			if (isset($picture['comment'])) $alt .= ( ' -- ' . htmlspecialchars($picture['comment']) );
+
 			echo '<div' . $PiwigoPress_divclass . '>';
 			if ( $lnktype=='picture' ) {
 				echo '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
 					. $piwigo_url . 'picture.php?/' . $picture['id'] . '" target="' . $opntype . '"><img class="PWGP_thumb '
-					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt=""/>';
+					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
 			}
 			if ( $lnktype=='album' ) {
 				echo '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
 					. $piwigo_url . 'index.php?/category/' . $category . '" target="' . $opntype . '"><img class="PWGP_thumb '
-					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt=""/>';
+					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
 				$lnktype='picture';
 			}
 			if ( $lnktype=='albumpicture' ) {
 				echo '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
 					. $piwigo_url . 'picture.php?/' . $picture['id'] . '/category/' . $category . '" target="' . $opntype . '"><img class="PWGP_thumb '
-					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt=""/>';
+					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
 			}
 				
 			if (isset( $picture['comment'] )) { 

@@ -86,7 +86,10 @@ function PiwigoPress_photoblog($parm) {
 				$atag = '<a title="' . htmlspecialchars($cats[0]['name']) . '" href="' 
 				. $url . 'index.php?' . $catlink . '" target="' . $opntype . '">';
 			}
-			$div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img  class="PWGP_photo" src="' . $picture['tn_url'] . '" alt=""/>';
+			// value of alt tag: title + comment (if present)
+			$alt = htmlspecialchars($picture['name']);
+			if (isset($picture['comment'])) $alt .= ( ' -- ' . htmlspecialchars($picture['comment']) );
+			$div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img  class="PWGP_photo" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
 			if (isset( $picture['comment'] ) and $desc) { 
 				$picture['comment'] = stripslashes(htmlspecialchars(strip_tags($picture['comment'])));
 				$div .= '<blockquote class="PWGP_caption">' . $picture['comment'] . '</blockquote>'; 

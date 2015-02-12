@@ -152,6 +152,7 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 
 = 2.26DEV =
 * new parameter for widget and shortcode: opntype: '_blank' (open in new window/tab) or '_self' (open in same) (Issue 10)
+* set alt parameter of images to 'name' (plus 'comment', if available) if the piwigo image (Issue 8)
 
 = 2.25 =
 * fix some peculiarities with the category list download
