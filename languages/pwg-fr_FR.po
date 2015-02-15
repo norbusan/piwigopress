@@ -1,0 +1,395 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: piwigopress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-15 22:24+0900\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Norbert Preining <norbert@preining.info>\n"
+"Language-Team: Laurent Duretz <laurent@duretz.net>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplural=2; plural(n !=1);\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;_c\n"
+"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-SearchPath-0: trunk\n"
+
+#: PiwigoPress_options.php:8
+msgid "Random picture"
+msgstr "Images aléatoires"
+
+#: PiwigoPress_options.php:53
+msgid "Title"
+msgstr "Titre"
+
+#: PiwigoPress_options.php:57
+msgid "<strong>Local</strong> directory (if local)"
+msgstr "Répertoire <strong>local</strong> (si local)"
+
+#: PiwigoPress_options.php:61
+msgid "(or) <strong>External</strong> gallery URL"
+msgstr "(ou) URL de la galerie <strong>externe</strong>"
+
+#: PiwigoPress_options.php:70
+msgid "Size"
+msgstr "Dimension"
+
+#: PiwigoPress_options.php:71 piwigopress_admin.php:60
+msgid "Square"
+msgstr "Carré"
+
+#: PiwigoPress_options.php:74 piwigopress_admin.php:61
+msgid "Thumbnail"
+msgstr "Miniature"
+
+#: PiwigoPress_options.php:77 piwigopress_admin.php:63
+msgid "XXS - tiny"
+msgstr "XXS - minuscule"
+
+#: PiwigoPress_options.php:80 piwigopress_admin.php:62
+msgid "XS - extra small"
+msgstr "XS - très petit"
+
+#: PiwigoPress_options.php:86
+msgid "Large sizes"
+msgstr "Grandes tailles"
+
+#: PiwigoPress_options.php:86
+msgid "Select a larger sized picture"
+msgstr "Sélectionner une image dans une grande taille"
+
+#: PiwigoPress_options.php:90 piwigopress_admin.php:64
+msgid "S - small"
+msgstr "S - petit"
+
+#: PiwigoPress_options.php:93 piwigopress_admin.php:65
+msgid "M - medium"
+msgstr "M - moyen "
+
+#: PiwigoPress_options.php:96 piwigopress_admin.php:66
+msgid "L - large"
+msgstr "L - grand"
+
+#: PiwigoPress_options.php:99 piwigopress_admin.php:67
+msgid "XL - extra large"
+msgstr "XL - très grand"
+
+#: PiwigoPress_options.php:102 piwigopress_admin.php:68
+msgid "XXL - huge"
+msgstr "XXL - énorme"
+
+#: PiwigoPress_options.php:111 piwigopress_admin.php:100
+#, fuzzy
+msgid "Open type"
+msgstr "Type de lien"
+
+#: PiwigoPress_options.php:112
+msgid "New windows/tab"
+msgstr ""
+
+#: PiwigoPress_options.php:115 piwigopress_admin.php:102
+msgid "Same window"
+msgstr ""
+
+#: PiwigoPress_options.php:122
+msgid "Format"
+msgstr "Format"
+
+#: PiwigoPress_options.php:123
+msgid "Any orientation"
+msgstr "Toutes orientations"
+
+#: PiwigoPress_options.php:126
+msgid "Portrait only"
+msgstr "Uniquement en portrait"
+
+#: PiwigoPress_options.php:129
+msgid "Landscape only"
+msgstr "en paysage"
+
+#: PiwigoPress_options.php:134 piwigopress_admin.php:91
+msgid "Link type"
+msgstr "Type de lien"
+
+#: PiwigoPress_options.php:135 piwigopress_admin.php:92
+msgid "No link"
+msgstr "Aucun lien"
+
+#: PiwigoPress_options.php:138
+msgid "Album page if one selected"
+msgstr "Page de l'album (si un album est sélectionné)"
+
+#: PiwigoPress_options.php:141 piwigopress_admin.php:94
+msgid "Picture page"
+msgstr "Page de l'image"
+
+#: PiwigoPress_options.php:143
+msgid "Forced option if selected album id is 0 (see below)"
+msgstr "Option par défaut si l'album id, ci-dessous, est égal à 0"
+
+#: PiwigoPress_options.php:144
+#, fuzzy
+msgid "Picture page in Album"
+msgstr "Page de l'image"
+
+#: PiwigoPress_options.php:151
+msgid "Menu"
+msgstr "Menu"
+
+#: PiwigoPress_options.php:152
+msgid "Select all"
+msgstr "Sélectionner tout"
+
+#: PiwigoPress_options.php:152
+msgid "Unselect all"
+msgstr "Désélectionner tout"
+
+#: PiwigoPress_options.php:155
+msgid "Categories menu"
+msgstr "Menu des catégories"
+
+#: PiwigoPress_options.php:157 PiwigoPress_widget.php:134
+msgid "Most visited"
+msgstr "Plus populaires"
+
+#: PiwigoPress_options.php:159 PiwigoPress_widget.php:137
+msgid "Best rated"
+msgstr "Mieux notées"
+
+#: PiwigoPress_options.php:161 PiwigoPress_widget.php:140
+msgid "Most commented"
+msgstr "Plus commentées"
+
+#: PiwigoPress_options.php:163 PiwigoPress_widget.php:143
+msgid "Random"
+msgstr "Aléatoire"
+
+#: PiwigoPress_options.php:165 PiwigoPress_widget.php:146
+msgid "Recent pics"
+msgstr "Images récentes"
+
+#: PiwigoPress_options.php:167 PiwigoPress_widget.php:149
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: PiwigoPress_options.php:169 PiwigoPress_widget.php:152
+msgid "Tags"
+msgstr "Tags"
+
+#: PiwigoPress_options.php:171 PiwigoPress_widget.php:155
+msgid "Comments"
+msgstr "Commentaires"
+
+#: PiwigoPress_options.php:174
+msgid "Since X months (0=all)"
+msgstr "Depuis X mois (0=tous)"
+
+#: PiwigoPress_options.php:179
+msgid "Album id (0=all)"
+msgstr "Id de l'album (0=tous)"
+
+#: PiwigoPress_options.php:181
+msgid ""
+"If Album id = 0 (all): Link type \"album\" is going to switch to \"picture\""
+msgstr ""
+"Si l'album Id = 0 (tous) alors le lien \"album\" basculera en \"picture\""
+
+#: PiwigoPress_options.php:184
+msgid "Number of pictures (0=none)"
+msgstr "Nombre d'images (0=aucune)"
+
+#: PiwigoPress_options.php:190
+msgid "Caption"
+msgstr "Description"
+
+#: PiwigoPress_options.php:191
+msgid "Automatically add paragraphs"
+msgstr "Créer automatiquement les paragraphes"
+
+#: PiwigoPress_options.php:200 piwigopress_admin.php:80
+msgid "CSS DIV class"
+msgstr "Classe CSS pour DIV"
+
+#: PiwigoPress_options.php:203
+msgid "CSS IMG class"
+msgstr "Classe CSS pour IMG"
+
+#: PiwigoPress_widget.php:121
+msgid "Pictures categories"
+msgstr "Catégorie d'images"
+
+#: piwigopress.php:61
+msgid ""
+"PiwigoPress shortcode attribute \"id\" is required and must be positive."
+msgstr ""
+"Le paramètre \"id\" du shortcode de PiwigoPress est obligatoire et doit être "
+"positif."
+
+#: piwigopress.php:112
+msgid ""
+"Adds a thumbnail and its link (to the picture) inside your blog sidebar."
+msgstr ""
+"Ajouter une miniature et son lien (vers l'image) dans la barre latérale du "
+"blog"
+
+#: piwigopress.php:212
+msgid "FAQ"
+msgstr "FAQ"
+
+#: piwigopress.php:213
+msgid "PiwigoPress Support"
+msgstr "Support PiwigoPress"
+
+#: piwigopress.php:214
+msgid "Piwigo site"
+msgstr "Site Piwigo"
+
+#: piwigopress_admin.php:41
+msgid "Piwigo gallery URL:"
+msgstr "URL de la galerie Piwigo :"
+
+#: piwigopress_admin.php:42
+msgid "Actions:"
+msgstr ""
+
+#: piwigopress_admin.php:43
+msgid ""
+"Folder URL of any up-to-date Piwigo Gallery with public photos and opened "
+"webservices (MUST END with a \"/\")"
+msgstr ""
+"URL du dossier de l'index d'une galerie Piwigo à jour, avec des photos "
+"publiques, et ayant les webservices ouverts (DOIT FINIR par un \"/\")"
+
+#: piwigopress_admin.php:44
+msgid "Start with 5 recent pics"
+msgstr "Démarrer avec 5 images récentes"
+
+#: piwigopress_admin.php:45
+msgid ""
+"Load or reload the 5 most latest squared thumbnails from the url (might be "
+"changed or not)"
+msgstr ""
+"Charger ou recharger les 5 miniatures carrées les plus récentes à partir de "
+"l'URL (que celle-ci ait été modifié ou pas)"
+
+#: piwigopress_admin.php:46
+#, fuzzy
+msgid "Load list of categories"
+msgstr "Catégorie d'images"
+
+#: piwigopress_admin.php:47
+msgid ""
+"After loading the list of categories, photos can be loaded from one of them"
+msgstr ""
+
+#: piwigopress_admin.php:48
+msgid "All categories/photos"
+msgstr ""
+
+#: piwigopress_admin.php:49
+msgid "Get more"
+msgstr "Obtenir plus"
+
+#: piwigopress_admin.php:50
+msgid ""
+"Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, "
+"and continues by 100"
+msgstr ""
+"Collecter plus de miniatures carées ; en commençant par 5, puis 10, 10, 10, "
+"10, 50 et par 100 pour les demandes suivantes"
+
+#: piwigopress_admin.php:51
+msgid "Hide 50%"
+msgstr "Cacher 50%"
+
+#: piwigopress_admin.php:52
+#, php-format
+msgid "Hide 50% or less of current available squared thumbnails"
+msgstr ""
+"Masquer près de 50% ou moins des miniatures carrées actuellement accessibles."
+
+#: piwigopress_admin.php:53
+msgid "Show hidden"
+msgstr "Afficher les cachées"
+
+#: piwigopress_admin.php:54
+msgid "Display all currently hidden squared thumbnails"
+msgstr "Montrer toutes les miniatures carrées actuellement masquées"
+
+#: piwigopress_admin.php:55
+msgid "Drop one or several thumbnails over the blue border here above !"
+msgstr ""
+"Déposez une ou plusieurs miniatures au-dessus de la bordure bleue ci-dessus !"
+
+#: piwigopress_admin.php:56
+msgid "Loaded, hidden & dropped vs. Requested thumbnails: "
+msgstr "Collectées, masquées et déposées versus les miniatures demandées :"
+
+#: piwigopress_admin.php:57
+msgid "Shortcode options"
+msgstr "Options disponibles du Shortcode"
+
+#: piwigopress_admin.php:58
+msgid ""
+"This is the Category/Album ID from where pictures will be obtained; use 0 "
+"for 'all albums' (most recent pictures first, regardless of album), use a "
+"specific Category ID number (e.g. 123) to get pictures from the specific "
+"album with that ID (CatID=123 in the example)"
+msgstr ""
+
+#: piwigopress_admin.php:59
+msgid "Picture size"
+msgstr "Dimension de l'image"
+
+#: piwigopress_admin.php:79
+msgid "Display description"
+msgstr "Afficher la description"
+
+#: piwigopress_admin.php:81
+msgid "Generate and insert"
+msgstr "Générer et insérer"
+
+#: piwigopress_admin.php:82
+msgid "Generate shortcodes of all dropped squared thumbnails"
+msgstr "Générer les « shortcodes» de toutes les miniatures carrées déposées"
+
+#: piwigopress_admin.php:83
+msgid "Reset dropping zone"
+msgstr "Réinitialiser la zone de dépôt"
+
+#: piwigopress_admin.php:84
+msgid "Remove all squared thumbnails from the dropping zone"
+msgstr "Retirer toutes les miniatures carrées présentes dans la zone de dépôt"
+
+#: piwigopress_admin.php:93
+msgid "Album page"
+msgstr "Page de l'album"
+
+#: piwigopress_admin.php:95
+#, fuzzy
+msgid "Picture in album page"
+msgstr "Page de l'image"
+
+#: piwigopress_admin.php:101
+msgid "New window/tab"
+msgstr ""
+
+#: piwigopress_admin.php:198
+msgid "Insert a PiwigoPress shortcode from a Piwigo dragged photo"
+msgstr ""
+"Insérer un « shortcode » de PiwigoPress à partir de chaque photo déposée"
+
+#~ msgid "No link to gallery"
+#~ msgstr "Aucun lien vers la galerie"
+
+#~ msgid "Link to recent album"
+#~ msgstr "Lien vers l'album le plus récent"
+
+#~ msgid "Optional parameters"
+#~ msgstr "Paramètres optionnels"
+
+#~ msgid "Any picture format"
+#~ msgstr "Tout format d'image"

@@ -28,7 +28,7 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo 
 if (!defined('PWGP_NAME')) define('PWGP_NAME','PiwigoPress');
 if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.2.5');
 
-load_plugin_textdomain('pwg', 'wp-content/plugins/piwigopress', 'piwigopress' );
+load_plugin_textdomain('pwg', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');
 
 function PiwigoPress_photoblog($parm) {
