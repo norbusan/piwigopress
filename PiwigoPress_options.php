@@ -109,10 +109,10 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 		</fieldset><br>
 		<fieldset class="edge">
 			<legend><span> ' . __('Open type') . ' </span></legend>
-			<label>' . __('New windows/tab','pwg') . ' </label> 
+			<label>' . __('New window/tab','pwg') . ' </label> 
 			<input type="radio" value="_blank" id="'. $this->get_field_id('opntype') .'" class="post-format" name="'. $this->get_field_name('opntype') .'" ' 
 				. checked($opntype,'_blank',false) . '><br>
-			<label>' . __('Same window','pwg') . ' </label> 
+			<label>' . __('Same window/tab','pwg') . ' </label> 
 			<input type="radio" value="_self" id="'. $this->get_field_id('opntype') .'" class="post-format" name="'. $this->get_field_name('opntype') .'" ' 
 				. checked($opntype,'_self',false) . '>
 		</fieldset></td>';

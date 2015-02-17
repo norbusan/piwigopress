@@ -99,7 +99,7 @@ if(!class_exists('PiwigoPress_Admin')){
 			$copnsel = checked($open_type,'_new',false);
 			$Lib_opntype =  __('Open type','pwg');
 			$Lib_open_new = __('New window/tab','pwg');
-			$Lib_open_self = __('Same window','pwg');
+			$Lib_open_self = __('Same window/tab','pwg');
 			
 			echo <<<EOF
 <div id="PWGP_Gal_finder" style="display:none">
@@ -161,7 +161,7 @@ if(!class_exists('PiwigoPress_Admin')){
 				</td>
 				<td>
 					<div class="legend">$Lib_opntype</div>
-					<div id="open_type" class="fieldset" style="text-align:right;">
+					<div id="open_type" class="fieldset" style="text-align:right; min-width:200px;">
 						<label>$Lib_open_new &nbsp; <input type="radio" value="_blank" class="post-format" name="open_type" $copnnew></label><br>	
 						<label>$Lib_open_self &nbsp; <input type="radio" value="_self" class="post-format" name="open_type" $copnsel></label><br>	
 					</div>
