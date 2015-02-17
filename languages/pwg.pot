@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: piwigopress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-15 22:24+0900\n"
+"POT-Creation-Date: 2015-02-17 15:58+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,12 +85,12 @@ msgstr ""
 msgid "Open type"
 msgstr ""
 
-#: PiwigoPress_options.php:112
-msgid "New windows/tab"
+#: PiwigoPress_options.php:112 piwigopress_admin.php:101
+msgid "New window/tab"
 msgstr ""
 
 #: PiwigoPress_options.php:115 piwigopress_admin.php:102
-msgid "Same window"
+msgid "Same window/tab"
 msgstr ""
 
 #: PiwigoPress_options.php:122
@@ -354,10 +354,6 @@ msgstr ""
 
 #: piwigopress_admin.php:95
 msgid "Picture in album page"
-msgstr ""
-
-#: piwigopress_admin.php:101
-msgid "New window/tab"
 msgstr ""
 
 #: piwigopress_admin.php:198
