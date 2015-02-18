@@ -103,6 +103,7 @@ Explanation of Plugin Shortcode attributes.
 * desc: (0,1) (0 by default) add the photo description in a blockquote from description field 
 in the Edit photo [Properties] admin page if there is a filled description there
 * lnktype: (string, default lnktype='picture') 'none' : no link, 'picture' : link to picture.php, 'album' : link to index.php/category, 'albumpicture' : link to picture.php within the album
+* opntype: (string, default opntype='_blank') '_blank': open link in new window or tab, '_self': open link in same window/tab
 
 "style" is not used by the Shortcode generator
 
