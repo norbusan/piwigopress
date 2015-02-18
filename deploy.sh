@@ -73,17 +73,15 @@ if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
 		echo "Git version does not exist. Let's proceed..."
 fi
 
-cd $GITPATH
-echo -e "Enter a commit message for this new version: \c"
-read COMMITMSG
-git commit -am "$COMMITMSG"
 
+cd $GITPATH
 echo "Tagging new version in git"
 git tag -a "$NEWVERSION1" -s -m "Tagging version $NEWVERSION1"
 
-echo "Pushing latest commit to origin, with tags"
-git push origin master
-git push origin master --tags
+echo "NOT PUSHING TO REMOVE GIT MASTER, DO THIS MANUALLY WITH:"
+#echo "Pushing latest commit to origin, with tags"
+echo git push origin master
+echo git push origin master --tags
 
 tmpd=`mktemp -d`
 echo "Exporting the HEAD of master from git to temp direcory $tmpd"
@@ -106,6 +104,11 @@ echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
+# remove deleted files
+svn status | grep -v "^.[ \t]*\..*" | grep "^!" | awk '{print $2}' | xargs svn rm
+
+echo -e "SVN commit: enter a commit message: \c"
+read COMMITMSG
 svn commit --username=$SVNUSER -m "$COMMITMSG"
 
 echo "Creating new SVN tag & committing it"
