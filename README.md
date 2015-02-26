@@ -1,6 +1,5 @@
 # PiwigoPress #
 **Contributors:** vpiwigo, norbusan  
-**Donate link:** http://www.vdigital.org/sharing/  
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
 **Tested up to:** 4.1.0  
