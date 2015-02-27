@@ -121,7 +121,7 @@ and there select: Options > Photo sizes > Multiple size > show details
 
 = How can I get squared thumbnails ? =
 * maybe you should try to upgrade your gallery to Piwigo 2.4.x or above.
-* See creenshots
+* See screenshots
 
 = Widget (Only): With Link type Album which album would be selected ? =
 If Album = 0 the link will remain to the picture page.
@@ -135,6 +135,27 @@ Picture is going to have a link to its most recent Album page (Upcoming releases
 * Disconnect you from the gallery and try to access to any Albums, maybe all pictures are locked or private
 * Second possible cause: Old piwigo release. Only recent releases (2.4 and above) provide several picture sizes.
 * Backward compatibility below Piwigo 2.4 is limited to Widget sidebar functions
+
+= How do I arrange images horizontally? =
+
+Since images are generated in the following way:
+`````
+<div id="..." class="PiwigoPress_photoblog">
+   <div class="PWGP_shortcode <something>">
+      ...img...
+    </div>
+</div>
+`````
+horizontal alignment can easily be achieved by adding the following code
+to either custom css or child theme css:
+`````
+.PiwigoPress_photoblog {
+  display:inline-block;
+}
+.PWGP_shortcode {
+  display:inline-block;
+}
+`````
 
 == Screenshots ==
 
