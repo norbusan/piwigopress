@@ -2,8 +2,8 @@
 Contributors: vpiwigo, norbusan
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 2.8.4
-Tested up to: 4.1.0
-Stable tag: 2.26
+Tested up to: 4.1.1
+Stable tag: 2.27dev
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,16 +65,19 @@ installation is working perfectly).
 Explanation of Plugin Widget data fields.
 
 * Title: To use in the sidebar
-* Square, Thumbnail, XXS - tiny,... : see you Piwigo configuration [Photo sizes] admin page
-* Orientation criteria : Any, portrait, landscape
 * Local directory (if local): Piwigo installation directory (on the same website)
 * (or) External gallery URL: URL to the gallery (if not local)
+* Square, Thumbnail, XXS - tiny,... : see you Piwigo configuration [Photo sizes] admin page
+* Orientation criteria : Any, portrait, landscape
+* Where to open photos on clicks
+* Link type
 * Number of pictures (0=none): Number of thumbnails to get
 
 Optional parameters
 
 * Category id (0=all): Pictures from a specific Piwigo category or from all
 * Since X months (0=all): Age of posted picture
+* Pre and post-code: raw html code that is added just before the images
 * CSS DIV class: For your blog design
 * CSS IMG class: For your blog design
 * Categories menu: Includes all links related to Piwigo categories
@@ -170,6 +173,9 @@ to either custom css or child theme css:
 9. Expected result on your page or post of your Wordpress blog. 
 
 == Changelog ==
+
+= 2.27dev =
+* widget configuration now allows adding html code just before and after the included photos, but before the divs. This requires the 'unfiltered_html' permission for the user editing the widget.
 
 = 2.26 =
 * new parameter for widget and shortcode: opntype: '_blank' (open in new window/tab) or '_self' (open in same) (Issue 10)

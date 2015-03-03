@@ -12,7 +12,7 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 		'most_commented' => 'true', 'random' => 'true', 'recent_pics' => 'true',
 		'calendar' => 'true', 'tags' => 'true', 'comments' => 'true', 'allsel' => 'true', 
 		'mbcategories' => 'true', 'filter' => 'true', 'text' => '', 'lnktype' => 'picture',
-		'opntype' => '_blank',
+		'opntype' => '_blank', 'precode' => '', 'postcode' => '',
 		 ) );
 
 	$title = htmlspecialchars($gallery['title']);
@@ -41,6 +41,8 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 	else $gallery['allsel'] = 'false';
 	$filter = (htmlspecialchars($gallery['filter']) == 'true') ? 'checked="checked"':'';
 	$text = htmlspecialchars($gallery['text']);
+	$precode = htmlspecialchars($gallery['precode']);
+	$postcode = htmlspecialchars($gallery['postcode']);
 	$lnktype = htmlspecialchars($gallery['lnktype']);
 	$opntype = htmlspecialchars($gallery['opntype']);
 	$allsel = (htmlspecialchars($gallery['allsel']) == 'true') ? 'checked="checked"':'';
@@ -185,6 +187,15 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 		. ' <input style="width: 30px; text-align: right;" id="' . $this->get_field_id('number') . '" name="' . $this->get_field_name('number')
 		. '" type="text" value="' . $number . '" /></label>
 		</td></tr></table>';
+
+		// Pre Post code
+	echo '<table><tr><td style="text-align: right; width: 20%; padding: 0;"><br>' . __('Widget photo(s) pre-code','pwg') . '&nbsp;</label></td>';
+	echo '<td><textarea class="widefat" rows="3" cols="20" id="' . $this->get_field_id('precode') . '" name="' . $this->get_field_name('precode') . '">' . $precode .'</textarea></label></td></tr>';
+	echo '<tr><td style="text-align: right; width: 20%; padding: 0;"><br>' . __('Widget photo(s) post-code','pwg') . '&nbsp;</label></td>';
+	echo '<td><textarea class="widefat" rows="3" cols="20" id="' . $this->get_field_id('postcode') . '" name="' . $this->get_field_name('postcode') . '">' . $postcode .'</textarea></label></td></tr>';
+	echo '</table>';
+
+	// Styling
 
 		// Caption
 	echo '<table><tr><td style="text-align: right; width: 20%; padding: 0;"><br>' . __('Caption','pwg') . '<br><label>' 

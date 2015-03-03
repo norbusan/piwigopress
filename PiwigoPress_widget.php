@@ -47,6 +47,8 @@ if ( $category==0 and ($lnktype=='album' || $lnktype=='albumpicture')) $lnktype 
 $filter = empty($gallery['filter']) ? 'true' : $gallery['filter'];
 $text = empty($gallery['text']) ? '' : $gallery['text'];
 $text = ( $filter == 'true' ) ? wpautop( $text ) : $text;
+$precode = empty($gallery['precode']) ? '' : $gallery['precode'];
+$postcode = empty($gallery['postcode']) ? '' : $gallery['postcode'];
 
 echo $before_widget;
 echo $title;
@@ -63,6 +65,7 @@ if ($thumbnail) {
 		** for piwigo 2.6
 		$pictures = $thumbc["result"]["images"]["_content"];
 		*/
+		if (!empty($precode)) { echo $precode; }
 		$pictures = $thumbc["result"]["images"];
 		foreach ($pictures as $picture) {
 			if (isset($picture['derivatives']['square']['url'])) {
@@ -108,6 +111,7 @@ if ($thumbnail) {
 			. $picture['width'] .'x' . $picture['height'] .'"></a>
 			</div>';
 		}
+		if (!empty($postcode)) { echo $postcode; }
 		echo '<div class="textwidget">' . $text . '</div>';
 	}
 }
