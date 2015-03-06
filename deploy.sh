@@ -78,10 +78,9 @@ cd $GITPATH
 echo "Tagging new version in git"
 git tag -a "$NEWVERSION1" -s -m "Tagging version $NEWVERSION1"
 
-echo "NOT PUSHING TO REMOVE GIT MASTER, DO THIS MANUALLY WITH:"
-#echo "Pushing latest commit to origin, with tags"
-echo git push origin master
-echo git push origin master --tags
+echo "Pushing latest commit to origin, with tags"
+git push 
+git push --tags
 
 tmpd=`mktemp -d`
 echo "Exporting the HEAD of master from git to temp direcory $tmpd"

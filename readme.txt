@@ -1,9 +1,9 @@
 === PiwigoPress ===
-Contributors: vpiwigo, norbusan
+Contributors: norbusan, vpiwigo
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 2.8.4
 Tested up to: 4.1.1
-Stable tag: 2.27dev
+Stable tag: 2.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,7 +174,7 @@ to either custom css or child theme css:
 
 == Changelog ==
 
-= 2.27dev =
+= 2.27 =
 * widget configuration now allows adding html code just before and after the included photos, but before the divs. This requires the 'unfiltered_html' permission for the user editing the widget.
 
 = 2.26 =
