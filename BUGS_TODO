@@ -1,5 +1,6 @@
 TODO
 ====
+- double previous: PiwigoPress_previous_options and PiwigoPress_previous_url -> unify
 - support for oembed, register as oembed provider???
   http://codex.wordpress.org/Embeds
   http://codex.wordpress.org/Function_Reference/wp_oembed_add_provider
