@@ -23,3 +23,12 @@ update-pot:
 		--output=languages/pwg.pot			\
 		*.php
 
+# the following checks whether all versions agree!
+version-check:
+	@NV1=`grep "^Stable tag:" readme.txt | awk -F' ' '{print $$NF}'` ;	\
+	NV2=`grep "^Version:" piwigopress.php | awk -F' ' '{print $$NF}'` ; 		\
+	NV3=`grep 'define(.PWGP_VERSION' piwigopress.php | sed -e "s/^.*PWGP_VERSION'\s*,\s*'//" -e "s/'.*$$//" -e 's/^\([0-9][0-9]*\.[0-9][0-9]*\)\./\1/'` ;	\
+	NV4=`grep 'define(.PWGP_VERSION' piwigopress_admin.php | sed -e "s/^.*PWGP_VERSION'\s*,\s*'//" -e "s/'.*$$//" -e 's/^\([0-9][0-9]*\.[0-9][0-9]*\)\./\1/'` ; 	\
+	echo "V1 = $$NV1\nV2 = $$NV2\nV3 = $$NV3\nV4 = $$NV4"; \
+	if [ "$$NV1" != "$$NV2" -o "$$NV1" != "$$NV3" -o "$$NV1" != "$NNV4" ] ; then exit 1 ; fi
+	

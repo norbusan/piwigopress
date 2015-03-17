@@ -55,15 +55,11 @@ fi
 
 
 
-# Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
-NEWVERSION1=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}'`
-echo "readme.txt version: $NEWVERSION1"
-NEWVERSION2=`grep "^Version:" $GITPATH/$MAINFILE | awk -F' ' '{print $NF}'`
-echo "$MAINFILE version: $NEWVERSION2"
+# version checks have been moved into Makefile
+make version-check
 
-if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Version in readme.txt & $MAINFILE don't match. Exiting...."; exit 1; fi
+echo "All versions match. Let's proceed..."
 
-echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
 
 if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
 	then 
@@ -102,9 +98,10 @@ rsync -av --delete $tmpd/ $SVNPATH/trunk/
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
 # Add all new files that are not set to be ignored
-svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
+# don't run when no files are added/removed - this is a GNU extension!
+svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs --no-run-if-empty svn add
 # remove deleted files
-svn status | grep -v "^.[ \t]*\..*" | grep "^!" | awk '{print $2}' | xargs svn rm
+svn status | grep -v "^.[ \t]*\..*" | grep "^!" | awk '{print $2}' | xargs --no-run-if-empty svn rm
 
 echo -e "SVN commit: enter a commit message: \c"
 read COMMITMSG
