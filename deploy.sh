@@ -57,6 +57,9 @@ fi
 
 # version checks have been moved into Makefile
 make version-check
+# we still need NEWVERSION1 for setting!
+
+NEWVERSION1=`grep "^Stable tag:" $GITPATH/readme.txt | awk -F' ' '{print $NF}'`
 
 echo "All versions match. Let's proceed..."
 
