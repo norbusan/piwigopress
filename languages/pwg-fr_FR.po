@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: piwigopress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-15 22:24+0900\n"
+"POT-Creation-Date: 2015-04-15 12:39+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Norbert Preining <norbert@preining.info>\n"
 "Language-Team: Laurent Duretz <laurent@duretz.net>\n"
@@ -21,203 +21,212 @@ msgstr ""
 msgid "Random picture"
 msgstr "Images aléatoires"
 
-#: PiwigoPress_options.php:53
+#: PiwigoPress_options.php:55
 msgid "Title"
 msgstr "Titre"
 
-#: PiwigoPress_options.php:57
+#: PiwigoPress_options.php:59
 msgid "<strong>Local</strong> directory (if local)"
 msgstr "Répertoire <strong>local</strong> (si local)"
 
-#: PiwigoPress_options.php:61
+#: PiwigoPress_options.php:63
 msgid "(or) <strong>External</strong> gallery URL"
 msgstr "(ou) URL de la galerie <strong>externe</strong>"
 
-#: PiwigoPress_options.php:70
+#: PiwigoPress_options.php:72
 msgid "Size"
 msgstr "Dimension"
 
-#: PiwigoPress_options.php:71 piwigopress_admin.php:60
+#: PiwigoPress_options.php:73 piwigopress_admin.php:60
 msgid "Square"
 msgstr "Carré"
 
-#: PiwigoPress_options.php:74 piwigopress_admin.php:61
+#: PiwigoPress_options.php:76 piwigopress_admin.php:61
 msgid "Thumbnail"
 msgstr "Miniature"
 
-#: PiwigoPress_options.php:77 piwigopress_admin.php:63
+#: PiwigoPress_options.php:79 piwigopress_admin.php:63
 msgid "XXS - tiny"
 msgstr "XXS - minuscule"
 
-#: PiwigoPress_options.php:80 piwigopress_admin.php:62
+#: PiwigoPress_options.php:82 piwigopress_admin.php:62
 msgid "XS - extra small"
 msgstr "XS - très petit"
 
-#: PiwigoPress_options.php:86
+#: PiwigoPress_options.php:88
 msgid "Large sizes"
 msgstr "Grandes tailles"
 
-#: PiwigoPress_options.php:86
+#: PiwigoPress_options.php:88
 msgid "Select a larger sized picture"
 msgstr "Sélectionner une image dans une grande taille"
 
-#: PiwigoPress_options.php:90 piwigopress_admin.php:64
+#: PiwigoPress_options.php:92 piwigopress_admin.php:64
 msgid "S - small"
 msgstr "S - petit"
 
-#: PiwigoPress_options.php:93 piwigopress_admin.php:65
+#: PiwigoPress_options.php:95 piwigopress_admin.php:65
 msgid "M - medium"
 msgstr "M - moyen "
 
-#: PiwigoPress_options.php:96 piwigopress_admin.php:66
+#: PiwigoPress_options.php:98 piwigopress_admin.php:66
 msgid "L - large"
 msgstr "L - grand"
 
-#: PiwigoPress_options.php:99 piwigopress_admin.php:67
+#: PiwigoPress_options.php:101 piwigopress_admin.php:67
 msgid "XL - extra large"
 msgstr "XL - très grand"
 
-#: PiwigoPress_options.php:102 piwigopress_admin.php:68
+#: PiwigoPress_options.php:104 piwigopress_admin.php:68
 msgid "XXL - huge"
 msgstr "XXL - énorme"
 
-#: PiwigoPress_options.php:111 piwigopress_admin.php:100
+#: PiwigoPress_options.php:113 piwigopress_admin.php:100
 #, fuzzy
 msgid "Open type"
 msgstr "Type de lien"
 
-#: PiwigoPress_options.php:112
-msgid "New windows/tab"
+#: PiwigoPress_options.php:114 piwigopress_admin.php:101
+msgid "New window/tab"
 msgstr ""
 
-#: PiwigoPress_options.php:115 piwigopress_admin.php:102
-msgid "Same window"
+#: PiwigoPress_options.php:117 piwigopress_admin.php:102
+msgid "Same window/tab"
 msgstr ""
 
-#: PiwigoPress_options.php:122
+#: PiwigoPress_options.php:124
 msgid "Format"
 msgstr "Format"
 
-#: PiwigoPress_options.php:123
+#: PiwigoPress_options.php:125
 msgid "Any orientation"
 msgstr "Toutes orientations"
 
-#: PiwigoPress_options.php:126
+#: PiwigoPress_options.php:128
 msgid "Portrait only"
 msgstr "Uniquement en portrait"
 
-#: PiwigoPress_options.php:129
+#: PiwigoPress_options.php:131
 msgid "Landscape only"
 msgstr "en paysage"
 
-#: PiwigoPress_options.php:134 piwigopress_admin.php:91
+#: PiwigoPress_options.php:136 piwigopress_admin.php:91
 msgid "Link type"
 msgstr "Type de lien"
 
-#: PiwigoPress_options.php:135 piwigopress_admin.php:92
+#: PiwigoPress_options.php:137 piwigopress_admin.php:92
 msgid "No link"
 msgstr "Aucun lien"
 
-#: PiwigoPress_options.php:138
+#: PiwigoPress_options.php:140
 msgid "Album page if one selected"
 msgstr "Page de l'album (si un album est sélectionné)"
 
-#: PiwigoPress_options.php:141 piwigopress_admin.php:94
+#: PiwigoPress_options.php:143 piwigopress_admin.php:94
 msgid "Picture page"
 msgstr "Page de l'image"
 
-#: PiwigoPress_options.php:143
+#: PiwigoPress_options.php:145
 msgid "Forced option if selected album id is 0 (see below)"
 msgstr "Option par défaut si l'album id, ci-dessous, est égal à 0"
 
-#: PiwigoPress_options.php:144
+#: PiwigoPress_options.php:146
 #, fuzzy
 msgid "Picture page in Album"
 msgstr "Page de l'image"
 
-#: PiwigoPress_options.php:151
+#: PiwigoPress_options.php:153
 msgid "Menu"
 msgstr "Menu"
 
-#: PiwigoPress_options.php:152
+#: PiwigoPress_options.php:154
 msgid "Select all"
 msgstr "Sélectionner tout"
 
-#: PiwigoPress_options.php:152
+#: PiwigoPress_options.php:154
 msgid "Unselect all"
 msgstr "Désélectionner tout"
 
-#: PiwigoPress_options.php:155
-msgid "Categories menu"
-msgstr "Menu des catégories"
+#: PiwigoPress_options.php:157
+#, fuzzy
+msgid "Album menu"
+msgstr "Page de l'album"
 
-#: PiwigoPress_options.php:157 PiwigoPress_widget.php:134
+#: PiwigoPress_options.php:159 PiwigoPress_widget.php:138
 msgid "Most visited"
 msgstr "Plus populaires"
 
-#: PiwigoPress_options.php:159 PiwigoPress_widget.php:137
+#: PiwigoPress_options.php:161 PiwigoPress_widget.php:141
 msgid "Best rated"
 msgstr "Mieux notées"
 
-#: PiwigoPress_options.php:161 PiwigoPress_widget.php:140
+#: PiwigoPress_options.php:163 PiwigoPress_widget.php:144
 msgid "Most commented"
 msgstr "Plus commentées"
 
-#: PiwigoPress_options.php:163 PiwigoPress_widget.php:143
+#: PiwigoPress_options.php:165 PiwigoPress_widget.php:147
 msgid "Random"
 msgstr "Aléatoire"
 
-#: PiwigoPress_options.php:165 PiwigoPress_widget.php:146
+#: PiwigoPress_options.php:167 PiwigoPress_widget.php:150
 msgid "Recent pics"
 msgstr "Images récentes"
 
-#: PiwigoPress_options.php:167 PiwigoPress_widget.php:149
+#: PiwigoPress_options.php:169 PiwigoPress_widget.php:153
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: PiwigoPress_options.php:169 PiwigoPress_widget.php:152
+#: PiwigoPress_options.php:171 PiwigoPress_widget.php:156
 msgid "Tags"
 msgstr "Tags"
 
-#: PiwigoPress_options.php:171 PiwigoPress_widget.php:155
+#: PiwigoPress_options.php:173 PiwigoPress_widget.php:159
 msgid "Comments"
 msgstr "Commentaires"
 
-#: PiwigoPress_options.php:174
+#: PiwigoPress_options.php:176
 msgid "Since X months (0=all)"
 msgstr "Depuis X mois (0=tous)"
 
-#: PiwigoPress_options.php:179
+#: PiwigoPress_options.php:181
 msgid "Album id (0=all)"
 msgstr "Id de l'album (0=tous)"
 
-#: PiwigoPress_options.php:181
+#: PiwigoPress_options.php:183
 msgid ""
 "If Album id = 0 (all): Link type \"album\" is going to switch to \"picture\""
 msgstr ""
 "Si l'album Id = 0 (tous) alors le lien \"album\" basculera en \"picture\""
 
-#: PiwigoPress_options.php:184
+#: PiwigoPress_options.php:186
 msgid "Number of pictures (0=none)"
 msgstr "Nombre d'images (0=aucune)"
 
-#: PiwigoPress_options.php:190
+#: PiwigoPress_options.php:192
+msgid "Widget photo(s) pre-code"
+msgstr ""
+
+#: PiwigoPress_options.php:194
+msgid "Widget photo(s) post-code"
+msgstr ""
+
+#: PiwigoPress_options.php:201
 msgid "Caption"
 msgstr "Description"
 
-#: PiwigoPress_options.php:191
+#: PiwigoPress_options.php:202
 msgid "Automatically add paragraphs"
 msgstr "Créer automatiquement les paragraphes"
 
-#: PiwigoPress_options.php:200 piwigopress_admin.php:80
+#: PiwigoPress_options.php:211 piwigopress_admin.php:80
 msgid "CSS DIV class"
 msgstr "Classe CSS pour DIV"
 
-#: PiwigoPress_options.php:203
+#: PiwigoPress_options.php:214
 msgid "CSS IMG class"
 msgstr "Classe CSS pour IMG"
 
-#: PiwigoPress_widget.php:121
+#: PiwigoPress_widget.php:125
 msgid "Pictures categories"
 msgstr "Catégorie d'images"
 
@@ -235,15 +244,15 @@ msgstr ""
 "Ajouter une miniature et son lien (vers l'image) dans la barre latérale du "
 "blog"
 
-#: piwigopress.php:212
+#: piwigopress.php:218
 msgid "FAQ"
 msgstr "FAQ"
 
-#: piwigopress.php:213
+#: piwigopress.php:219
 msgid "PiwigoPress Support"
 msgstr "Support PiwigoPress"
 
-#: piwigopress.php:214
+#: piwigopress.php:220
 msgid "Piwigo site"
 msgstr "Site Piwigo"
 
@@ -277,16 +286,15 @@ msgstr ""
 
 #: piwigopress_admin.php:46
 #, fuzzy
-msgid "Load list of categories"
+msgid "Load list of albums"
 msgstr "Catégorie d'images"
 
 #: piwigopress_admin.php:47
-msgid ""
-"After loading the list of categories, photos can be loaded from one of them"
+msgid "After loading the list of albums, photos can be loaded from one of them"
 msgstr ""
 
 #: piwigopress_admin.php:48
-msgid "All categories/photos"
+msgid "All albums/photos"
 msgstr ""
 
 #: piwigopress_admin.php:49
@@ -334,10 +342,10 @@ msgstr "Options disponibles du Shortcode"
 
 #: piwigopress_admin.php:58
 msgid ""
-"This is the Category/Album ID from where pictures will be obtained; use 0 "
-"for 'all albums' (most recent pictures first, regardless of album), use a "
-"specific Category ID number (e.g. 123) to get pictures from the specific "
-"album with that ID (CatID=123 in the example)"
+"This is the Album ID from where pictures will be obtained; use 0 for 'all "
+"albums' (most recent pictures first, regardless of album), use a specific "
+"Album ID number (e.g. 123) to get pictures from the specific album with that "
+"ID (CatID=123 in the example)"
 msgstr ""
 
 #: piwigopress_admin.php:59
@@ -373,14 +381,13 @@ msgstr "Page de l'album"
 msgid "Picture in album page"
 msgstr "Page de l'image"
 
-#: piwigopress_admin.php:101
-msgid "New window/tab"
-msgstr ""
-
 #: piwigopress_admin.php:198
 msgid "Insert a PiwigoPress shortcode from a Piwigo dragged photo"
 msgstr ""
 "Insérer un « shortcode » de PiwigoPress à partir de chaque photo déposée"
+
+#~ msgid "Categories menu"
+#~ msgstr "Menu des catégories"
 
 #~ msgid "No link to gallery"
 #~ msgstr "Aucun lien vers la galerie"

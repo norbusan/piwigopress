@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: piwigopress HU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-15 22:24+0900\n"
+"POT-Creation-Date: 2015-04-15 12:39+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Norbert Preining <norbert@preining.info>\n"
 "Language-Team: Piwigo Hungarian team <info@cmsaward.hu>\n"
@@ -21,203 +21,211 @@ msgstr ""
 msgid "Random picture"
 msgstr "Véletlen kép"
 
-#: PiwigoPress_options.php:53
+#: PiwigoPress_options.php:55
 msgid "Title"
 msgstr "Cím"
 
-#: PiwigoPress_options.php:57
+#: PiwigoPress_options.php:59
 msgid "<strong>Local</strong> directory (if local)"
 msgstr "<strong>Helyi</strong> könyvtár (ha helyi)"
 
-#: PiwigoPress_options.php:61
+#: PiwigoPress_options.php:63
 msgid "(or) <strong>External</strong> gallery URL"
 msgstr "(vagy) <strong>Külső</strong> képtár URL"
 
-#: PiwigoPress_options.php:70
+#: PiwigoPress_options.php:72
 msgid "Size"
 msgstr ""
 
-#: PiwigoPress_options.php:71 piwigopress_admin.php:60
+#: PiwigoPress_options.php:73 piwigopress_admin.php:60
 msgid "Square"
 msgstr "Négyzetes "
 
-#: PiwigoPress_options.php:74 piwigopress_admin.php:61
+#: PiwigoPress_options.php:76 piwigopress_admin.php:61
 msgid "Thumbnail"
 msgstr "Bélyegkép"
 
-#: PiwigoPress_options.php:77 piwigopress_admin.php:63
+#: PiwigoPress_options.php:79 piwigopress_admin.php:63
 msgid "XXS - tiny"
 msgstr "XXS - legkissebb \t\t"
 
-#: PiwigoPress_options.php:80 piwigopress_admin.php:62
+#: PiwigoPress_options.php:82 piwigopress_admin.php:62
 msgid "XS - extra small"
 msgstr "XS - kissebb "
 
-#: PiwigoPress_options.php:86
+#: PiwigoPress_options.php:88
 msgid "Large sizes"
 msgstr "Nagy méretben"
 
-#: PiwigoPress_options.php:86
+#: PiwigoPress_options.php:88
 msgid "Select a larger sized picture"
 msgstr "Válasszon egy nagy méretű kép"
 
-#: PiwigoPress_options.php:90 piwigopress_admin.php:64
+#: PiwigoPress_options.php:92 piwigopress_admin.php:64
 msgid "S - small"
 msgstr "S - kicsi "
 
-#: PiwigoPress_options.php:93 piwigopress_admin.php:65
+#: PiwigoPress_options.php:95 piwigopress_admin.php:65
 msgid "M - medium"
 msgstr "M - közepes "
 
-#: PiwigoPress_options.php:96 piwigopress_admin.php:66
+#: PiwigoPress_options.php:98 piwigopress_admin.php:66
 msgid "L - large"
 msgstr "L - nagy"
 
-#: PiwigoPress_options.php:99 piwigopress_admin.php:67
+#: PiwigoPress_options.php:101 piwigopress_admin.php:67
 msgid "XL - extra large"
 msgstr "XL - nagyobb"
 
-#: PiwigoPress_options.php:102 piwigopress_admin.php:68
+#: PiwigoPress_options.php:104 piwigopress_admin.php:68
 msgid "XXL - huge"
 msgstr "XXL - legnagyobb"
 
-#: PiwigoPress_options.php:111 piwigopress_admin.php:100
+#: PiwigoPress_options.php:113 piwigopress_admin.php:100
 msgid "Open type"
 msgstr ""
 
-#: PiwigoPress_options.php:112
-msgid "New windows/tab"
+#: PiwigoPress_options.php:114 piwigopress_admin.php:101
+msgid "New window/tab"
 msgstr ""
 
-#: PiwigoPress_options.php:115 piwigopress_admin.php:102
-msgid "Same window"
+#: PiwigoPress_options.php:117 piwigopress_admin.php:102
+msgid "Same window/tab"
 msgstr ""
 
-#: PiwigoPress_options.php:122
+#: PiwigoPress_options.php:124
 msgid "Format"
 msgstr ""
 
-#: PiwigoPress_options.php:123
+#: PiwigoPress_options.php:125
 msgid "Any orientation"
 msgstr "Tetszôleges"
 
-#: PiwigoPress_options.php:126
+#: PiwigoPress_options.php:128
 msgid "Portrait only"
 msgstr "Portré csak"
 
-#: PiwigoPress_options.php:129
+#: PiwigoPress_options.php:131
 msgid "Landscape only"
 msgstr "Fekvő csak"
 
-#: PiwigoPress_options.php:134 piwigopress_admin.php:91
+#: PiwigoPress_options.php:136 piwigopress_admin.php:91
 msgid "Link type"
 msgstr ""
 
-#: PiwigoPress_options.php:135 piwigopress_admin.php:92
+#: PiwigoPress_options.php:137 piwigopress_admin.php:92
 msgid "No link"
 msgstr ""
 
-#: PiwigoPress_options.php:138
+#: PiwigoPress_options.php:140
 msgid "Album page if one selected"
 msgstr ""
 
-#: PiwigoPress_options.php:141 piwigopress_admin.php:94
+#: PiwigoPress_options.php:143 piwigopress_admin.php:94
 #, fuzzy
 msgid "Picture page"
 msgstr "Képek kategóriái"
 
-#: PiwigoPress_options.php:143
+#: PiwigoPress_options.php:145
 msgid "Forced option if selected album id is 0 (see below)"
 msgstr ""
 
-#: PiwigoPress_options.php:144
+#: PiwigoPress_options.php:146
 #, fuzzy
 msgid "Picture page in Album"
 msgstr "Képek kategóriái"
 
-#: PiwigoPress_options.php:151
+#: PiwigoPress_options.php:153
 msgid "Menu"
 msgstr ""
 
-#: PiwigoPress_options.php:152
+#: PiwigoPress_options.php:154
 msgid "Select all"
 msgstr ""
 
-#: PiwigoPress_options.php:152
+#: PiwigoPress_options.php:154
 msgid "Unselect all"
 msgstr ""
 
-#: PiwigoPress_options.php:155
-msgid "Categories menu"
-msgstr "Kategóriák menü"
+#: PiwigoPress_options.php:157
+msgid "Album menu"
+msgstr ""
 
-#: PiwigoPress_options.php:157 PiwigoPress_widget.php:134
+#: PiwigoPress_options.php:159 PiwigoPress_widget.php:138
 msgid "Most visited"
 msgstr "Legnézettebb"
 
-#: PiwigoPress_options.php:159 PiwigoPress_widget.php:137
+#: PiwigoPress_options.php:161 PiwigoPress_widget.php:141
 msgid "Best rated"
 msgstr "Legjobban értékelt"
 
-#: PiwigoPress_options.php:161 PiwigoPress_widget.php:140
+#: PiwigoPress_options.php:163 PiwigoPress_widget.php:144
 msgid "Most commented"
 msgstr "Legtöbb hozzászólás"
 
-#: PiwigoPress_options.php:163 PiwigoPress_widget.php:143
+#: PiwigoPress_options.php:165 PiwigoPress_widget.php:147
 msgid "Random"
 msgstr "Véletlen"
 
-#: PiwigoPress_options.php:165 PiwigoPress_widget.php:146
+#: PiwigoPress_options.php:167 PiwigoPress_widget.php:150
 msgid "Recent pics"
 msgstr "Legutóbbi képek"
 
-#: PiwigoPress_options.php:167 PiwigoPress_widget.php:149
+#: PiwigoPress_options.php:169 PiwigoPress_widget.php:153
 msgid "Calendar"
 msgstr "Naptár"
 
-#: PiwigoPress_options.php:169 PiwigoPress_widget.php:152
+#: PiwigoPress_options.php:171 PiwigoPress_widget.php:156
 msgid "Tags"
 msgstr "Címkék"
 
-#: PiwigoPress_options.php:171 PiwigoPress_widget.php:155
+#: PiwigoPress_options.php:173 PiwigoPress_widget.php:159
 msgid "Comments"
 msgstr "Hozzászólások"
 
-#: PiwigoPress_options.php:174
+#: PiwigoPress_options.php:176
 msgid "Since X months (0=all)"
 msgstr "X hónap óta (0 = összes)"
 
-#: PiwigoPress_options.php:179
+#: PiwigoPress_options.php:181
 #, fuzzy
 msgid "Album id (0=all)"
 msgstr "Kategória ID (0 = összes)"
 
-#: PiwigoPress_options.php:181
+#: PiwigoPress_options.php:183
 msgid ""
 "If Album id = 0 (all): Link type \"album\" is going to switch to \"picture\""
 msgstr ""
 
-#: PiwigoPress_options.php:184
+#: PiwigoPress_options.php:186
 msgid "Number of pictures (0=none)"
 msgstr "Képek száma (0 = nincs)"
 
-#: PiwigoPress_options.php:190
+#: PiwigoPress_options.php:192
+msgid "Widget photo(s) pre-code"
+msgstr ""
+
+#: PiwigoPress_options.php:194
+msgid "Widget photo(s) post-code"
+msgstr ""
+
+#: PiwigoPress_options.php:201
 msgid "Caption"
 msgstr ""
 
-#: PiwigoPress_options.php:191
+#: PiwigoPress_options.php:202
 msgid "Automatically add paragraphs"
 msgstr ""
 
-#: PiwigoPress_options.php:200 piwigopress_admin.php:80
+#: PiwigoPress_options.php:211 piwigopress_admin.php:80
 msgid "CSS DIV class"
 msgstr "CSS DIV class"
 
-#: PiwigoPress_options.php:203
+#: PiwigoPress_options.php:214
 msgid "CSS IMG class"
 msgstr "CSS IMG class"
 
-#: PiwigoPress_widget.php:121
+#: PiwigoPress_widget.php:125
 msgid "Pictures categories"
 msgstr "Képek kategóriái"
 
@@ -233,15 +241,15 @@ msgid ""
 "Adds a thumbnail and its link (to the picture) inside your blog sidebar."
 msgstr "Egy bélyegképet és linkjét adja (a képhez) a blog oldalsávján belül"
 
-#: piwigopress.php:212
+#: piwigopress.php:218
 msgid "FAQ"
 msgstr ""
 
-#: piwigopress.php:213
+#: piwigopress.php:219
 msgid "PiwigoPress Support"
 msgstr ""
 
-#: piwigopress.php:214
+#: piwigopress.php:220
 msgid "Piwigo site"
 msgstr ""
 
@@ -271,16 +279,15 @@ msgstr ""
 
 #: piwigopress_admin.php:46
 #, fuzzy
-msgid "Load list of categories"
+msgid "Load list of albums"
 msgstr "Képek kategóriái"
 
 #: piwigopress_admin.php:47
-msgid ""
-"After loading the list of categories, photos can be loaded from one of them"
+msgid "After loading the list of albums, photos can be loaded from one of them"
 msgstr ""
 
 #: piwigopress_admin.php:48
-msgid "All categories/photos"
+msgid "All albums/photos"
 msgstr ""
 
 #: piwigopress_admin.php:49
@@ -324,10 +331,10 @@ msgstr ""
 
 #: piwigopress_admin.php:58
 msgid ""
-"This is the Category/Album ID from where pictures will be obtained; use 0 "
-"for 'all albums' (most recent pictures first, regardless of album), use a "
-"specific Category ID number (e.g. 123) to get pictures from the specific "
-"album with that ID (CatID=123 in the example)"
+"This is the Album ID from where pictures will be obtained; use 0 for 'all "
+"albums' (most recent pictures first, regardless of album), use a specific "
+"Album ID number (e.g. 123) to get pictures from the specific album with that "
+"ID (CatID=123 in the example)"
 msgstr ""
 
 #: piwigopress_admin.php:59
@@ -364,13 +371,12 @@ msgstr ""
 msgid "Picture in album page"
 msgstr "Képek kategóriái"
 
-#: piwigopress_admin.php:101
-msgid "New window/tab"
-msgstr ""
-
 #: piwigopress_admin.php:198
 msgid "Insert a PiwigoPress shortcode from a Piwigo dragged photo"
 msgstr ""
+
+#~ msgid "Categories menu"
+#~ msgstr "Kategóriák menü"
 
 #~ msgid "Optional parameters"
 #~ msgstr "Opcionális értékek"

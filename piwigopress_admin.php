@@ -43,9 +43,9 @@ if(!class_exists('PiwigoPress_Admin')){
       $recommendation = __('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','pwg');
       $load = __('Start with 5 recent pics','pwg');
       $loaddesc = __('Load or reload the 5 most latest squared thumbnails from the url (might be changed or not)','pwg');
-      $loadcat = __('Load list of categories','pwg');
-      $loadcatdesc = __('After loading the list of categories, photos can be loaded from one of them','pwg');
-      $allcats = __('All categories/photos','pwg');
+      $loadcat = __('Load list of albums','pwg');
+      $loadcatdesc = __('After loading the list of albums, photos can be loaded from one of them','pwg');
+      $allcats = __('All albums/photos','pwg');
       $more = __('Get more','pwg');
       $moredesc = __('Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, and continues by 100','pwg');
       $hide = __('Hide 50%','pwg');
@@ -55,7 +55,7 @@ if(!class_exists('PiwigoPress_Admin')){
       $drop = __('Drop one or several thumbnails over the blue border here above !','pwg');
       $loadreq = __('Loaded, hidden & dropped vs. Requested thumbnails: ','pwg');
       $desc_options = __('Shortcode options','pwg');
-      $catiddesc = __("This is the Category/Album ID from where pictures will be obtained; use 0 for 'all albums' (most recent pictures first, regardless of album), use a specific Category ID number (e.g. 123) to get pictures from the specific album with that ID (CatID=123 in the example)",'pwg');
+      $catiddesc = __("This is the Album ID from where pictures will be obtained; use 0 for 'all albums' (most recent pictures first, regardless of album), use a specific Album ID number (e.g. 123) to get pictures from the specific album with that ID (CatID=123 in the example)",'pwg');
       $Lib_size =  __('Picture size','pwg');
       $Lib_sq =  __('Square','pwg');
       $Lib_th =  __('Thumbnail','pwg');

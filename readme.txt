@@ -21,7 +21,7 @@ setting up your own gallery.
 
 PiwigoPress generates several highly valuable links in sidebars of your
 WordPress blog, all of them being optional: a random thumbnail linking to
-the corresponding picture page, menus directing to all categories defined
+the corresponding picture page, menus directing to all albums defined
 as public in the gallery, several additional links to most recent, most
 viewed, most commented pictures, and more.
 
@@ -75,12 +75,12 @@ Explanation of Plugin Widget data fields.
 
 Optional parameters
 
-* Category id (0=all): Pictures from a specific Piwigo category or from all
+* Album id (0=all): Pictures from a specific Piwigo album or from all
 * Since X months (0=all): Age of posted picture
 * Pre and post-code: raw html code that is added just before the images
 * CSS DIV class: For your blog design
 * CSS IMG class: For your blog design
-* Categories menu: Includes all links related to Piwigo categories
+* Album menu: Includes all links related to Piwigo albums
 
 All below selectable option are special Piwigo links to include:
 
@@ -174,6 +174,9 @@ to either custom css or child theme css:
 
 == Changelog ==
 
+= 2.28dev=
+* use "album" instead of "category" in the user interface, as this is what Piwigo calls it (Issue 14)
+
 = 2.27 =
 * widget configuration now allows adding html code just before and after the included photos, but before the divs. This requires the 'unfiltered_html' permission for the user editing the widget.
 
@@ -183,7 +186,7 @@ to either custom css or child theme css:
 * make widget configuration background white instead of transparent for readability
 
 = 2.25 =
-* fix some peculiarities with the category list download
+* fix some peculiarities with the album list download
 * update compatibility to 4.1
 
 = 2.24 =
@@ -192,9 +195,9 @@ to either custom css or child theme css:
 * allow url to be "/foo/bar" like on local server, preserving http(s)
 * fix compatibility with tinyMCE v4 (WordPress 1.9)
 * support //host/path and use either http or https
-* link tagets to photo are now within the first category of the photo
-* permalinks are used for categories as far as possible
-* support pulling from a specific category instead of only from all photos
+* link tagets to photo are now within the first album of the photo
+* permalinks are used for albums as far as possible
+* support pulling from a specific album instead of only from all photos
 
 = 2.23 =
 * WordPress 3.5.1 support  

@@ -23,6 +23,12 @@ update-pot:
 		--output=languages/pwg.pot			\
 		*.php
 
+update-po:
+	for i in languages/*.po ; do \
+		msgmerge -vU $$i languages/pwg.pot ; \
+		msgfmt -v -o languages/`basename $$i .po`.mo $$i ; \
+	done
+
 # the following checks whether all versions agree!
 version-check:
 	@NV1=`grep "^Stable tag:" readme.txt | awk -F' ' '{print $$NF}'` ;	\

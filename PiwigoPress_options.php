@@ -154,7 +154,7 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 			<label><span style="' . $allchk . '">' . __('Select all','pwg') . '</span><span style="' . $allunchk . '">' . __('Unselect all','pwg') . '</span>' 
 			. ' <input id="' . $this->get_field_id('allsel') . '" class="MenuSel" name="' . $this->get_field_name('allsel')
 			. '" type="checkbox" value="true" ' . $allsel . '/></label><br>
-			<label>' . __('Categories menu','pwg') . ' <input id="' . $this->get_field_id('mbcategories') . '" name="' . $this->get_field_name('mbcategories')
+			<label>' . __('Album menu','pwg') . ' <input id="' . $this->get_field_id('mbcategories') . '" name="' . $this->get_field_name('mbcategories')
 			. '" type="checkbox" value="true" ' . $mbcategories . '/></label><br>
 			<label>' . __('Most visited','pwg') . ' <input id="' . $this->get_field_id('most_visited') . '" name="' . $this->get_field_name('most_visited')
 			. '" type="checkbox" value="true" ' . $most_visited . '/></label><br>

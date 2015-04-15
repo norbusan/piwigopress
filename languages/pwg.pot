@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: piwigopress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-06 09:27+0900\n"
+"POT-Creation-Date: 2015-04-15 12:39+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,7 +146,7 @@ msgid "Unselect all"
 msgstr ""
 
 #: PiwigoPress_options.php:157
-msgid "Categories menu"
+msgid "Album menu"
 msgstr ""
 
 #: PiwigoPress_options.php:159 PiwigoPress_widget.php:138
@@ -273,16 +273,15 @@ msgid ""
 msgstr ""
 
 #: piwigopress_admin.php:46
-msgid "Load list of categories"
+msgid "Load list of albums"
 msgstr ""
 
 #: piwigopress_admin.php:47
-msgid ""
-"After loading the list of categories, photos can be loaded from one of them"
+msgid "After loading the list of albums, photos can be loaded from one of them"
 msgstr ""
 
 #: piwigopress_admin.php:48
-msgid "All categories/photos"
+msgid "All albums/photos"
 msgstr ""
 
 #: piwigopress_admin.php:49
@@ -326,10 +325,10 @@ msgstr ""
 
 #: piwigopress_admin.php:58
 msgid ""
-"This is the Category/Album ID from where pictures will be obtained; use 0 "
-"for 'all albums' (most recent pictures first, regardless of album), use a "
-"specific Category ID number (e.g. 123) to get pictures from the specific "
-"album with that ID (CatID=123 in the example)"
+"This is the Album ID from where pictures will be obtained; use 0 for 'all "
+"albums' (most recent pictures first, regardless of album), use a specific "
+"Album ID number (e.g. 123) to get pictures from the specific album with that "
+"ID (CatID=123 in the example)"
 msgstr ""
 
 #: piwigopress_admin.php:59
