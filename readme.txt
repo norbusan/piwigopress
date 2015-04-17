@@ -3,7 +3,7 @@ Contributors: norbusan, vpiwigo
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 2.8.4
 Tested up to: 4.1.1
-Stable tag: 2.27
+Stable tag: 2.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,8 +174,9 @@ to either custom css or child theme css:
 
 == Changelog ==
 
-= 2.28dev=
+= 2.28 =
 * use "album" instead of "category" in the user interface, as this is what Piwigo calls it (Issue 14)
+* allow loading of albums from remote installations (Issue 13, 5)
 
 = 2.27 =
 * widget configuration now allows adding html code just before and after the included photos, but before the divs. This requires the 'unfiltered_html' permission for the user editing the widget.
