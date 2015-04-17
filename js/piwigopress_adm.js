@@ -45,7 +45,9 @@ Compiler on http://refresh-sf.com/yui/
         }
         $('#PWGP_catscroll').on('focus', function () {
           current_catid = this.value;
+	  // console.log('entering catscroll on function');
         }).change(function() { // changing the catid hides buttons
+	  // console.log('entering catscroll change function');
           if (current_catid != this.value) {
             $("#PWGP_more").hide();
             $("#PWGP_hide").hide();
@@ -53,14 +55,20 @@ Compiler on http://refresh-sf.com/yui/
             $("#PWGP_show_stats").hide();
           }
         });
-        $('#PWGP_finder').focusin(function() { // Changing Gallery URL hides buttons
-          $("#PWGP_more").hide();
-          $("#PWGP_hide").hide();
-          $("#PWGP_show").hide();
-          $("#PWGP_show_stats").hide();
-          $("#PWGP_catscroll").hide();
-          $('#PWGP_loadcat').show();
-          $('#PWGP_catscroll').val(0);
+        $('#PWGP_finder').focus(function() { // Changing Gallery URL hides buttons
+	  current_url = this.value;
+	  // console.log('jumped into foxus in ');
+	}).change(function() {
+	  // console.log('entering url change function');
+	  if (current_url != this.value) {
+            $("#PWGP_more").hide();
+            $("#PWGP_hide").hide();
+            $("#PWGP_show").hide();
+            $("#PWGP_show_stats").hide();
+            $("#PWGP_catscroll").hide();
+            $('#PWGP_loadcat').show();
+            $('#PWGP_catscroll').val(0);
+	  }
         });
         $('#PWGP_loadcat').unbind().click(function() {
           var url = $("#PWGP_finder").val(); // New URL to load
@@ -83,6 +91,8 @@ Compiler on http://refresh-sf.com/yui/
                   var id = cats[c].id;
                   $dropper.append('<option value='+id+'>'+nm+'</option>');
                 }
+		$dropper.select();
+		$dropper.focus();
               }
             },
             error: function(jqXHR, textStatus, errorThrows) {
@@ -95,10 +105,10 @@ Compiler on http://refresh-sf.com/yui/
         });
         $("#PWGP_load").unbind().click(function () {
           var url = $("#PWGP_finder").val(), // New URL to load
-            loaded = 5,
-            $gallery = $( "#PWGP_dragger" ),
-            $dragli = $( "#PWGP_dragger li" ),
-            $trash = $( "#PWGP_dropping" );
+              loaded = 5,
+              $gallery = $( "#PWGP_dragger" ),
+              $dragli = $( "#PWGP_dragger li" ),
+              $trash = $( "#PWGP_dropping" );
           $('.PWGP_system').show(500);
 
           $('#PWGP_Load_Active').show(); // Busy icon is on
