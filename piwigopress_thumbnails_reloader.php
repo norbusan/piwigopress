@@ -34,8 +34,8 @@ for ($i = 1; $i <= $loop; $i++) {
     // echo "<li>loading : ".$url."ws.php?method=pwg.categories.getImages".$catstr.'&recursive='.$recur.'&format=php&per_page='.$by.'&order=id%20desc&page='.$page."</li>\n";
     $response = pwg_get_contents( $url.'ws.php?method=pwg.categories.getImages'.$catstr.'&recursive='.$recur.'&format=php&per_page='.$by.'&order=id%20desc&page='.$page );
     $page++;
-    $thumbc = unserialize($response);
-    if ($thumbc["stat"] == 'ok') {
+    if (!is_wp_error($response)) {
+        $thumbc = unserialize($response['body']);
         /* try to fix loading for piwigo 2.6
         ** $pictures = $thumbc["result"][ "images"]["_content"]; */
         $pictures = $thumbc["result"][ "images"];

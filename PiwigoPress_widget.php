@@ -59,8 +59,8 @@ if ($thumbnail) {
 	$response = pwg_get_contents( $piwigo_url 
 			. 'ws.php?method=pwg.categories.getImages&format=php'
 			. $options . '&recursive=true&order=random&f_with_thumbnail=true');
-	$thumbc = unserialize($response);
-	if ($thumbc["stat"] == 'ok') {
+	if (!is_wp_error($response)) {
+		$thumbc = unserialize($response['body']);
 		/* fix from http://wordpress.org/support/topic/piwigo-260-and-piwigopress-223
 		** for piwigo 2.6
 		$pictures = $thumbc["result"]["images"]["_content"];
@@ -120,8 +120,8 @@ if ($mbcategories == 'true') {
 	// Make the Piwigo category list
 	$response = pwg_get_contents( $piwigo_url 
 			. 'ws.php?method=pwg.categories.getList&format=php&public=true');
-	$cats = unserialize($response);
-	if ($cats["stat"] == 'ok') {
+	if (!is_wp_error($response)) {
+		$cats = unserialize($response['body']);
 		echo '<ul style="clear: both;"><li>' . __('Pictures categories','pwg') . '<ul>';
 		foreach ($cats["result"]["categories"] as $cat) {
 			echo '<li><a title="' . $cat['name'] . '" href="' . $piwigo_url . 'index.php?category/' . $cat['id'] . '">' . $cat['name'] . '</a></li>';

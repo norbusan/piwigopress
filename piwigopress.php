@@ -67,8 +67,8 @@ function PiwigoPress_photoblog($parm) {
 	$deriv = array ( 'sq' => 'square', 'th' => 'thumb', 'sm' => 'small', 'xs' => 'xsmall', '2s' => '2small', 
 					 'me' => 'medium', 'la' => 'large', 'xl' => 'xlarge', 'xx' => 'xxlarge');
 	$response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
-	$thumbc = unserialize($response);
-	if ($thumbc["stat"] == 'ok') {
+	if (!is_wp_error($response)) {
+		$thumbc = unserialize($response['body']);
 		$picture = $thumbc["result"];
 		//var_dump($picture);
 		if (isset($picture['derivatives']['square']['url'])) {
@@ -217,7 +217,7 @@ function PiwigoPress_ajax_categories() {
 	}
 
 	$url.= "ws.php?format=json&method=pwg.categories.getList&recursive=true";
-	$response = wp_remote_get($url);
+	$response = pwg_get_contents($url);
 	if (is_wp_error($response)) {
 		http_response_code(400);
 		$error_message = $response->get_error_message();
