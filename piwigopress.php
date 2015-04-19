@@ -189,7 +189,8 @@ function PiwigoPress_load_in_footer() {
 	wp_register_script( 'piwigopress_s', plugins_url( 'piwigopress/js/piwigopress.js'), array('jquery'), PWGP_VERSION );
 	wp_enqueue_script( 'jquery'); // include it even if it's done
 	if ( is_admin() ) {
-		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.min.js'), array('jquery'), PWGP_VERSION );
+		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.js'), array('jquery'), PWGP_VERSION );
+		wp_localize_script( 'piwigopress_a', 'PwgpAjax', array('ajaxUrl' => admin_url('admin-ajax.php')));
 		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'jquery-ui-droppable' );
 		wp_enqueue_script( 'piwigopress_a' );
@@ -197,6 +198,24 @@ function PiwigoPress_load_in_footer() {
 	wp_enqueue_script( 'piwigopress_s' );
 }
 add_action('wp_footer',  PWGP_NAME . '_load_in_footer');
+
+function PiwigoPress_ajax_categories() {
+	// proxy a categories call from another server
+	$url = $_GET['url'];
+	$url.= "ws.php?format=json&method=pwg.categories.getList&recursive=true";
+
+	$response = wp_remote_get($url);
+	if (is_wp_error($response)) {
+		http_response_code(400);
+		$error_message = $response->get_error_message();
+		echo "Error: $error_message";
+	} else {
+		header("Content-Type: application/json");
+		echo $response['body'];
+	}
+	exit;
+}
+add_action('wp_ajax_pwgp-categories', PWGP_NAME . '_ajax_categories');
 
 function PiwigoPress_register_plugin() {
     if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))

@@ -73,12 +73,18 @@ Compiler on http://refresh-sf.com/yui/
         $('#PWGP_loadcat').unbind().click(function() {
           var url = $("#PWGP_finder").val(); // New URL to load
           $('#PWGP_Load_Active').show(); // Busy icon is on
+
           $.ajax({
-            url: '../wp-content/plugins/piwigopress/thumbnails_reloader.php?&loadcats=1&url='+url,
-	    cache: false,
+            url: PwgpAjax.ajaxUrl,
+            method: 'GET',
+            data: {
+              action: 'pwgp-categories',
+              url: url
+            },
+            dataType: "json",
+            cache: false,
             success: function(data) {
 	      // console.log('got back: ' + data);
-              var data = jQuery.parseJSON(data);
               var $dropper = $('#PWGP_catscroll');
               // remove all but the 0 value which is translated!
               $('#PWGP_catscroll option[value!="0"]').remove();
@@ -91,8 +97,8 @@ Compiler on http://refresh-sf.com/yui/
                   var id = cats[c].id;
                   $dropper.append('<option value='+id+'>'+nm+'</option>');
                 }
-		$dropper.select();
-		$dropper.focus();
+                $dropper.select();
+                $dropper.focus();
               }
             },
             error: function(jqXHR, textStatus, errorThrows) {
