@@ -32,6 +32,8 @@ if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.2.8');
 load_plugin_textdomain('pwg', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');
 
+require_once('piwigopress_utils.php');
+
 function PiwigoPress_photoblog($parm) {
 	$default = array(
 				'url' => '',
@@ -190,7 +192,10 @@ function PiwigoPress_load_in_footer() {
 	wp_enqueue_script( 'jquery'); // include it even if it's done
 	if ( is_admin() ) {
 		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.js'), array('jquery'), PWGP_VERSION );
-		wp_localize_script( 'piwigopress_a', 'PwgpAjax', array('ajaxUrl' => admin_url('admin-ajax.php')));
+		wp_localize_script( 'piwigopress_a', 'PwgpAjax', array(
+			'ajaxUrl' => admin_url('admin-ajax.php'),
+			'nonce' => wp_create_nonce('piwigopress-admin-nonce')
+		));
 		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'jquery-ui-droppable' );
 		wp_enqueue_script( 'piwigopress_a' );
@@ -199,11 +204,19 @@ function PiwigoPress_load_in_footer() {
 }
 add_action('wp_footer',  PWGP_NAME . '_load_in_footer');
 
+// proxy a categories call from another server
 function PiwigoPress_ajax_categories() {
-	// proxy a categories call from another server
-	$url = $_GET['url'];
-	$url.= "ws.php?format=json&method=pwg.categories.getList&recursive=true";
+	$url = PWGP_secure($_POST['url']);
+	$nonce = $_POST['nonce'];
 
+	// check nonce and permissions
+	if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
+		(!current_user_can('edit_posts') && !current_user_can('edit_pages'))) {
+		http_response_code(400);
+		die;
+	}
+
+	$url.= "ws.php?format=json&method=pwg.categories.getList&recursive=true";
 	$response = wp_remote_get($url);
 	if (is_wp_error($response)) {
 		http_response_code(400);
@@ -222,7 +235,6 @@ function PiwigoPress_register_plugin() {
         return;
     add_action('admin_head', PWGP_NAME . '_load_in_head');
 }
-
 add_action('init', PWGP_NAME . '_register_plugin');
 
 // Admin code only if distributed and in Admin
@@ -241,7 +253,7 @@ function piwigopress_plugin_links($links, $file) {
 		);  
 	return $links;  
 }  
-  
-add_filter( 'plugin_row_meta', PWGP_NAME . '_plugin_links', 10, 2 );  
+add_filter( 'plugin_row_meta', PWGP_NAME . '_plugin_links', 10, 2 );
+
 # vim:set expandtab tabstop=2 shiftwidth=2 autoindent smartindent: #
 

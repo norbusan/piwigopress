@@ -76,9 +76,10 @@ Compiler on http://refresh-sf.com/yui/
 
           $.ajax({
             url: PwgpAjax.ajaxUrl,
-            method: 'GET',
+            method: 'POST',
             data: {
               action: 'pwgp-categories',
+              nonce: PwgpAjax.nonce,
               url: url
             },
             dataType: "json",
