@@ -7,6 +7,7 @@ Version: 2.28
 Author: Norbert Preining
 Author URI: http://www.preining.info/
 */
+if (!defined('ABSPATH')) exit; /* Avoid unpredicted access */
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo */
 /*  Copyright 2009-2012  VDigital  (email : vpiwigo[at]gmail[dot]com)
     Copyright 2014-2015  Norbert Preining <norbert@preining.info>
