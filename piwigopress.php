@@ -7,6 +7,7 @@ Version: 2.28
 Author: Norbert Preining
 Author URI: http://www.preining.info/
 */
+if (!defined('ABSPATH')) exit; /* Avoid unpredicted access */
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo */
 /*  Copyright 2009-2012  VDigital  (email : vpiwigo[at]gmail[dot]com)
     Copyright 2014-2015  Norbert Preining <norbert@preining.info>
@@ -30,6 +31,9 @@ if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.2.8');
 
 load_plugin_textdomain('pwg', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');
+
+require_once('piwigopress_utils.php');
+require_once('PiwigoPress_get.php');
 
 function PiwigoPress_photoblog($parm) {
 	$default = array(
@@ -62,10 +66,9 @@ function PiwigoPress_photoblog($parm) {
 	}
 	$deriv = array ( 'sq' => 'square', 'th' => 'thumb', 'sm' => 'small', 'xs' => 'xsmall', '2s' => '2small', 
 					 'me' => 'medium', 'la' => 'large', 'xl' => 'xlarge', 'xx' => 'xxlarge');
-	if (!function_exists('pwg_get_contents')) include 'PiwigoPress_get.php';
 	$response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
-	$thumbc = unserialize($response);
-	if ($thumbc["stat"] == 'ok') {
+	if (!is_wp_error($response)) {
+		$thumbc = unserialize($response['body']);
 		$picture = $thumbc["result"];
 		//var_dump($picture);
 		if (isset($picture['derivatives']['square']['url'])) {
@@ -188,7 +191,11 @@ function PiwigoPress_load_in_footer() {
 	wp_register_script( 'piwigopress_s', plugins_url( 'piwigopress/js/piwigopress.js'), array('jquery'), PWGP_VERSION );
 	wp_enqueue_script( 'jquery'); // include it even if it's done
 	if ( is_admin() ) {
-		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.min.js'), array('jquery'), PWGP_VERSION );
+		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.js'), array('jquery'), PWGP_VERSION );
+		wp_localize_script( 'piwigopress_a', 'PwgpAjax', array(
+			'ajaxUrl' => admin_url('admin-ajax.php'),
+			'nonce' => wp_create_nonce('piwigopress-admin-nonce')
+		));
 		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'jquery-ui-droppable' );
 		wp_enqueue_script( 'piwigopress_a' );
@@ -197,12 +204,44 @@ function PiwigoPress_load_in_footer() {
 }
 add_action('wp_footer',  PWGP_NAME . '_load_in_footer');
 
+// proxy a categories call from another server
+function PiwigoPress_ajax_categories() {
+	$url = PWGP_secure($_POST['url']);
+	$nonce = $_POST['nonce'];
+
+	// check nonce and permissions
+	if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
+		(!current_user_can('edit_posts') && !current_user_can('edit_pages'))) {
+		http_response_code(400);
+		die;
+	}
+
+	$url.= "ws.php?format=json&method=pwg.categories.getList&recursive=true";
+	$response = pwg_get_contents($url);
+	if (is_wp_error($response)) {
+		http_response_code(400);
+		$error_message = $response->get_error_message();
+		echo "Error: $error_message";
+	} else {
+		header("Content-Type: application/json");
+		echo $response['body'];
+	}
+	exit;
+}
+add_action('wp_ajax_pwgp-categories', PWGP_NAME . '_ajax_categories');
+
+// proxy thumbnails call from another server
+function PiwigoPress_ajax_thumbnails() {
+	require_once('piwigopress_thumbnails_reloader.php');
+	exit;
+}
+add_action('wp_ajax_pwgp-thumbnails', PWGP_NAME . '_ajax_thumbnails');
+
 function PiwigoPress_register_plugin() {
     if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
         return;
     add_action('admin_head', PWGP_NAME . '_load_in_head');
 }
-
 add_action('init', PWGP_NAME . '_register_plugin');
 
 // Admin code only if distributed and in Admin
@@ -221,7 +260,7 @@ function piwigopress_plugin_links($links, $file) {
 		);  
 	return $links;  
 }  
-  
-add_filter( 'plugin_row_meta', PWGP_NAME . '_plugin_links', 10, 2 );  
+add_filter( 'plugin_row_meta', PWGP_NAME . '_plugin_links', 10, 2 );
+
 # vim:set expandtab tabstop=2 shiftwidth=2 autoindent smartindent: #
-?>
+

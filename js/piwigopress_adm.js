@@ -73,12 +73,18 @@ Compiler on http://refresh-sf.com/yui/
         $('#PWGP_loadcat').unbind().click(function() {
           var url = $("#PWGP_finder").val(); // New URL to load
           $('#PWGP_Load_Active').show(); // Busy icon is on
+
           $.ajax({
-            url: '../wp-content/plugins/piwigopress/thumbnails_reloader.php?&loadcats=1&url='+url,
-	    cache: false,
+            url: PwgpAjax.ajaxUrl,
+            method: 'POST',
+            data: {
+              action: 'pwgp-categories',
+              nonce: PwgpAjax.nonce,
+              url: url
+            },
+            dataType: "json",
             success: function(data) {
 	      // console.log('got back: ' + data);
-              var data = jQuery.parseJSON(data);
               var $dropper = $('#PWGP_catscroll');
               // remove all but the 0 value which is translated!
               $('#PWGP_catscroll option[value!="0"]').remove();
@@ -91,8 +97,8 @@ Compiler on http://refresh-sf.com/yui/
                   var id = cats[c].id;
                   $dropper.append('<option value='+id+'>'+nm+'</option>');
                 }
-		$dropper.select();
-		$dropper.focus();
+                $dropper.select();
+                $dropper.focus();
               }
             },
             error: function(jqXHR, textStatus, errorThrows) {
@@ -117,8 +123,15 @@ Compiler on http://refresh-sf.com/yui/
           // TODO norbert that somehow does not worek???
           var catid = $('#PWGP_catscroll').val();
           // console.log('catid='+catid);
-          if (!catid) { catid = 0 } ;
-          $gallery.load('../wp-content/plugins/piwigopress/thumbnails_reloader.php?&url='+url+'&category='+catid, function() {
+          if (!catid) { catid = 0; }
+
+          $.post(PwgpAjax.ajaxUrl, {
+            action: 'pwgp-thumbnails',
+            nonce: PwgpAjax.nonce,
+            url: url,
+            category: catid
+          }, function(response) {
+            $gallery.empty().append(response);
             $("#PWGP_more").show().unbind().click(function () {
               Get_more();
             });
@@ -141,14 +154,22 @@ Compiler on http://refresh-sf.com/yui/
             function Get_more() {
               $('#PWGP_Load_Active').show();
               catid = $('#PWGP_catscroll').val();
-              if (!catid) { catid = 0 } ;
+              if (!catid) { catid = 0; }
               // here we need to add the category id if set to the argument list, for now only category
               // and recursive is also necessary!!
               $.ajax({
-                url: '../wp-content/plugins/piwigopress/thumbnails_reloader.php?&loaded='+loaded+'&url='+url+'&category='+catid+'&recursive=1',
-                cache: false,
+                url: PwgpAjax.ajaxUrl,
+                data: {
+                  action: 'pwgp-thumbnails',
+                  nonce: PwgpAjax.nonce,
+                  url: url,
+                  loaded: loaded,
+                  category: catid,
+                  recursive: 1
+                },
+                method: 'post',
                 success: function(html){
-                Drag_n_Drop(html);
+                  Drag_n_Drop(html);
                 }
               });
               var added = 5;
@@ -156,7 +177,7 @@ Compiler on http://refresh-sf.com/yui/
               if (loaded > 49) added = 50; 
               if (loaded > 99) added = 100; // More we load larger next load might be
               loaded += added;
-            };
+            }
             function Drag_n_Drop(thumbs) {
               $($gallery).append(thumbs);
               var hgal = ($('#PWGP_dragger img').first().height())+20;  
@@ -176,7 +197,7 @@ Compiler on http://refresh-sf.com/yui/
               });
               if ($('li:visible', $gallery).size() > 0) $("#PWGP_hide").show();
               $('#PWGP_Load_Active').hide();
-            };
+            }
             function insertImage( $item ) {
               $item.fadeOut(function() {
                 var $list = $( "ul", $trash );
@@ -224,7 +245,7 @@ Compiler on http://refresh-sf.com/yui/
               }); 
               $("a#PWGP_Gen").show();
               $("a#PWGP_rst").show();
-            };
+            }
           }); // End of Loaded
         });  
         pwgp_Gallery_Display = false;

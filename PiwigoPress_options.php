@@ -216,4 +216,4 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 	. '" type="text" value="' . $class . '" /></label></td>
 	</tr></table>
 	</div>';
-?>
+
