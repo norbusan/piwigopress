@@ -1,6 +1,7 @@
 ﻿<?php
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
+require_once('PiwigoPress_get.php');
 
 global $wpdb; /* Need for recent thumbnail access */
 extract($args);
@@ -52,7 +53,6 @@ $postcode = empty($gallery['postcode']) ? '' : $gallery['postcode'];
 
 echo $before_widget;
 echo $title;
-if (!function_exists('pwg_get_contents')) include 'PiwigoPress_get.php';
 
 if ($thumbnail) {
 	// Make the Piwigo link

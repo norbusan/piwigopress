@@ -3,8 +3,7 @@
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 // error_reporting(E_ALL);
-// No WordPress routines available below like load_plugin_textdomain
-if (!function_exists('pwg_get_contents')) include 'PiwigoPress_get.php';
+require_once('PiwigoPress_get.php');
 
 $url = PWGP_secure($_POST['url']); // Sanitised
 

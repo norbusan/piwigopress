@@ -33,6 +33,7 @@ load_plugin_textdomain('pwg', false, dirname (plugin_basename( __FILE__ ) ) . '/
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');
 
 require_once('piwigopress_utils.php');
+require_once('PiwigoPress_get.php');
 
 function PiwigoPress_photoblog($parm) {
 	$default = array(
@@ -65,7 +66,6 @@ function PiwigoPress_photoblog($parm) {
 	}
 	$deriv = array ( 'sq' => 'square', 'th' => 'thumb', 'sm' => 'small', 'xs' => 'xsmall', '2s' => '2small', 
 					 'me' => 'medium', 'la' => 'large', 'xl' => 'xlarge', 'xx' => 'xxlarge');
-	if (!function_exists('pwg_get_contents')) include 'PiwigoPress_get.php';
 	$response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
 	$thumbc = unserialize($response);
 	if ($thumbc["stat"] == 'ok') {

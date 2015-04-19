@@ -1,7 +1,7 @@
 <?php
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
-if (!function_exists('pwg_get_contents')) include 'PiwigoPress_get.php';
+require_once('PiwigoPress_get.php');
 
 if(!class_exists('PiwigoPress_Admin')){
   class PiwigoPress_Admin {
