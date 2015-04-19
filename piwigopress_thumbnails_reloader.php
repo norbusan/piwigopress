@@ -1,21 +1,19 @@
 <?php
 
-if (!defined('PWGP_NAME')) define('PWGP_NAME','PiwigoPress');
-else return;
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
+if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 // error_reporting(E_ALL);
 // No WordPress routines available below like load_plugin_textdomain
 if (!function_exists('pwg_get_contents')) include 'PiwigoPress_get.php';
-require_once('piwigopress_utils.php');
 
-$url = PWGP_secure($_GET['url']); // Sanitised
+$url = PWGP_secure($_POST['url']); // Sanitised
 
 // for loading of thumbnails
 // echo '<li> REQUEST_URI = '.$_SERVER['REQUEST_URI'].'</li>\n';
 
-$loaded = ( isset($_GET['loaded']) ) ? ((int) $_GET['loaded']) : 0;
-$catid  = ( isset($_GET['category']) ) ? ((int) $_GET['category']) : 0;
-$recur  = ( isset($_GET['recursive']) ) ? ((int) $_GET['recursive']) : 1;
+$loaded = ( isset($_POST['loaded']) ) ? ((int) $_POST['loaded']) : 0;
+$catid  = ( isset($_POST['category']) ) ? ((int) $_POST['category']) : 0;
+$recur  = ( isset($_POST['recursive']) ) ? ((int) $_POST['recursive']) : 1;
 $recur  = ( $recur==1 ? "true" : "false" ) ;
 
 $by = 5;

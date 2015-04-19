@@ -230,6 +230,13 @@ function PiwigoPress_ajax_categories() {
 }
 add_action('wp_ajax_pwgp-categories', PWGP_NAME . '_ajax_categories');
 
+// proxy thumbnails call from another server
+function PiwigoPress_ajax_thumbnails() {
+	require_once('piwigopress_thumbnails_reloader.php');
+	exit;
+}
+add_action('wp_ajax_pwgp-thumbnails', PWGP_NAME . '_ajax_thumbnails');
+
 function PiwigoPress_register_plugin() {
     if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
         return;
