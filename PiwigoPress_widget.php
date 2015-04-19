@@ -165,4 +165,4 @@ if ($most_visited == 'true' or $best_rated == 'true' or
 	
 echo $after_widget;
 
-?>
+

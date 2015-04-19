@@ -80,4 +80,4 @@ function PWGP_secure($data) {
 }
     
 # vim:set expandtab tabstop=2 shiftwidth=2 autoindent smartindent: #
-?>
+

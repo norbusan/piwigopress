@@ -100,4 +100,4 @@ function pwg_get_contents($url, $mode='', $timeout=5) {
 	$pwg_mode = 'Err';
 	return serialize($return);
 }
-?>
+

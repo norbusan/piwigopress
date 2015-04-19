@@ -224,4 +224,4 @@ function piwigopress_plugin_links($links, $file) {
   
 add_filter( 'plugin_row_meta', PWGP_NAME . '_plugin_links', 10, 2 );  
 # vim:set expandtab tabstop=2 shiftwidth=2 autoindent smartindent: #
-?>
+
