@@ -3,7 +3,7 @@
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
 **Tested up to:** 4.1.1  
-**Stable tag:** 2.28  
+**Stable tag:** 2.29dev  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -191,6 +191,9 @@ to either custom css or child theme css:
 
 
 ## Changelog ##
+
+### 2.29dev ###
+* security related improvements by Rüdiger Schulz
 
 ### 2.28 ###
 * use "album" instead of "category" in the user interface, as this is what Piwigo calls it (Issue 14)
