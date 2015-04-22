@@ -2,8 +2,8 @@
 **Contributors:** norbusan, vpiwigo  
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
-**Tested up to:** 4.1.1  
-**Stable tag:** 2.29dev  
+**Tested up to:** 4.2  
+**Stable tag:** 2.29  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -190,10 +190,37 @@ to either custom css or child theme css:
 ![Expected result on your page or post of your Wordpress blog. ](https://s.w.org/plugins/piwigopress/screenshot-9.jpg)
 
 
+## Copyright/License ##
+
+PiwigoPress WordPress Plugin
+
+  Copyright 2009-2012  VDigital
+  Copyright 2014-2015  Norbert Preining
+
+Contributions by
+
+  Rüdiger Schulz 2015 (copyright transfered)
+
+PiwigoPress is distributed under the terms of the GNU GPL version 2+
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
 ## Changelog ##
 
-### 2.29dev ###
-* security related improvements by Rüdiger Schulz
+### 2.29 ###
+* security related improvements by Rüdiger Schulz, big thanks!
 
 ### 2.28 ###
 * use "album" instead of "category" in the user interface, as this is what Piwigo calls it (Issue 14)
