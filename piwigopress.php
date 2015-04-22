@@ -3,7 +3,7 @@
 Plugin Name: PiwigoPress
 Plugin URI: http://wordpress.org/extend/plugins/piwigopress/
 Description: PiwigoPress from any open API Piwigo gallery, swiftly includes your photos in Posts/Pages and/or add randomized thumbnails and menus in your sidebar.
-Version: 2.29dev
+Version: 2.29
 Author: Norbert Preining
 Author URI: http://www.preining.info/
 */
@@ -27,7 +27,7 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo 
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 if (!defined('PWGP_NAME')) define('PWGP_NAME','PiwigoPress');
-if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.2.9dev');
+if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.2.9');
 
 load_plugin_textdomain('pwg', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');
@@ -191,7 +191,7 @@ function PiwigoPress_load_in_footer() {
 	wp_register_script( 'piwigopress_s', plugins_url( 'piwigopress/js/piwigopress.js'), array('jquery'), PWGP_VERSION );
 	wp_enqueue_script( 'jquery'); // include it even if it's done
 	if ( is_admin() ) {
-		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.js'), array('jquery'), PWGP_VERSION );
+		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.min.js'), array('jquery'), PWGP_VERSION );
 		wp_localize_script( 'piwigopress_a', 'PwgpAjax', array(
 			'ajaxUrl' => admin_url('admin-ajax.php'),
 			'nonce' => wp_create_nonce('piwigopress-admin-nonce')
