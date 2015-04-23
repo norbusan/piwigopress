@@ -191,14 +191,20 @@ function PiwigoPress_load_in_footer() {
 	wp_register_script( 'piwigopress_s', plugins_url( 'piwigopress/js/piwigopress.js'), array('jquery'), PWGP_VERSION );
 	wp_enqueue_script( 'jquery'); // include it even if it's done
 	if ( is_admin() ) {
-		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.min.js'), array('jquery'), PWGP_VERSION );
+		wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.js'), array('jquery'), PWGP_VERSION );
 		wp_localize_script( 'piwigopress_a', 'PwgpAjax', array(
 			'ajaxUrl' => admin_url('admin-ajax.php'),
 			'nonce' => wp_create_nonce('piwigopress-admin-nonce')
 		));
+		// wp_register_script( 'piwigopress_m', plugins_url( 'piwigopress/js/piwigopress_media_tab.js'), array('jquery'), PWGP_VERSION );
+		// wp_localize_script( 'piwigopress_m', 'PwgpAjaxMedia', array(
+		// 	'ajaxUrl' => admin_url('admin-ajax.php'),
+		// 	'nonce' => wp_create_nonce('piwigopress-media-nonce')
+		// ));
 		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'jquery-ui-droppable' );
 		wp_enqueue_script( 'piwigopress_a' );
+		// wp_enqueue_script( 'piwigopress_m' );
 	}
 	wp_enqueue_script( 'piwigopress_s' );
 }

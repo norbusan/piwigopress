@@ -35,4 +35,65 @@ jQuery(document).ready(function($) {
         return false;
     });
 
+
+    function findSubHash (p, arr) {
+      //console.log (JSON.stringify(arr));
+      if (arr.length == 0) {
+        return(p);
+      } else {
+        first = arr.shift();
+        if (! (first in p)) {
+          p[first] = { };
+        }
+        return(findSubHash(p[first], arr));
+      }
+    }
+
+    $('#PWGP_media_loadcat').unbind().click(function() {
+      console.log("clicked on loading...");
+      var url = $("#PWGP_media_finder").val(); // New URL to load
+      console.log("url = " + url);
+    });   /*
+      // this does not work, unfortunately
+      $.ajax({
+        url: PwgpAjaxMedia.ajaxUrl,
+        method: 'POST',
+        data: {
+          action: 'pwgp-categories',
+          nonce: PwgpAjaxMedia.nonce,
+          url: url
+        },
+        dataType: "json",
+        success: function(data) {
+        // console.log('got back: ' + data);
+          var $pwgtree = $('#pwgtree');
+          // console.log('loading remote categories');
+          if (data.stat == 'ok') {
+            var cats = data.result.categories;
+            // albumdata = { title : ..., representative : .., subalbum : { NN : { }   }
+            // category 0 is the main album, all others are below
+            var albumdata = { };
+            // console.log('response ok length ='+cats.length);
+            for (var c = 0; c < cats.length; c++) {
+              // work on the uppers, it is a list where the *last* element
+              // is the own album id
+              var upper = cats[c].uppercats.split(',');
+              var targetalb = findSubHash(albumdata, upper);
+              targetalb['name'] = cats[c].name;
+              targetalb['id']   = cats[c].id;    //duplicated, already key in parent
+              targetalb['tnurl'] = cats[c].tn_url;
+              targetalb['nrimgs'] = cats[c].nb_images;
+              targetalb['tonrimgs'] = cats[c].total_nb_images;
+            }
+            //$pwgtree.append('<ul>');
+            console.log(JSON.stringify(albumdata));
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrows) {
+          console.log('cannot load list of piwigo categories: ' + textStatus + ' ' + errorThrows + ' ' + jqXHR.responseText);
+        }
+      });
+    });
+*/
+
 });

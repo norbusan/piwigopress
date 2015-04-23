@@ -12,6 +12,10 @@ if(!class_exists('PiwigoPress_Admin')){
       add_action( 'in_admin_footer', PWGP_NAME . '_load_in_footer' ); 
        
       add_action( 'save_post',  array(&$this, 'Save_options'));
+
+      # Media Tab support
+      add_filter( 'media_upload_tabs', array(&$this,'piwigo_add_media_tab') );
+      add_action( 'media_upload_piwigopress', 'piwigopress_media_iframe' );
     }
     function Save_options( $post_ID ) {
       $PWGP_options = serialize(array(
@@ -197,26 +201,27 @@ EOF;
       title="'. __('Insert a PiwigoPress shortcode from a Piwigo dragged photo','pwg') . '">
       <img src="../wp-content/plugins/piwigopress/img/PiwigoPress.png"/></a>';
     }
+
+
+    #
+    # MediaTab support
+    #
+    function piwigo_add_media_tab( $tabs ) {
+      $tabs['piwigopress'] = __('Insert from Piwigo', 'piwigopress');
+      return $tabs;
+    }
+
   }
 }
 
-
-
 #
-# MediaTab support
-#
-add_filter( 'media_upload_tabs', 'piwigo_add_media_tab' );
-function piwigo_add_media_tab( $tabs ) {
-  $tabs['piwigopress'] = __('Insert from Piwigo', 'piwigopress');
-  return $tabs;
-}
-
-add_action( 'media_upload_piwigopress', 'piwigopress_media_iframe' );
+# seems we need to have this outside the object, otherwise the call does not work
 function piwigopress_media_iframe() {
   wp_register_style('piwigopress-jstree-css', plugins_url('jstree/themes/default/style.min.css', __FILE__));
   wp_enqueue_style('piwigopress-jstree-css');
   wp_enqueue_script('piwigopress-jstree-js', plugins_url('jstree/jstree.min.js', __FILE__));
-  wp_enqueue_script('piwigopress-media-tab-js', plugins_url('js/piwigopress_media_tab.js', __FILE__));
+  wp_enqueue_script( 'piwigopress-media-js', plugins_url( 'js/piwigopress_media_tab.js', __FILE__));
+
   wp_iframe('piwigopress_media_content');
 }
 
@@ -225,6 +230,11 @@ function piwigopress_media_content() {
 
 <h2>HELLO WORLD</h2>
 
+<label>Enter URL:
+  <input id="PWGP_media_finder" type="text" value="" name="piwigopress_media_url" style="width: 250px;">
+  &nbsp;  <a id="PWGP_media_loadcat" rel="nofollow" href="javascript:void(0);" class="button" title="Load remote gallery">Load</a></label>
+
+<div id="pwgtree"></div>
 <div id="jstree">
 <ul>
   <li>Root node 1
@@ -251,5 +261,5 @@ if (!is_object($PWG_Adm)) {
   $PWG_Adm = new PiwigoPress_Admin();
 }
 
-# vim:set expandtab tabstop=2 shiftwidth=2 autoindent smartindent: #
 
+# vim:set expandtab tabstop=2 shiftwidth=2 autoindent smartindent: #
