@@ -199,6 +199,54 @@ EOF;
     }
   }
 }
+
+
+
+#
+# MediaTab support
+#
+add_filter( 'media_upload_tabs', 'piwigo_add_media_tab' );
+function piwigo_add_media_tab( $tabs ) {
+  $tabs['piwigopress'] = __('Insert from Piwigo', 'piwigopress');
+  return $tabs;
+}
+
+add_action( 'media_upload_piwigopress', 'piwigopress_media_iframe' );
+function piwigopress_media_iframe() {
+  wp_register_style('piwigopress-jstree-css', plugins_url('jstree/themes/default/style.min.css', __FILE__));
+  wp_enqueue_style('piwigopress-jstree-css');
+  wp_enqueue_script('piwigopress-jstree-js', plugins_url('jstree/jstree.min.js', __FILE__));
+  wp_enqueue_script('piwigopress-media-tab-js', plugins_url('js/piwigopress_media_tab.js', __FILE__));
+  wp_iframe('piwigopress_media_content');
+}
+
+function piwigopress_media_content() {
+  echo <<<EOF
+
+<h2>HELLO WORLD</h2>
+
+<div id="jstree">
+<ul>
+  <li>Root node 1
+  <ul>
+     <li id="child_node_1">Child node 1</li>
+     <li>Child node 2</li>
+  </ul>
+  </li>
+  <li>Root node 2</li>
+</ul>
+</div>
+<a href="#" class="start-jstree">start jstree</a>
+
+<p>
+<div class="chuck-norris-container">
+<p class="joke"></p>
+<a href="#" class="refresh-joke">refresh</a>
+<a href="#" class="insert-joke">insert</a>
+</div>
+EOF;
+}
+
 if (!is_object($PWG_Adm)) {
   $PWG_Adm = new PiwigoPress_Admin();
 }
