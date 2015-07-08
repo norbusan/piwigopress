@@ -89,6 +89,7 @@ function PiwigoPress_onephoto($parm) {
         'url' => '',
         'id' => 0,     // image_id
         'size' => 'la', // Default large
+        'name' => 0,  // Generate picture name
         'desc' => 0,   // Generate picture description
         'class' => '',  // Specific class
         'style' => '',  // Specific style
@@ -140,10 +141,18 @@ function PiwigoPress_onephoto($parm) {
       // value of alt tag: title + comment (if present)
       $alt = htmlspecialchars($picture['name']);
       if (isset($picture['comment'])) $alt .= ( ' -- ' . htmlspecialchars($picture['comment']) );
-      $div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img  class="PWGP_photo" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
-      if (isset( $picture['comment'] ) and $desc) { 
-        $picture['comment'] = stripslashes(htmlspecialchars(strip_tags($picture['comment'])));
-        $div .= '<blockquote class="PWGP_caption">' . $picture['comment'] . '</blockquote>'; 
+      $namestr = ( $name and isset( $picture['name'] )) ? $picture['name'] : NULL;
+      $descstr = ( $desc and isset( $picture['comment'] )) ? $picture['comment'] : NULL;
+      $div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img class="PWGP_photo" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
+      if ($namestr or $descstr) {
+        $div .= '<blockquote class="PWGP_caption">';
+        if ($namestr) {
+          $div .= '<div class="PWGP_name">' . stripslashes(htmlspecialchars(strip_tags($namestr))) . '</div>';
+        }
+        if ($descstr) {
+          $div .= '<div class="PWGP_desc">' . stripslashes(htmlspecialchars(strip_tags($descstr))) . '</div>';
+        }
+        $div .= '</blockquote>';
       }
       if ( $lnktype != 'none' ) $div .= '</a>';
       $div .= "\n
