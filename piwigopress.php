@@ -41,6 +41,7 @@ function PiwigoPress_photoblog($parm) {
 		return "<!-- PiwigoPress 'id' attribute in error -->\n\n<br>" 
 		. __('PiwigoPress shortcode attribute "id" is invalid: ' . $ids,'pwg') . "<br>\n\n" ;
 	}
+  $str = '';
 	foreach ($ids as $id) {
 		$parm['id'] = $id;
 		$str .= PiwigoPress_onephoto($parm);
@@ -113,9 +114,12 @@ function PiwigoPress_onephoto($parm) {
 	$response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
 	if (!is_wp_error($response)) {
 		$thumbc = unserialize($response['body']);
-		$picture = $thumbc["result"];
-		//var_dump($picture);
-		if (isset($picture['derivatives']['square']['url'])) {
+		//var_dump($thumbc);
+    $div = '';
+    if ($thumbc["stat"] == 'fail') {
+      $div = "PiwigoPress warning: id=$id, http error: " . $thumbc['message'];
+    } elseif (isset($thumbc["result"]['derivatives']['square']['url'])) {
+      $picture = $thumbc["result"];
 			$cats = array_reverse($picture['categories']);
 			$picture['tn_url'] = $picture['derivatives'][$deriv[$size]]['url'] ;
 			$catlink = '/category/' ;
