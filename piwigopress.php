@@ -37,13 +37,10 @@ require_once('PiwigoPress_get.php');
 
 function PiwigoPress_photoblog($parm) {
 	$ids = PiwigoPress_parseids($parm['id']);
-
 	if (is_string($ids)) {
 		return "<!-- PiwigoPress 'id' attribute in error -->\n\n<br>" 
 		. __('PiwigoPress shortcode attribute "id" is invalid: ' . $ids,'pwg') . "<br>\n\n" ;
 	}
-
-	$str = '';
 	foreach ($ids as $id) {
 		$parm['id'] = $id;
 		$str .= PiwigoPress_onephoto($parm);
