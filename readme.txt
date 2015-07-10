@@ -96,7 +96,7 @@ All below selectable option are special Piwigo links to include:
 
 Explanation of Plugin Shortcode attributes.
 
-* id: (required) Photo Numeric identifier
+* id: (required) Photo Numeric identifier. It's also possible to specify several ids for one shortcode, e.g.: id='2,5-7,4'
 * url: (mandadory for first usage in a post or to change to another) domaine or domaine/piwigo-folder 
 * size: (default size='la') 2 letters as sq(Square), (th)Thumbnail, (2s)XXS - tiny, (xs)XS - extra small, (sm)S - small, 
 (me)M - medium, (la)L - large, (xl)XL - extra large,(xx)XXL - huge : see you Piwigo configuration [Photo sizes] admin page
