@@ -36,6 +36,57 @@ require_once('piwigopress_utils.php');
 require_once('PiwigoPress_get.php');
 
 function PiwigoPress_photoblog($parm) {
+	$ids = PiwigoPress_parseids($parm['id']);
+
+	if (is_string($ids)) {
+		return "<!-- PiwigoPress 'id' attribute in error -->\n\n<br>" 
+		. __('PiwigoPress shortcode attribute "id" is invalid: ' . $ids,'pwg') . "<br>\n\n" ;
+	}
+
+	$str = '';
+	foreach ($ids as $id) {
+		$parm['id'] = $id;
+		$str .= PiwigoPress_onephoto($parm);
+	}
+	return $str;
+}
+
+function PiwigoPress_parseids($idlist) {
+	if ( $idlist == NULL ) {
+		return 'id list is required';
+	}
+	$ids = preg_split("/,/", $idlist, NULL, PREG_SPLIT_NO_EMPTY);
+	$result = array();
+	foreach ($ids as $range) {
+		$tokens = preg_split("/-/", $range);
+		if (count($tokens) == 1) {
+			$id = $tokens[0];
+			if ( !is_numeric($id) or $id < 1) {
+				return "id '$id' is not a positive number";
+			}
+			array_push($result, $id);
+		}
+		else if (count($tokens) == 2) {
+			$begin = $tokens[0];
+			if ( !is_numeric($begin) or $begin < 1) {
+				return "id '$begin' is not a positive number";
+			}
+			$end = $tokens[1];
+			if ( !is_numeric($end) or $end < 1) {
+				return "id '$end' is not a positive number";
+			}
+			for ($id = (int)$begin; $id <= (int)$end; $id++) {
+				array_push($result, $id);
+			}
+		}
+		else {
+			return 'id range must contain only one "-" char';
+		}
+	}
+	return $result;
+}
+
+function PiwigoPress_onephoto($parm) {
 	$default = array(
 				'url' => '',
 				'id' => 0, 		// image_id
@@ -60,10 +111,6 @@ function PiwigoPress_photoblog($parm) {
 	#if (substr($url,0,4)!='http') $url = 'http://' . $url;
 	if (substr($url,-1)!='/') $url .= '/';
 	if ($previous_url != $url) update_option( 'PiwigoPress_previous_url', $url );
-	if ( !is_numeric($id) or $id < 1) {
-		return "<!-- PiwigoPress 'id' attribute in error -->\n\n<br>" 
-		. __('PiwigoPress shortcode attribute "id" is required and must be positive.','pwg') . "<br>\n\n" ;
-	}
 	$deriv = array ( 'sq' => 'square', 'th' => 'thumb', 'sm' => 'small', 'xs' => 'xsmall', '2s' => '2small', 
 					 'me' => 'medium', 'la' => 'large', 'xl' => 'xlarge', 'xx' => 'xxlarge');
 	$response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
