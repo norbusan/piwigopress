@@ -183,6 +183,16 @@ PiwigoPress WordPress Plugin
 Contributions by
 
   Rüdiger Schulz 2015 (copyright transfered)
+  Anton Lavrov 2015
+
+
+Anton Lavrov's contribution are under GPLv2+:
+  On Wed, 15 Jul 2015, Anton Lavrov wrote:
+  > Hi Norbert,
+  > 
+  > I hereby confirm that my contributions are under GPLv2 or higher.
+  > 
+  > Please let me know if this is not exactly the wording you need.
 
 PiwigoPress is distributed under the terms of the GNU GPL version 2+
 
@@ -201,6 +211,11 @@ along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 == Changelog ==
+
+= 2.30dev =
+* new features by Anton Lavrov
+  - multiple image ids can be used in the shortcode
+  - support for displaying the photo name (title)
 
 = 2.29 =
 * security related improvements by Rüdiger Schulz, big thanks!
