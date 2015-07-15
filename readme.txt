@@ -102,6 +102,7 @@ Explanation of Plugin Shortcode attributes.
 (me)M - medium, (la)L - large, (xl)XL - extra large,(xx)XXL - huge : see you Piwigo configuration [Photo sizes] admin page
 * class : (optional) additional CSS class selectors at DIV tag level (e.g. class="img-drop-cap img-shadow left")
 * style: (optional) any additional CSS rules at DIV tag level (e.g. style="background-color: rgba(16, 64, 192, 0.05);")
+* name: (0,1) (0 by default) add the photo name in a blockquote from name field 
 * desc: (0,1) (0 by default) add the photo description in a blockquote from description field 
 in the Edit photo [Properties] admin page if there is a filled description there
 * lnktype: (string, default lnktype='picture') 'none' : no link, 'picture' : link to picture.php, 'album' : link to index.php/category, 'albumpicture' : link to picture.php within the album

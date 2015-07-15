@@ -107,3 +107,7 @@
 .PWGP_shortcode a {
 	text-decoration: none;
 }
+.PWGP_name {
+    font-weight: bold;
+    text-align: center;
+}
