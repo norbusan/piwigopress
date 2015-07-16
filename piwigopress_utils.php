@@ -8,14 +8,17 @@ function PWGP_secure($data) {
     else return urldecode ( trim ( htmlentities ( trim($data) , ENT_NOQUOTES ) ) );
 }
 
-function PWGP_getPictureName($picture) {
+//  $mode can be 0 (don't use name), 1 (always use name) and 'auto' (use name if it's not camera-generated)
+function PWGP_getPictureName($picture, $mode) {
+    if (!$mode) return NULL;
+
     $picturename = $picture['name'];
 
-    # If image has no expicitly set name, Piwigo will use file name w/o extension instead.
-    # We don't want to show such names. However, some users may give meaningful filenames
-    # to the images - so we only apply this logic if image name looks like camera-generated:
-    # i.e. it consists of one word of latin letters, digits and underscores
-    if (preg_match('/^[A-Za-z]*[_0-9]+$/', $picturename)) {
+    // If image has no expicitly set name, Piwigo will use file name w/o extension instead.
+    // We don't want to show such names. However, some users may give meaningful filenames
+    // to the images - so we only apply this logic if image name looks like camera-generated:
+    // i.e. it consists of one word of latin letters, digits and underscores
+    if ($mode == 'auto' && preg_match('/^[A-Za-z]*[_0-9]+$/', $picturename)) {
         $picturefile = $picture['file'];
         if ($picturefile) {
             $lastdot = strrpos($picturefile, '.');

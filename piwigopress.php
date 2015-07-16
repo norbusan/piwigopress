@@ -89,7 +89,7 @@ function PiwigoPress_onephoto($parm) {
         'url' => '',
         'id' => 0,     // image_id
         'size' => 'la', // Default large
-        'name' => 0,  // Generate picture name
+        'name' => 0,  // Generate picture name, can be 0, 1 or 'auto'
         'desc' => 0,   // Generate picture description
         'class' => '',  // Specific class
         'style' => '',  // Specific style
@@ -132,7 +132,7 @@ function PiwigoPress_onephoto($parm) {
 
       $targetlink = $url . 'picture.php?/' . $picture['id'];
       if ( $lnktype == 'albumpicture' ) $targetlink .= $catlink ;
-      $picturename = PWGP_getPictureName($picture);
+      $picturename = PWGP_getPictureName($picture, $name);
 
       if ( $lnktype == 'none' )
         $atag = NULL;
@@ -152,15 +152,14 @@ function PiwigoPress_onephoto($parm) {
         $alt .= $picturedesc;
       }
 
-      $showname = ($name and $picturename);
-      $showdesc = ($desc and $picturedesc);
+      if (!$desc) $picturedesc = NULL;
       $div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img class="PWGP_photo" src="' . $picture['tn_url'] . '" alt="' . htmlspecialchars($alt) . '"/>';
-      if ($showname or $showdesc) {
+      if ($picturename or $picturedesc) {
         $div .= '<blockquote class="PWGP_caption">';
-        if ($showname) {
+        if ($picturename) {
           $div .= '<div class="PWGP_name">' . stripslashes(htmlspecialchars(strip_tags($picturename))) . '</div>';
         }
-        if ($showdesc) {
+        if ($picturedesc) {
           $div .= '<div class="PWGP_desc">' . stripslashes(htmlspecialchars(strip_tags($picturedesc))) . '</div>';
         }
         $div .= '</blockquote>';
