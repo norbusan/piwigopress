@@ -89,7 +89,7 @@ function PiwigoPress_onephoto($parm) {
         'url' => '',
         'id' => 0,     // image_id
         'size' => 'la', // Default large
-        'name' => 0,  // Generate picture name
+        'name' => 0,  // Generate picture name, can be 0, 1 or 'auto'
         'desc' => 0,   // Generate picture description
         'class' => '',  // Specific class
         'style' => '',  // Specific style
@@ -129,32 +129,42 @@ function PiwigoPress_onephoto($parm) {
       } else {
         $catlink .= $cats[0]['id'];
       }
+
       $targetlink = $url . 'picture.php?/' . $picture['id'];
       if ( $lnktype == 'albumpicture' ) $targetlink .= $catlink ;
-      $atag = '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
-        . $targetlink . '" target="' . $opntype . '">';
-      if ( $lnktype == 'none' ) $atag = '';
-      if ( $lnktype == 'album' ) {
+      $picturename = PWGP_getPictureName($picture, $name);
+
+      if ( $lnktype == 'none' )
+        $atag = NULL;
+      elseif ( $lnktype == 'album' )
         $atag = '<a title="' . htmlspecialchars($cats[0]['name']) . '" href="' 
-        . $url . 'index.php?' . $catlink . '" target="' . $opntype . '">';
-      }
+          . $url . 'index.php?' . $catlink . '" target="' . $opntype . '">';
+      else
+        $atag = '<a title="' . htmlspecialchars($picturename) . '" href="' 
+          . $targetlink . '" target="' . $opntype . '">';
+
+      $picturedesc = $picture['comment'];
+
       // value of alt tag: title + comment (if present)
-      $alt = htmlspecialchars($picture['name']);
-      if (isset($picture['comment'])) $alt .= ( ' -- ' . htmlspecialchars($picture['comment']) );
-      $namestr = ( $name and isset( $picture['name'] )) ? $picture['name'] : NULL;
-      $descstr = ( $desc and isset( $picture['comment'] )) ? $picture['comment'] : NULL;
-      $div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img class="PWGP_photo" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
-      if ($namestr or $descstr) {
+      $alt = $picturename;
+      if ($picturedesc) {
+        if ($alt) $alt .= ' -- ';
+        $alt .= $picturedesc;
+      }
+
+      if (!$desc) $picturedesc = NULL;
+      $div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img class="PWGP_photo" src="' . $picture['tn_url'] . '" alt="' . htmlspecialchars($alt) . '"/>';
+      if ($picturename or $picturedesc) {
         $div .= '<blockquote class="PWGP_caption">';
-        if ($namestr) {
-          $div .= '<div class="PWGP_name">' . stripslashes(htmlspecialchars(strip_tags($namestr))) . '</div>';
+        if ($picturename) {
+          $div .= '<div class="PWGP_name">' . stripslashes(htmlspecialchars(strip_tags($picturename))) . '</div>';
         }
-        if ($descstr) {
-          $div .= '<div class="PWGP_desc">' . stripslashes(htmlspecialchars(strip_tags($descstr))) . '</div>';
+        if ($picturedesc) {
+          $div .= '<div class="PWGP_desc">' . stripslashes(htmlspecialchars(strip_tags($picturedesc))) . '</div>';
         }
         $div .= '</blockquote>';
       }
-      if ( $lnktype != 'none' ) $div .= '</a>';
+      if ( $atag ) $div .= '</a>';
       $div .= "\n
       </div>";
     }
