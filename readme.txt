@@ -3,7 +3,7 @@ Contributors: norbusan, vpiwigo
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 2.8.4
 Tested up to: 4.2
-Stable tag: 2.29
+Stable tag: 2.30
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -212,10 +212,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 == Changelog ==
 
-= 2.30dev =
-* new features by Anton Lavrov
-  - multiple image ids can be used in the shortcode
-  - support for displaying the photo name (title)
+= 2.30 =
+* multiple image ids can be used in the shortcode (by Anton Lavrov)
+* support for displaying the photo name (title) (by Anton Lavrov)
+* shortcode generator - support name setting
+* fix 'albumpicture' setting not being preserved
 
 = 2.29 =
 * security related improvements by Rüdiger Schulz, big thanks!

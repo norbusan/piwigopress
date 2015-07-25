@@ -3,7 +3,7 @@
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
 **Tested up to:** 4.2  
-**Stable tag:** 2.29  
+**Stable tag:** 2.30  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -96,12 +96,13 @@ All below selectable option are special Piwigo links to include:
 
 Explanation of Plugin Shortcode attributes.
 
-* id: (required) Photo Numeric identifier
+* id: (required) Photo Numeric identifier. It's also possible to specify several ids for one shortcode, e.g.: id='2,5-7,4'
 * url: (mandadory for first usage in a post or to change to another) domaine or domaine/piwigo-folder 
 * size: (default size='la') 2 letters as sq(Square), (th)Thumbnail, (2s)XXS - tiny, (xs)XS - extra small, (sm)S - small, 
 (me)M - medium, (la)L - large, (xl)XL - extra large,(xx)XXL - huge : see you Piwigo configuration [Photo sizes] admin page
 * class : (optional) additional CSS class selectors at DIV tag level (e.g. class="img-drop-cap img-shadow left")
 * style: (optional) any additional CSS rules at DIV tag level (e.g. style="background-color: rgba(16, 64, 192, 0.05);")
+* name: (0,1,auto) (0 by default) add the photo name in a blockquote from name field: 0 disables, 1 enables, 'auto' tries to show only names that do not look like auto-generated names (group of character followed by group of digits with optional picture extension coinciding with file name)
 * desc: (0,1) (0 by default) add the photo description in a blockquote from description field 
 in the Edit photo [Properties] admin page if there is a filled description there
 * lnktype: (string, default lnktype='picture') 'none' : no link, 'picture' : link to picture.php, 'album' : link to index.php/category, 'albumpicture' : link to picture.php within the album
@@ -200,6 +201,16 @@ PiwigoPress WordPress Plugin
 Contributions by
 
   Rüdiger Schulz 2015 (copyright transfered)
+  Anton Lavrov 2015
+
+
+Anton Lavrov's contribution are under GPLv2+:
+  On Wed, 15 Jul 2015, Anton Lavrov wrote:
+  > Hi Norbert,
+  > 
+  > I hereby confirm that my contributions are under GPLv2 or higher.
+  > 
+  > Please let me know if this is not exactly the wording you need.
 
 PiwigoPress is distributed under the terms of the GNU GPL version 2+
 
@@ -218,6 +229,12 @@ along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 ## Changelog ##
+
+### 2.30 ###
+* multiple image ids can be used in the shortcode (by Anton Lavrov)
+* support for displaying the photo name (title) (by Anton Lavrov)
+* shortcode generator - support name setting
+* fix 'albumpicture' setting not being preserved
 
 ### 2.29 ###
 * security related improvements by Rüdiger Schulz, big thanks!
