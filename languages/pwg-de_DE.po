@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: piwigopress\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-15 12:39+0900\n"
+"POT-Creation-Date: 2015-07-25 14:57+0900\n"
 "PO-Revision-Date: 2015-02-15 22:35+0900\n"
 "Last-Translator: Norbert Preining <norbert@preining.info>\n"
 "Language-Team: \n"
@@ -38,19 +38,19 @@ msgstr "(oder) <strong>Externe</strong> URL der Gallerie"
 msgid "Size"
 msgstr "Größe"
 
-#: PiwigoPress_options.php:73 piwigopress_admin.php:60
+#: PiwigoPress_options.php:73 piwigopress_admin.php:62
 msgid "Square"
 msgstr "Quadratisch"
 
-#: PiwigoPress_options.php:76 piwigopress_admin.php:61
+#: PiwigoPress_options.php:76 piwigopress_admin.php:63
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: PiwigoPress_options.php:79 piwigopress_admin.php:63
+#: PiwigoPress_options.php:79 piwigopress_admin.php:65
 msgid "XXS - tiny"
 msgstr "XXS - winzig"
 
-#: PiwigoPress_options.php:82 piwigopress_admin.php:62
+#: PiwigoPress_options.php:82 piwigopress_admin.php:64
 msgid "XS - extra small"
 msgstr "XS - sehr klein"
 
@@ -62,35 +62,35 @@ msgstr "Große Größen"
 msgid "Select a larger sized picture"
 msgstr "Wählen Sien ein größeres Photo aus"
 
-#: PiwigoPress_options.php:92 piwigopress_admin.php:64
+#: PiwigoPress_options.php:92 piwigopress_admin.php:66
 msgid "S - small"
 msgstr "S - klein"
 
-#: PiwigoPress_options.php:95 piwigopress_admin.php:65
+#: PiwigoPress_options.php:95 piwigopress_admin.php:67
 msgid "M - medium"
 msgstr "M - mittel"
 
-#: PiwigoPress_options.php:98 piwigopress_admin.php:66
+#: PiwigoPress_options.php:98 piwigopress_admin.php:68
 msgid "L - large"
 msgstr "L - groß"
 
-#: PiwigoPress_options.php:101 piwigopress_admin.php:67
+#: PiwigoPress_options.php:101 piwigopress_admin.php:69
 msgid "XL - extra large"
 msgstr "XL - sehr groß"
 
-#: PiwigoPress_options.php:104 piwigopress_admin.php:68
+#: PiwigoPress_options.php:104 piwigopress_admin.php:70
 msgid "XXL - huge"
 msgstr "XXL - enorm"
 
-#: PiwigoPress_options.php:113 piwigopress_admin.php:100
+#: PiwigoPress_options.php:113 piwigopress_admin.php:109
 msgid "Open type"
 msgstr "Öffnungsart"
 
-#: PiwigoPress_options.php:114 piwigopress_admin.php:101
+#: PiwigoPress_options.php:114 piwigopress_admin.php:110
 msgid "New window/tab"
 msgstr ""
 
-#: PiwigoPress_options.php:117 piwigopress_admin.php:102
+#: PiwigoPress_options.php:117 piwigopress_admin.php:111
 #, fuzzy
 msgid "Same window/tab"
 msgstr "Selbes Fenster"
@@ -111,11 +111,11 @@ msgstr "Nur Portrait"
 msgid "Landscape only"
 msgstr "Nur Landscape"
 
-#: PiwigoPress_options.php:136 piwigopress_admin.php:91
+#: PiwigoPress_options.php:136 piwigopress_admin.php:100
 msgid "Link type"
 msgstr "Art des links"
 
-#: PiwigoPress_options.php:137 piwigopress_admin.php:92
+#: PiwigoPress_options.php:137 piwigopress_admin.php:101
 msgid "No link"
 msgstr "Kein link"
 
@@ -123,7 +123,7 @@ msgstr "Kein link"
 msgid "Album page if one selected"
 msgstr "Albumsseite falls eines selektiert ist"
 
-#: PiwigoPress_options.php:143 piwigopress_admin.php:94
+#: PiwigoPress_options.php:143 piwigopress_admin.php:103
 msgid "Picture page"
 msgstr "Photoseite"
 
@@ -218,7 +218,7 @@ msgstr "Beschriftung"
 msgid "Automatically add paragraphs"
 msgstr ""
 
-#: PiwigoPress_options.php:211 piwigopress_admin.php:80
+#: PiwigoPress_options.php:211 piwigopress_admin.php:89
 msgid "CSS DIV class"
 msgstr ""
 
@@ -230,104 +230,103 @@ msgstr ""
 msgid "Pictures categories"
 msgstr ""
 
-#: piwigopress.php:61
-msgid ""
-"PiwigoPress shortcode attribute \"id\" is required and must be positive."
+#: piwigopress.php:42
+msgid "PiwigoPress shortcode attribute \"id\" is invalid: "
 msgstr ""
 
-#: piwigopress.php:112
+#: piwigopress.php:182
 msgid ""
 "Adds a thumbnail and its link (to the picture) inside your blog sidebar."
 msgstr ""
 
-#: piwigopress.php:218
+#: piwigopress.php:324
 msgid "FAQ"
 msgstr ""
 
-#: piwigopress.php:219
+#: piwigopress.php:325
 msgid "PiwigoPress Support"
 msgstr ""
 
-#: piwigopress.php:220
+#: piwigopress.php:326
 msgid "Piwigo site"
 msgstr ""
 
-#: piwigopress_admin.php:41
+#: piwigopress_admin.php:43
 msgid "Piwigo gallery URL:"
 msgstr ""
 
-#: piwigopress_admin.php:42
+#: piwigopress_admin.php:44
 msgid "Actions:"
 msgstr ""
 
-#: piwigopress_admin.php:43
+#: piwigopress_admin.php:45
 msgid ""
 "Folder URL of any up-to-date Piwigo Gallery with public photos and opened "
 "webservices (MUST END with a \"/\")"
 msgstr ""
 
-#: piwigopress_admin.php:44
+#: piwigopress_admin.php:46
 msgid "Start with 5 recent pics"
 msgstr ""
 
-#: piwigopress_admin.php:45
+#: piwigopress_admin.php:47
 msgid ""
 "Load or reload the 5 most latest squared thumbnails from the url (might be "
 "changed or not)"
 msgstr ""
 
-#: piwigopress_admin.php:46
+#: piwigopress_admin.php:48
 msgid "Load list of albums"
 msgstr ""
 
-#: piwigopress_admin.php:47
+#: piwigopress_admin.php:49
 msgid "After loading the list of albums, photos can be loaded from one of them"
 msgstr ""
 
-#: piwigopress_admin.php:48
+#: piwigopress_admin.php:50
 msgid "All albums/photos"
 msgstr ""
 
-#: piwigopress_admin.php:49
+#: piwigopress_admin.php:51
 msgid "Get more"
 msgstr ""
 
-#: piwigopress_admin.php:50
+#: piwigopress_admin.php:52
 msgid ""
 "Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, "
 "and continues by 100"
 msgstr ""
 
-#: piwigopress_admin.php:51
+#: piwigopress_admin.php:53
 msgid "Hide 50%"
 msgstr ""
 
-#: piwigopress_admin.php:52
+#: piwigopress_admin.php:54
 #, php-format
 msgid "Hide 50% or less of current available squared thumbnails"
 msgstr ""
 
-#: piwigopress_admin.php:53
+#: piwigopress_admin.php:55
 msgid "Show hidden"
 msgstr ""
 
-#: piwigopress_admin.php:54
+#: piwigopress_admin.php:56
 msgid "Display all currently hidden squared thumbnails"
 msgstr ""
 
-#: piwigopress_admin.php:55
+#: piwigopress_admin.php:57
 msgid "Drop one or several thumbnails over the blue border here above !"
 msgstr ""
 
-#: piwigopress_admin.php:56
+#: piwigopress_admin.php:58
 msgid "Loaded, hidden & dropped vs. Requested thumbnails: "
 msgstr ""
 
-#: piwigopress_admin.php:57
+#: piwigopress_admin.php:59
 msgid "Shortcode options"
 msgstr ""
 
-#: piwigopress_admin.php:58
+#: piwigopress_admin.php:60
 msgid ""
 "This is the Album ID from where pictures will be obtained; use 0 for 'all "
 "albums' (most recent pictures first, regardless of album), use a specific "
@@ -335,39 +334,55 @@ msgid ""
 "ID (CatID=123 in the example)"
 msgstr ""
 
-#: piwigopress_admin.php:59
+#: piwigopress_admin.php:61
 msgid "Picture size"
 msgstr ""
 
-#: piwigopress_admin.php:79
-msgid "Display description"
+#: piwigopress_admin.php:80
+msgid "Display name"
 msgstr ""
 
 #: piwigopress_admin.php:81
-msgid "Generate and insert"
+msgid "off  - don't diplay name"
 msgstr ""
 
 #: piwigopress_admin.php:82
-msgid "Generate shortcodes of all dropped squared thumbnails"
+msgid "on   - diplay name"
 msgstr ""
 
 #: piwigopress_admin.php:83
+msgid "auto - display not auto-gen names"
+msgstr ""
+
+#: piwigopress_admin.php:88
+msgid "Display description"
+msgstr ""
+
+#: piwigopress_admin.php:90
+msgid "Generate and insert"
+msgstr ""
+
+#: piwigopress_admin.php:91
+msgid "Generate shortcodes of all dropped squared thumbnails"
+msgstr ""
+
+#: piwigopress_admin.php:92
 msgid "Reset dropping zone"
 msgstr ""
 
-#: piwigopress_admin.php:84
+#: piwigopress_admin.php:93
 msgid "Remove all squared thumbnails from the dropping zone"
 msgstr ""
 
-#: piwigopress_admin.php:93
+#: piwigopress_admin.php:102
 msgid "Album page"
 msgstr ""
 
-#: piwigopress_admin.php:95
+#: piwigopress_admin.php:104
 msgid "Picture in album page"
 msgstr ""
 
-#: piwigopress_admin.php:198
+#: piwigopress_admin.php:213
 msgid "Insert a PiwigoPress shortcode from a Piwigo dragged photo"
 msgstr ""
 
