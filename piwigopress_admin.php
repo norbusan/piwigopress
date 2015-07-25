@@ -92,7 +92,7 @@ if(!class_exists('PiwigoPress_Admin')){
       $Reset_drop =  __('Reset dropping zone','pwg');
       $rstdesc = __('Remove all squared thumbnails from the dropping zone','pwg');
 
-      if ( !in_array($link_type, array('album','none','picture'))) $link_type='picture';
+      if ( !in_array($link_type, array('album','none','picture','albumpicture'))) $link_type='picture';
       $clnkno  = checked($link_type,'none',false);
       $clnkalb = checked($link_type,'album',false);
       $clnkpic = checked($link_type,'picture',false);
