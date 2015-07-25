@@ -15,15 +15,17 @@ function PWGP_getPictureName($picture, $mode) {
     $picturename = $picture['name'];
 
     // If image has no expicitly set name, Piwigo will use file name w/o extension instead.
+    // Some applications will upload files with names equal to the file name.
     // We don't want to show such names. However, some users may give meaningful filenames
     // to the images - so we only apply this logic if image name looks like camera-generated:
-    // i.e. it consists of one word of latin letters, digits and underscores
-    if ($mode == 'auto' && preg_match('/^[A-Za-z]*[_0-9]+$/', $picturename)) {
+    // i.e. it consists of one word of latin letters, digits and underscores, followed by
+    // a set of optional image extension prefixes.
+    if ($mode == 'auto' && preg_match('/^[A-Za-z]*[_0-9]+(\.(jpg|JPG|png|PNG|jpeg|JPEG))?$/', $picturename)) {
         $picturefile = $picture['file'];
         if ($picturefile) {
             $lastdot = strrpos($picturefile, '.');
             # if lastdot === 0, we don't want to skip if - no oversight here
-            if ($lastdot and substr($picturefile, 0, $lastdot) == $picturename) {
+            if ($lastdot and (substr($picturefile, 0, $lastdot) == $picturename) or ($picturefile == $picturename)) {
                 return NULL;
             }
         }
