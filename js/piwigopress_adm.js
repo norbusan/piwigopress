@@ -209,6 +209,8 @@ Compiler on http://refresh-sf.com/yui/
                     var $scode = $Shortcode[0];
                     var $hsize = $('#thumbnail_size input[type=radio][name=thumbnail_size]:checked').attr('value');
                     if ( $hsize !== 'la') $scode += " size='"+$hsize+"'";
+                    var $dispname = $('#display_name input[type=radio][name=display_name]:checked').attr('value');
+                    if ( $dispname !== '0') $scode += " name='"+$dispname+"'";
                     $('input#desc_check[name=desc_check]').attr('value',0);
                     $hdesc = 0 + $('input#desc_check[name=desc_check]:checked').attr('value',1).attr('value');
                     if ( $hdesc == 1 ) $scode += " desc=1";

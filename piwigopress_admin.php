@@ -18,6 +18,7 @@ if(!class_exists('PiwigoPress_Admin')){
         'previous_url'     =>  (string) $_POST['piwigopress_url'],
         'thumbnail_size'   =>  (string) $_POST['thumbnail_size'],
         'desc_check'    =>  (bool) $_POST['desc_check'],
+        'display_name'    =>  (string) $_POST['display_name'],
         'photo_class'    =>  (string) $_POST['photo_class'],
         'link_type'      =>  (string) $_POST['link_type'],
         'open_type'      =>  (string) $_POST['open_type'],
@@ -30,6 +31,7 @@ if(!class_exists('PiwigoPress_Admin')){
         'previous_url'     => 'http://piwigo.org/demo/',
         'thumbnail_size'   => 'me',
         'desc_check'    => (bool) true,
+        'display_name'    => '0',
         'photo_class'    => 'img-shadow',
         'link_type'      => 'picture',
         'open_type'      => '_blank',
@@ -37,6 +39,7 @@ if(!class_exists('PiwigoPress_Admin')){
       $previous_options = get_option( 'PiwigoPress_previous_options', $PWGP_options );
       extract( unserialize($previous_options) );
       if ( !in_array($thumbnail_size, array('sq','th','xs','2s','sm','me','la','xl','xx'))) $thumbnail_size='la';
+      if ( !in_array($display_name, array('0','1','auto'))) $display_name='0';
       $url  = __('Piwigo gallery URL:','pwg');
       $actions = __('Actions:','pwg');
       $recommendation = __('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','pwg');
@@ -74,6 +77,13 @@ if(!class_exists('PiwigoPress_Admin')){
       $cla = checked($thumbnail_size,'la',false);
       $cxl = checked($thumbnail_size,'xl',false);
       $cxx = checked($thumbnail_size,'xx',false);
+      $Lib_disp_name = __('Display name','pwg');
+      $Lib_name_off = __('off  - don\'t diplay name', 'pwg');
+      $Lib_name_on  = __('on   - diplay name', 'pwg');
+      $Lib_name_auto = __('auto - display not auto-gen names', 'pwg');
+      $dispnoff = checked($display_name,'0',false);
+      $dispnon  = checked($display_name,'1',false);
+      $dispnauto  = checked($display_name,'auto',false);
       $descrip_check = checked($desc_check,true,false);
       $Lib_desc =  __('Display description','pwg');
       $Lib_CSS_div =  __('CSS DIV class','pwg');
@@ -163,6 +173,12 @@ if(!class_exists('PiwigoPress_Admin')){
           <div id="open_type" class="fieldset" style="text-align:right; min-width:200px;">
             <label>$Lib_open_new &nbsp; <input type="radio" value="_blank" class="post-format" name="open_type" $copnnew></label><br>  
             <label>$Lib_open_self &nbsp; <input type="radio" value="_self" class="post-format" name="open_type" $copnsel></label><br>  
+          </div><br>
+          <div class="legend">$Lib_disp_name</div>
+          <div id="display_name" class="fieldset" style="text-align:right; min-width: 400px;">
+            <label>$Lib_name_off &nbsp; <input type="radio" value="0" class="post-format" name="display_name" $dispnoff></label><br>  
+            <label>$Lib_name_on &nbsp; <input type="radio" value="1" class="post-format" name="display_name" $dispnon></label><br>  
+            <label>$Lib_name_auto &nbsp; <input type="radio" value="auto" class="post-format" name="display_name" $dispnauto></label><br>  
           </div>
         </td>
         <td>
