@@ -1,11 +1,11 @@
 # PiwigoPress #
-**Contributors:** norbusan, vpiwigo  
-**Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
-**Requires at least:** 2.8.4  
-**Tested up to:** 4.2  
-**Stable tag:** 2.30  
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:** norbusan, vpiwigo
+**Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
+**Requires at least:** 2.8.4
+**Tested up to:** 4.3
+**Stable tag:** 2.30
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 From any open API Piwigo gallery, swiftly include your photos in
 Posts/Pages and/or add randomized thumbnails and menus in your sidebar.
