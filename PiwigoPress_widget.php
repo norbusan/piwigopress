@@ -79,6 +79,8 @@ if ($thumbnail) {
 				if ($thumbnail_size == 'xl') $picture['tn_url'] = $picture['derivatives']['xlarge']['url'] ;
 				if ($thumbnail_size == 'xx') $picture['tn_url'] = $picture['derivatives']['xxlarge']['url'] ;
 			}
+			//
+			//var_dump($picture);
 			// value of alt tag: title + comment (if present)
 			$alt = htmlspecialchars($picture['name']);
 			if (isset($picture['comment'])) $alt .= ( ' -- ' . htmlspecialchars($picture['comment']) );
@@ -107,9 +109,13 @@ if ($thumbnail) {
 					echo '<blockquote class="PWGP_caption">' . $picture['comment'] . '</blockquote>'; 
 			}
 			if ( $lnktype!='none' ) echo '</a>';
-			echo '<a class="img_selector" name="' . $picture['element_url'] . '" rel="nofollow" href="javascript:void(0);" title="' 
-			. $picture['width'] .'x' . $picture['height'] .'"></a>
-			</div>';
+			// if quering a remote piwigo, the "element_url" is not set
+			// TODO ask why this is the case
+			if (isset($picture['element_url'])) {
+				echo '<a class="img_selector" name="' . $picture['element_url'] . '" rel="nofollow" href="javascript:void(0);" title="' 
+				. $picture['width'] .'x' . $picture['height'] .'"></a>';
+			}
+			echo '</div>';
 		}
 		if (!empty($postcode)) { echo $postcode; }
 		echo '<div class="textwidget">' . $text . '</div>';
