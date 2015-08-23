@@ -56,9 +56,9 @@ echo $title;
 
 if ($thumbnail) {
 	// Make the Piwigo link
-	$response = pwg_get_contents( $piwigo_url 
-			. 'ws.php?method=pwg.categories.getImages&format=php'
-			. $options . '&recursive=true&order=random&f_with_thumbnail=true');
+	$callstr = $piwigo_url . 'ws.php?method=pwg.categories.getImages&format=php' . $options . '&recursive=true&order=random';
+	// var_dump($callstr);
+	$response = pwg_get_contents( $callstr );
 	if (!is_wp_error($response)) {
 		$thumbc = unserialize($response['body']);
 		/* fix from http://wordpress.org/support/topic/piwigo-260-and-piwigopress-223
@@ -67,9 +67,18 @@ if ($thumbnail) {
 		*/
 		if (!empty($precode)) { echo $precode; }
 		$pictures = $thumbc["result"]["images"];
+		// var_dump($pictures);
 		foreach ($pictures as $picture) {
 			if (isset($picture['derivatives']['square']['url'])) {
-				$picture['tn_url'] = $picture['derivatives']['thumb']['url'] ;
+				// set the default link target
+				// since we are not sure whether there is a thumbnail (we removed f_with_thumbnail
+				// in the API call), we set it either to the thumbnail or square, the later one
+				// existing definitely
+				if (isset($picture['derivatives']['thumb']['url'])) {
+					$picture['tn_url'] = $picture['derivatives']['thumb']['url'] ;
+				} else {
+					$picture['tn_url'] = $picture['derivatives']['square']['url'] ;
+				}
 				if ($thumbnail_size == 'sq') $picture['tn_url'] = $picture['derivatives']['square']['url'] ;
 				if ($thumbnail_size == 'sm') $picture['tn_url'] = $picture['derivatives']['small']['url'] ;
 				if ($thumbnail_size == 'xs') $picture['tn_url'] = $picture['derivatives']['xsmall']['url'] ;
