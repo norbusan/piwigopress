@@ -181,7 +181,9 @@ class PiwigoPress extends WP_Widget
     $widget_ops = array('classname' => PWGP_NAME,
       'description' => __( "Adds a thumbnail and its link (to the picture) inside your blog sidebar.",'pwg') );
     $control_ops = array('width' => 780, 'height' => 300);
-    $this->WP_Widget(PWGP_NAME, PWGP_NAME, $widget_ops, $control_ops);
+    WP_Widget::__construct(PWGP_NAME, PWGP_NAME, $widget_ops, $control_ops);
+    // deprecated in 4.3.0
+    // $this->WP_Widget(PWGP_NAME, PWGP_NAME, $widget_ops, $control_ops);
   }
   // Code generator
   function widget($args, $gallery){
