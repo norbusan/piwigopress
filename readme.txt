@@ -20,7 +20,7 @@ plugin a try by using the Official Piwigo [demonstration gallery][] before
 setting up your own gallery.
 
 PiwigoPress generates several highly valuable links in sidebars of your
-WordPress blog, all of them being optional: a random thumbnail linking to
+WordPress blog, all of them being optional: a thumbnail linking to
 the corresponding picture page, menus directing to all albums defined
 as public in the gallery, several additional links to most recent, most
 viewed, most commented pictures, and more.
@@ -69,8 +69,9 @@ Explanation of Plugin Widget data fields.
 * (or) External gallery URL: URL to the gallery (if not local)
 * Square, Thumbnail, XXS - tiny,... : see you Piwigo configuration [Photo sizes] admin page
 * Orientation criteria : Any, portrait, landscape
-* Where to open photos on clicks
-* Link type
+* Link type: Where to open photos on clicks
+* Sort order: select photos according to these criteria - by default descending (most recent for dates)
+* Ascending order: if one want ascending order
 * Number of pictures (0=none): Number of thumbnails to get
 
 Optional parameters
@@ -129,7 +130,7 @@ and there select: Options > Photo sizes > Multiple size > show details
 
 = Widget (Only): With Link type Album which album would be selected ? =
 If Album = 0 the link will remain to the picture page.
-Otherwise, if Number of pictures > 0 the firt picture will link the Album page, next pictures will refer to their picture page.
+Otherwise, if Number of pictures > 0 the first picture will link the Album page, next pictures will refer to their picture page.
 
 = Shortcode (Only): With Link type Album which album would be selected ? =
 Picture is going to have a link to its most recent Album page (Upcoming releases should cover other cases).
@@ -211,6 +212,10 @@ along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 == Changelog ==
+
+= 2.31dev =
+* require that galleries have either square or thumbnails, not thumbnails only (Issue 21)
+* allow selecting the order of photos for the widget (Issue 20)
 
 = 2.30 =
 * multiple image ids can be used in the shortcode (by Anton Lavrov)

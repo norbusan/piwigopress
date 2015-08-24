@@ -43,6 +43,8 @@ $tags = empty($gallery['tags']) ? '' : $gallery['tags'];
 $comments = empty($gallery['comments']) ? '' : $gallery['comments'];
 $lnktype = empty($gallery['lnktype']) ? 'picture' : $gallery['lnktype'];
 $opntype = empty($gallery['opntype']) ? '_blank' : $gallery['opntype'];
+$ordertype = empty($gallery['ordertype']) ? 'random' : $gallery['ordertype'];
+$orderasc = empty($gallery['orderasc']) ? '' : $gallery['orderasc'];
 $category = empty($gallery['category']) ? 0 : $gallery['category'];
 if ( $category==0 and ($lnktype=='album' || $lnktype=='albumpicture')) $lnktype = 'picture';
 $filter = empty($gallery['filter']) ? 'true' : $gallery['filter'];
@@ -56,8 +58,11 @@ echo $title;
 
 if ($thumbnail) {
 	// Make the Piwigo link
-	$callstr = $piwigo_url . 'ws.php?method=pwg.categories.getImages&format=php' . $options . '&recursive=true&order=random';
-	// var_dump($callstr);
+	$callstr = $piwigo_url . 'ws.php?method=pwg.categories.getImages&format=php' . $options . '&recursive=true&order=' . $ordertype;
+	if (!$orderasc) {
+		$callstr .= '%20DESC';
+	}
+	//var_dump($callstr);
 	$response = pwg_get_contents( $callstr );
 	if (!is_wp_error($response)) {
 		$thumbc = unserialize($response['body']);

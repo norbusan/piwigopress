@@ -94,7 +94,9 @@ function PiwigoPress_onephoto($parm) {
         'class' => '',  // Specific class
         'style' => '',  // Specific style
         'lnktype' => 'picture', // Default generated link 
-        'opntype' => '_blank' // Default open type
+        'opntype' => '_blank', // Default open type
+        'ordertype' => 'random', // Default sort order
+        'orderasc' => 0, // Default sort order
     );
   $parm = array_change_key_case( $parm );
   extract( shortcode_atts( $default, $parm ) );
@@ -215,6 +217,8 @@ class PiwigoPress extends WP_Widget
     $gallery['filter'] = (strip_tags(stripslashes($new_gallery['filter'])) == 'true') ? 'true':'false';
     $gallery['lnktype'] = strip_tags(stripslashes($new_gallery['lnktype']));
     $gallery['opntype'] = strip_tags(stripslashes($new_gallery['opntype']));
+    $gallery['ordertype'] = strip_tags(stripslashes($new_gallery['ordertype']));
+    $gallery['orderasc'] = (strip_tags(stripslashes($new_gallery['orderasc'])) == 'true') ? 'true':'false';
     if ( current_user_can('unfiltered_html') ) {
       $gallery['text'] =  $new_gallery['text'];
       $gallery['precode'] =  $new_gallery['precode'];

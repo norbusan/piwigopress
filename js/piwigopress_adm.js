@@ -220,6 +220,8 @@ Compiler on http://refresh-sf.com/yui/
                     if ( $lnktype != 'picture' ) $scode += " lnktype='"+$lnktype+"'";
                     var $opntype = $('#open_type input[type=radio][name=open_type]:checked').attr('value');
                     if ( $opntype != '' ) $scode += " opntype='"+$opntype+"'";
+                    var $ordertype = $('#order_type input[type=radio][name=order_type]:checked').attr('value');
+                    if ( $ordertype != '' ) $scode += " order='"+$ordertype+"'";
 
                     var $scode = "\t"+$scode+"] \n\r";
 

@@ -12,7 +12,7 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 		'most_commented' => 'true', 'random' => 'true', 'recent_pics' => 'true',
 		'calendar' => 'true', 'tags' => 'true', 'comments' => 'true', 'allsel' => 'true', 
 		'mbcategories' => 'true', 'filter' => 'true', 'text' => '', 'lnktype' => 'picture',
-		'opntype' => '_blank', 'precode' => '', 'postcode' => '',
+		'opntype' => '_blank', 'ordertype' => 'random', 'orderasc' => 'false', 'precode' => '', 'postcode' => '',
 		 ) );
 
 	$title = htmlspecialchars($gallery['title']);
@@ -45,6 +45,8 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 	$postcode = htmlspecialchars($gallery['postcode']);
 	$lnktype = htmlspecialchars($gallery['lnktype']);
 	$opntype = htmlspecialchars($gallery['opntype']);
+	$ordertype = htmlspecialchars($gallery['ordertype']);
+	$orderasc = (htmlspecialchars($gallery['orderasc']) == 'true') ? 'checked="checked"':'';
 	$allsel = (htmlspecialchars($gallery['allsel']) == 'true') ? 'checked="checked"':'';
 	$allchk = (htmlspecialchars($gallery['allsel']) == 'true') ? 'display: none;':'';
 	$allunchk = (htmlspecialchars($gallery['allsel']) == 'true') ? '':'display: none;';
@@ -117,9 +119,7 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 			<label>' . __('Same window/tab','pwg') . ' </label> 
 			<input type="radio" value="_self" id="'. $this->get_field_id('opntype') .'" class="post-format" name="'. $this->get_field_name('opntype') .'" ' 
 				. checked($opntype,'_self',false) . '>
-		</fieldset></td>';
-	// Orientation
-		echo '<td>
+		</fieldset><br>
 		<fieldset class="edge">
 			<legend><span> ' . __('Format') . ' </span></legend>
 			<label>' . __('Any orientation','pwg') . ' </label> 
@@ -131,7 +131,9 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 			<label>' . __('Landscape only','pwg') . ' </label> 
 			<input type="radio" value="landscape" id="'. $this->get_field_id('format') .'" class="post-format" name="'. $this->get_field_name('format') .'" ' 
 				. checked($format,'landscape',false) . '>
-		</fieldset><br>
+		</fieldset></td>';
+	// Orientation
+		echo '<td>
 		<fieldset class="edge">
 			<legend><span> ' . __('Link type') . ' </span></legend>
 			<label>' . __('No link','pwg') . ' </label> 
@@ -146,7 +148,30 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 			<label>' . __('Picture page in Album','pwg') . ' </label> 
 			<input type="radio" value="albumpicture" id="'. $this->get_field_id('lnktype') .'" class="post-format" name="'. $this->get_field_name('lnktype') .'" ' 
 				. checked($lnktype,'albumpicture',false) . '>
-		</fieldset></td>';
+		</fieldset></br>
+		<fieldset class="edge">
+			<legend><span> ' . __('Sort order') . ' </span></legend>
+			<label>' . __('Random','pwg') . ' </label> 
+			<input type="radio" value="random" id="'. $this->get_field_id('ordertype') .'" class="post-format" name="'. $this->get_field_name('ordertype') .'" ' 
+				. checked($ordertype,'random',false) . '><br>
+			<label>' . __('Creation date','pwg') . ' </label> 
+			<input type="radio" value="date_creation" id="'. $this->get_field_id('ordertype') .'" class="post-format" name="'. $this->get_field_name('ordertype') .'" ' 
+				. checked($ordertype,'date_creation',false) . '><br>
+			<label>' . __('Availability date','pwg') . ' </label> 
+			<input type="radio" value="date_available" id="'. $this->get_field_id('ordertype') .'" class="post-format" name="'. $this->get_field_name('ordertype') .'" ' 
+				. checked($ordertype,'date_available',false) . '><br>
+			<label>' . __('Rating score','pwg') . ' </label> 
+			<input type="radio" value="rating_score" id="'. $this->get_field_id('ordertype') .'" class="post-format" name="'. $this->get_field_name('ordertype') .'" ' 
+				. checked($ordertype,'rating_score',false) . '><br>
+			<label>' . __('Hits','pwg') . ' </label> 
+			<input type="radio" value="hit" id="'. $this->get_field_id('ordertype') .'" class="post-format" name="'. $this->get_field_name('ordertype') .'" ' 
+				. checked($ordertype,'hit',false) . '>
+		</fieldset>
+		<fieldset style="text-align:right;" class="edge">
+			<label>' . __('Ascending order','pwg') . ' <input id="' . $this->get_field_id('orderasc') . '" name="' . $this->get_field_name('orderasc')
+			. '" type="checkbox" value="true" ' . $orderasc . '/></label>
+		</fieldset>
+		</td>';
 	// The categories menu
 	echo '<td>
 		<fieldset style="text-align:right;" class="edge">
