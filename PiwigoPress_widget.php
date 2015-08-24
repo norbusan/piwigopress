@@ -59,7 +59,7 @@ echo $title;
 if ($thumbnail) {
 	// Make the Piwigo link
 	$callstr = $piwigo_url . 'ws.php?method=pwg.categories.getImages&format=php' . $options . '&recursive=true&order=' . $ordertype;
-	if (!$orderasc) {
+	if ($orderasc == 'false') {
 		$callstr .= '%20DESC';
 	}
 	//var_dump($callstr);
