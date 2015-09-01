@@ -3,7 +3,7 @@
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
 **Tested up to:** 4.3  
-**Stable tag:** 2.30  
+**Stable tag:** 2.31
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -231,8 +231,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 ## Changelog ##
 
-### 2.31dev ###
-* require that galleries have either square or thumbnails, not thumbnails only (Issue 21)
+### 2.31 ###
+* relax requirement what image sizes galleries have to provide (Issue 21)
 * allow selecting the order of photos for the widget (Issue 20)
 
 ### 2.30 ###
