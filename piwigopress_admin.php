@@ -14,17 +14,19 @@ if(!class_exists('PiwigoPress_Admin')){
       add_action( 'save_post',  array(&$this, 'Save_options'));
     }
     function Save_options( $post_ID ) {
-      $PWGP_options = serialize(array(
-        'previous_url'     =>  (string) $_POST['piwigopress_url'],
-        'thumbnail_size'   =>  (string) $_POST['thumbnail_size'],
-        'desc_check'    =>  (bool) $_POST['desc_check'],
-        'display_name'    =>  (string) $_POST['display_name'],
-        'photo_class'    =>  (string) $_POST['photo_class'],
-        'link_type'      =>  (string) $_POST['link_type'],
-        'open_type'      =>  (string) $_POST['open_type'],
-      ));
-      # support local path, too
-      if ( strlen($_POST['piwigopress_url']) > 1 ) update_option( 'PiwigoPress_previous_options', $PWGP_options );
+      if (array_key_exists('piwigopress_url', $_POST)) {
+        $PWGP_options = serialize(array(
+          'previous_url'     =>  (string) $_POST['piwigopress_url'],
+          'thumbnail_size'   =>  (string) $_POST['thumbnail_size'],
+          'desc_check'    =>  (bool) $_POST['desc_check'],
+          'display_name'    =>  (string) $_POST['display_name'],
+          'photo_class'    =>  (string) $_POST['photo_class'],
+          'link_type'      =>  (string) $_POST['link_type'],
+          'open_type'      =>  (string) $_POST['open_type'],
+          ));
+        # support local path, too
+        if ( strlen($_POST['piwigopress_url']) > 1 ) update_option( 'PiwigoPress_previous_options', $PWGP_options );
+      }
     }
     function Add_new_button($context=''){
       $PWGP_options = serialize(array(
