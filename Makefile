@@ -20,12 +20,12 @@ update-pot:
 		--sort-by-file					\
 		--copyright-holder="Norbert Preining <norbert@preining.info>" \
 		--package-name=${PACKAGE}			\
-		--output=languages/pwg.pot			\
+		--output=languages/${PACKAGE}.pot			\
 		*.php
 
 update-po:
 	for i in languages/*.po ; do \
-		msgmerge -vU $$i languages/pwg.pot ; \
+		msgmerge -vU $$i languages/${PACKAGE}.pot ; \
 		msgfmt -v -o languages/`basename $$i .po`.mo $$i ; \
 	done
 

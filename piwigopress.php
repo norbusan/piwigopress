@@ -1,11 +1,13 @@
 <?php
 /*
 Plugin Name: PiwigoPress
-Plugin URI: http://wordpress.org/extend/plugins/piwigopress/
+Plugin URI: http://wordpress.org/plugins/piwigopress/
 Description: PiwigoPress from any open API Piwigo gallery, swiftly includes your photos in Posts/Pages and/or add randomized thumbnails and menus in your sidebar.
 Version: 2.31
 Author: Norbert Preining
 Author URI: http://www.preining.info/
+Text Domain: piwigopress
+Domain Path: /languages
 */
 if (!defined('ABSPATH')) exit; /* Avoid unpredicted access */
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo */
@@ -29,7 +31,7 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo 
 if (!defined('PWGP_NAME')) define('PWGP_NAME','PiwigoPress');
 if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.3.1');
 
-load_plugin_textdomain('pwg', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
+load_plugin_textdomain('piwigopress', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');
 
 require_once('piwigopress_utils.php');
@@ -39,7 +41,7 @@ function PiwigoPress_photoblog($parm) {
   $ids = PiwigoPress_parseids($parm['id']);
   if (is_string($ids)) {
     return "<!-- PiwigoPress 'id' attribute in error -->\n\n<br>"
-    . __('PiwigoPress shortcode attribute "id" is invalid: ' . $ids,'pwg') . "<br>\n\n" ;
+    . __('PiwigoPress shortcode attribute "id" is invalid: ' . $ids,'piwigopress') . "<br>\n\n" ;
   }
   $str = '';
   foreach ($ids as $id) {
@@ -181,7 +183,7 @@ class PiwigoPress extends WP_Widget
 {
   function PiwigoPress(){
     $widget_ops = array('classname' => PWGP_NAME,
-      'description' => __( "Adds a thumbnail and its link (to the picture) inside your blog sidebar.",'pwg') );
+      'description' => __( "Adds a thumbnail and its link (to the picture) inside your blog sidebar.",'piwigopress') );
     $control_ops = array('width' => 780, 'height' => 300);
     WP_Widget::__construct(PWGP_NAME, PWGP_NAME, $widget_ops, $control_ops);
     // deprecated in 4.3.0

@@ -42,34 +42,34 @@ if(!class_exists('PiwigoPress_Admin')){
       extract( unserialize($previous_options) );
       if ( !in_array($thumbnail_size, array('sq','th','xs','2s','sm','me','la','xl','xx'))) $thumbnail_size='la';
       if ( !in_array($display_name, array('0','1','auto'))) $display_name='0';
-      $url  = __('Piwigo gallery URL:','pwg');
-      $actions = __('Actions:','pwg');
-      $recommendation = __('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','pwg');
-      $load = __('Start with 5 recent pics','pwg');
-      $loaddesc = __('Load or reload the 5 most latest squared thumbnails from the url (might be changed or not)','pwg');
-      $loadcat = __('Load list of albums','pwg');
-      $loadcatdesc = __('After loading the list of albums, photos can be loaded from one of them','pwg');
-      $allcats = __('All albums/photos','pwg');
-      $more = __('Get more','pwg');
-      $moredesc = __('Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, and continues by 100','pwg');
-      $hide = __('Hide 50%','pwg');
-      $hidedesc = __('Hide 50% or less of current available squared thumbnails','pwg');
-      $show = __('Show hidden','pwg');
-      $showdesc  = __('Display all currently hidden squared thumbnails','pwg');
-      $drop = __('Drop one or several thumbnails over the blue border here above !','pwg');
-      $loadreq = __('Loaded, hidden & dropped vs. Requested thumbnails: ','pwg');
-      $desc_options = __('Shortcode options','pwg');
-      $catiddesc = __("This is the Album ID from where pictures will be obtained; use 0 for 'all albums' (most recent pictures first, regardless of album), use a specific Album ID number (e.g. 123) to get pictures from the specific album with that ID (CatID=123 in the example)",'pwg');
-      $Lib_size =  __('Picture size','pwg');
-      $Lib_sq =  __('Square','pwg');
-      $Lib_th =  __('Thumbnail','pwg');
-      $Lib_xs =  __('XS - extra small','pwg');
-      $Lib_2s =  __('XXS - tiny','pwg');
-      $Lib_sm =  __('S - small','pwg');
-      $Lib_me =  __('M - medium','pwg');
-      $Lib_la =  __('L - large','pwg');
-      $Lib_xl =  __('XL - extra large','pwg');
-      $Lib_xx =  __('XXL - huge','pwg');
+      $url  = __('Piwigo gallery URL:','piwigopress');
+      $actions = __('Actions:','piwigopress');
+      $recommendation = __('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','piwigopress');
+      $load = __('Start with 5 recent pics','piwigopress');
+      $loaddesc = __('Load or reload the 5 most latest squared thumbnails from the url (might be changed or not)','piwigopress');
+      $loadcat = __('Load list of albums','piwigopress');
+      $loadcatdesc = __('After loading the list of albums, photos can be loaded from one of them','piwigopress');
+      $allcats = __('All albums/photos','piwigopress');
+      $more = __('Get more','piwigopress');
+      $moredesc = __('Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, and continues by 100','piwigopress');
+      $hide = __('Hide 50%','piwigopress');
+      $hidedesc = __('Hide 50% or less of current available squared thumbnails','piwigopress');
+      $show = __('Show hidden','piwigopress');
+      $showdesc  = __('Display all currently hidden squared thumbnails','piwigopress');
+      $drop = __('Drop one or several thumbnails over the blue border here above !','piwigopress');
+      $loadreq = __('Loaded, hidden & dropped vs. Requested thumbnails: ','piwigopress');
+      $desc_options = __('Shortcode options','piwigopress');
+      $catiddesc = __("This is the Album ID from where pictures will be obtained; use 0 for 'all albums' (most recent pictures first, regardless of album), use a specific Album ID number (e.g. 123) to get pictures from the specific album with that ID (CatID=123 in the example)",'piwigopress');
+      $Lib_size =  __('Picture size','piwigopress');
+      $Lib_sq =  __('Square','piwigopress');
+      $Lib_th =  __('Thumbnail','piwigopress');
+      $Lib_xs =  __('XS - extra small','piwigopress');
+      $Lib_2s =  __('XXS - tiny','piwigopress');
+      $Lib_sm =  __('S - small','piwigopress');
+      $Lib_me =  __('M - medium','piwigopress');
+      $Lib_la =  __('L - large','piwigopress');
+      $Lib_xl =  __('XL - extra large','piwigopress');
+      $Lib_xx =  __('XXL - huge','piwigopress');
       $csq = checked($thumbnail_size,'sq',false);
       $cth = checked($thumbnail_size,'th',false);
       $cxs = checked($thumbnail_size,'xs',false);
@@ -79,38 +79,38 @@ if(!class_exists('PiwigoPress_Admin')){
       $cla = checked($thumbnail_size,'la',false);
       $cxl = checked($thumbnail_size,'xl',false);
       $cxx = checked($thumbnail_size,'xx',false);
-      $Lib_disp_name = __('Display name','pwg');
-      $Lib_name_off = __('off  - don\'t diplay name', 'pwg');
-      $Lib_name_on  = __('on   - diplay name', 'pwg');
-      $Lib_name_auto = __('auto - display not auto-gen names', 'pwg');
+      $Lib_disp_name = __('Display name','piwigopress');
+      $Lib_name_off = __('off  - don\'t diplay name', 'piwigopress');
+      $Lib_name_on  = __('on   - diplay name', 'piwigopress');
+      $Lib_name_auto = __('auto - display not auto-gen names', 'piwigopress');
       $dispnoff = checked($display_name,'0',false);
       $dispnon  = checked($display_name,'1',false);
       $dispnauto  = checked($display_name,'auto',false);
       $descrip_check = checked($desc_check,true,false);
-      $Lib_desc =  __('Display description','pwg');
-      $Lib_CSS_div =  __('CSS DIV class','pwg');
-      $Gen_insert =  __('Generate and insert','pwg');
-      $gendesc = __('Generate shortcodes of all dropped squared thumbnails','pwg');
-      $Reset_drop =  __('Reset dropping zone','pwg');
-      $rstdesc = __('Remove all squared thumbnails from the dropping zone','pwg');
+      $Lib_desc =  __('Display description','piwigopress');
+      $Lib_CSS_div =  __('CSS DIV class','piwigopress');
+      $Gen_insert =  __('Generate and insert','piwigopress');
+      $gendesc = __('Generate shortcodes of all dropped squared thumbnails','piwigopress');
+      $Reset_drop =  __('Reset dropping zone','piwigopress');
+      $rstdesc = __('Remove all squared thumbnails from the dropping zone','piwigopress');
 
       if ( !in_array($link_type, array('album','none','picture','albumpicture'))) $link_type='picture';
       $clnkno  = checked($link_type,'none',false);
       $clnkalb = checked($link_type,'album',false);
       $clnkpic = checked($link_type,'picture',false);
       $clnkalbpic = checked($link_type,'albumpicture',false);
-      $Lib_lnktype =  __('Link type','pwg');
-      $Lib_link_no  =  __('No link','pwg');
-      $Lib_link_alb =  __('Album page','pwg');
-      $Lib_link_pic =  __('Picture page','pwg');
-      $Lib_link_albpic = __('Picture in album page', 'pwg');
+      $Lib_lnktype =  __('Link type','piwigopress');
+      $Lib_link_no  =  __('No link','piwigopress');
+      $Lib_link_alb =  __('Album page','piwigopress');
+      $Lib_link_pic =  __('Picture page','piwigopress');
+      $Lib_link_albpic = __('Picture in album page', 'piwigopress');
 
       if ( !in_array($open_type, array('_blank','_self'))) $open_type='_blank';
       $copnnew  = checked($open_type,'_blank',false);
       $copnsel = checked($open_type,'_new',false);
-      $Lib_opntype =  __('Open type','pwg');
-      $Lib_open_new = __('New window/tab','pwg');
-      $Lib_open_self = __('Same window/tab','pwg');
+      $Lib_opntype =  __('Open type','piwigopress');
+      $Lib_open_new = __('New window/tab','piwigopress');
+      $Lib_open_self = __('Same window/tab','piwigopress');
       
       echo <<<EOF
 <div id="PWGP_Gal_finder" style="display:none">
@@ -212,7 +212,7 @@ if(!class_exists('PiwigoPress_Admin')){
 </div>
 EOF;
       return $context . '<a id="PWGP_button" rel="nofollow" href="javascript:void(0);" 
-      title="'. __('Insert a PiwigoPress shortcode from a Piwigo dragged photo','pwg') . '">
+      title="'. __('Insert a PiwigoPress shortcode from a Piwigo dragged photo','piwigopress') . '">
       <img src="../wp-content/plugins/piwigopress/img/PiwigoPress.png"/></a>';
     }
   }
