@@ -119,6 +119,7 @@ function PiwigoPress_onephoto($parm) {
   $response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
   if (!is_wp_error($response)) {
     $thumbc = unserialize($response['body']);
+    echo ('<!-- DEBUG ' .. $response['body'] .. " -->\n");
     //var_dump($thumbc);
     $div = '';
     if ($thumbc["stat"] == 'fail') {
