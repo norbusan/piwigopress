@@ -117,7 +117,6 @@ function PiwigoPress_onephoto($parm) {
   $deriv = array ( 'sq' => 'square', 'th' => 'thumb', 'sm' => 'small', 'xs' => 'xsmall', '2s' => '2small', 
            'me' => 'medium', 'la' => 'large', 'xl' => 'xlarge', 'xx' => 'xxlarge');
   $response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
-  echo("<!-- DEBUG URL: " . $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id . " -->\n");
   if (!is_wp_error($response)) {
     $thumbc = unserialize($response['body']);
     //var_dump($thumbc);
@@ -173,8 +172,6 @@ function PiwigoPress_onephoto($parm) {
       $div .= "\n
       </div>";
     }
-  } else {
-    echo("<!-- DEBUG wp_error " . var_dump($response) . " -->\n");
   }
   if ($style!='') $style = ' style="'.$style.'"';
   $str =  '<div id="Photo-' . $id . '-'. $size .'" class="PiwigoPress_photoblog"' . $style . '><!-- PiwigoPress Started -->';
