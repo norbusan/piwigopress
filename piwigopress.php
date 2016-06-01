@@ -139,6 +139,13 @@ function PiwigoPress_onephoto($parm) {
       if ( $lnktype == 'albumpicture' ) $targetlink .= $catlink ;
       $picturename = PWGP_getPictureName($picture, $name);
 
+      // WPML compatibility, passing lang parameters to links URLs
+      if ( defined( 'ICL_SITEPRESS_VERSION' ) ) {
+        $post_language_details = apply_filters( 'wpml_post_language_details', NULL, get_the_ID() ) ;
+        $catlink    = add_query_arg( 'lang', $post_language_details['locale'], trailingslashit( $catlink ) );
+        $targetlink = add_query_arg( 'lang', $post_language_details['locale'], $targetlink );
+      }
+
       if ( $lnktype == 'none' )
         $atag = NULL;
       elseif ( $lnktype == 'album' )
