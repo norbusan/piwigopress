@@ -28,6 +28,7 @@ function pwg_get_contents($url) {
 	  $fullurl = $url;
 	}
 
+	echo ("<!-- DEBUG pwg_get_contents: calling wp_remote_get fullurl = $fullurl -->\n");
 	return wp_remote_get($fullurl);
 }
 
