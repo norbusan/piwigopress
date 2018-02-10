@@ -2,8 +2,8 @@
 Contributors: norbusan, vpiwigo
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 2.8.4
-Tested up to: 4.3
-Stable tag: 2.31
+Tested up to: 4.9.4
+Stable tag: 2.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
