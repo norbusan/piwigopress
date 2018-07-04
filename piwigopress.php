@@ -135,7 +135,7 @@ function PiwigoPress_onephoto($parm) {
         $catlink .= $cats[0]['id'];
       }
 
-      $targetlink = $url . 'picture.php?/' . $picture['id'];
+      $targetlink = $picture['page_url'];
       if ( $lnktype == 'albumpicture' ) $targetlink .= $catlink ;
       $picturename = PWGP_getPictureName($picture, $name);
 
@@ -189,7 +189,7 @@ function PiwigoPress_onephoto($parm) {
 
 class PiwigoPress extends WP_Widget
 {
-  function PiwigoPress(){
+  function __construct(){
     $widget_ops = array('classname' => PWGP_NAME,
       'description' => __( "Adds a thumbnail and its link (to the picture) inside your blog sidebar.",'piwigopress') );
     $control_ops = array('width' => 780, 'height' => 300);
