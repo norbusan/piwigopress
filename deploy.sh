@@ -3,6 +3,8 @@
 # plus some other script
 #
 # changes by NP
+# 20241021
+# * use command -v and not Debian specific commands
 # 20150216
 # * use rsync to add/remove files when syncing from git to svn
 # * use checkedout version of svn
@@ -33,14 +35,14 @@ echo ".........................................."
 echo 
 
 # Check if subversion is installed before getting all worked up
-if [ $(dpkg-query -W -f='${Status}' subversion 2>/dev/null | grep -c "ok installed") != "1" ]
+if ! command -v svn 2>&1 >/dev/null
 then
 	echo "You'll need to install subversion before proceeding. Exiting....";
 	exit 1;
 fi
 
 # We are using rsync to delete unused files
-if [ $(dpkg-query -W -f='${Status}' rsync 2>/dev/null | grep -c "ok installed") != "1" ]
+if ! command -v rsync 2>&1 >/dev/null
 then
 	echo "You'll need to install rsync before proceeding. Exiting....";
 	exit 1;
