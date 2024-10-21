@@ -3,7 +3,7 @@
 Plugin Name: PiwigoPress
 Plugin URI: http://wordpress.org/plugins/piwigopress/
 Description: PiwigoPress from any open API Piwigo gallery, swiftly includes your photos in Posts/Pages and/or add randomized thumbnails and menus in your sidebar.
-Version: 2.32
+Version: 2.33
 Author: Norbert Preining
 Author URI: http://www.preining.info/
 Text Domain: piwigopress
@@ -29,7 +29,7 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo 
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 if (!defined('PWGP_NAME')) define('PWGP_NAME','PiwigoPress');
-if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.3.2');
+if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.3.3');
 
 load_plugin_textdomain('piwigopress', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');

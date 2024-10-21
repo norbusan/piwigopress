@@ -12,7 +12,9 @@ js/piwigopress_adm.min.js: js/piwigopress_adm.js
 
 
 README.md: readme.txt
-	/usr/local/wp2md/vendor/bin/wp2md convert -i readme.txt -o README.md
+	echo "CONVERSION BROKEN, DO MANUALLY"
+	exit 1
+	# wp2md convert -i readme.txt -o README.md
 
 update-pot:
 	xgettext				\

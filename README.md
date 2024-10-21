@@ -3,7 +3,7 @@
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
 **Tested up to:** 4.9.4
-**Stable tag:** 2.32
+**Stable tag:** 2.33
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -197,7 +197,7 @@ to either custom css or child theme css:
 PiwigoPress WordPress Plugin
 
   Copyright 2009-2012  VDigital
-  Copyright 2014-2015  Norbert Preining
+  Copyright 2014-2024  Norbert Preining
 
 Contributions by
 
@@ -230,6 +230,11 @@ along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 ## Changelog ##
+
+### 2.33 ###
+* fix widget initialization for newer PHP versions
+
+### 2.32 ###
 
 ### 2.31 ###
 * relax requirement what image sizes galleries have to provide (Issue 21)
