@@ -31,11 +31,11 @@ Compiler on http://refresh-sf.com/yui/
   });
   $(document).ready(function() {
     var pwgp_Gallery_Display = true;
-    $("a#PWGP_button").unbind().click(function () {
+    $("a#PWGP_button").off().click(function () {
       if ( pwgp_Gallery_Display ) {
-        if ( $('#dashboard-widgets-wrap').size() == 0 ) { var where = "#poststuff"; }
+        if ( $('#dashboard-widgets-wrap').length == 0 ) { var where = "#poststuff"; }
         else { var where = "#dashboard-widgets-wrap"; } // On Dashboard
-        if ( $("#PWGP_shortcoder").size() == 0 ) { // First: Create Drag & Drop zones
+        if ( $("#PWGP_shortcoder").length == 0 ) { // First: Create Drag & Drop zones
           var finder = $("#PWGP_Gal_finder").html();
           $( where ).before('<div id="PWGP_shortcoder" />');
           $("#PWGP_shortcoder").html(finder);
@@ -70,7 +70,7 @@ Compiler on http://refresh-sf.com/yui/
             $('#PWGP_catscroll').val(0);
 	  }
         });
-        $('#PWGP_loadcat').unbind().click(function() {
+        $('#PWGP_loadcat').off().click(function() {
           var url = $("#PWGP_finder").val(); // New URL to load
           $('#PWGP_Load_Active').show(); // Busy icon is on
 
@@ -109,7 +109,7 @@ Compiler on http://refresh-sf.com/yui/
           $('#PWGP_loadcat').hide();
           $('#PWGP_catscroll').show();
         });
-        $("#PWGP_load").unbind().click(function () {
+        $("#PWGP_load").off().click(function () {
           var url = $("#PWGP_finder").val(), // New URL to load
               loaded = 5,
               $gallery = $( "#PWGP_dragger" ),
@@ -132,17 +132,17 @@ Compiler on http://refresh-sf.com/yui/
             category: catid
           }, function(response) {
             $gallery.empty().append(response);
-            $("#PWGP_more").show().unbind().click(function () {
+            $("#PWGP_more").show().off().click(function () {
               Get_more();
             });
-            $("#PWGP_hide").show().unbind().click(function () {
-              var hide = Math.max(1, Math.floor( $('li:visible', $gallery).size() / 2 ));
+            $("#PWGP_hide").show().off().click(function () {
+              var hide = Math.max(1, Math.floor( $('li:visible', $gallery).length / 2 ));
               for(i=0;i<hide;i++) {
                 $gallery.find('li:visible').first().hide();
               }
-              if ($('li:visible', $gallery).size() == 0) $("#PWGP_hide").hide();
+              if ($('li:visible', $gallery).length == 0) $("#PWGP_hide").hide();
               else {
-                $("#PWGP_show").show().unbind().click(function () {
+                $("#PWGP_show").show().off().click(function () {
                   $('li:hidden', $gallery).show();
                   $("#PWGP_show").hide();
                 });
@@ -187,7 +187,7 @@ Compiler on http://refresh-sf.com/yui/
               $('li', $gallery).draggable({
                 revert: true, cursor: "move", zIndex: 50
               });
-              var obtained = $('li', $trash).size() + $('li', $gallery).size();
+              var obtained = $('li', $trash).length + $('li', $gallery).length;
               $("#PWGP_show_stats").show().find("#PWGP_stats").text(' '+obtained+' / '+loaded);
               $trash.droppable({
                 activeClass: "ui-state-highlight",
@@ -195,15 +195,14 @@ Compiler on http://refresh-sf.com/yui/
                   insertImage( ui.draggable ); // This DOM is now droppable
                 }
               });
-              if ($('li:visible', $gallery).size() > 0) $("#PWGP_hide").show();
+              if ($('li:visible', $gallery).length > 0) $("#PWGP_hide").show();
               $('#PWGP_Load_Active').hide();
             }
             function insertImage( $item ) {
               $item.fadeOut(function() {
                 var $list = $( "ul", $trash );
                 $item.appendTo( $list ).fadeIn(); // Available to be shortcoded
-                $("a#PWGP_Gen").unbind().click(function () {
-                  var tmce_ver = window.tinyMCE ? window.tinyMCE.majorVersion : 0;
+                $("a#PWGP_Gen").off().click(function () {
                   $("img", $trash).each(function () {
                     var $Shortcode = $(this).attr('title').split(']');
                     var $scode = $Shortcode[0];
@@ -231,15 +230,11 @@ Compiler on http://refresh-sf.com/yui/
                     $(document).trigger(ev);
                     if (ev.isDefaultPrevented()) return;
 
-                    // HTML Editor only insert statement
+                    // HTML Editor (Text tab) insert
                     $('#content').insertAtCaret( $scode );
-                    // Visual Editor Only insert statement
-                    if ( window.tinyMCE ) {
-                      if (tmce_ver>="4") {
-                        tinyMCE.execCommand('mceInsertContent', false, $scode);
-                      } else {
-                        tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, $scode);
-                      }
+                    // Visual Editor (TinyMCE 4+) insert
+                    if ( window.tinyMCE && window.tinyMCE.execCommand ) {
+                      window.tinyMCE.execCommand('mceInsertContent', false, $scode);
                     }
 
                     // If you are using another WordPress Post Editor 
@@ -248,11 +243,11 @@ Compiler on http://refresh-sf.com/yui/
                     // http://wordpress.org/support/plugin/piwigopress
                   });  
                 });
-                $("a#PWGP_rst").unbind().click(function () {
+                $("a#PWGP_rst").off().click(function () {
                   $('li', $trash).appendTo( $gallery );
                   $("a#PWGP_Gen").hide();
                   $("a#PWGP_rst").hide();
-                  $("#PWGP_show_stats").show().find("#PWGP_stats").text(' '+$('li', $gallery).size()+' / '+loaded);
+                  $("#PWGP_show_stats").show().find("#PWGP_stats").text(' '+$('li', $gallery).length+' / '+loaded);
                 });
               }); 
               $("a#PWGP_Gen").show();

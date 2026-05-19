@@ -111,9 +111,13 @@ function PiwigoPress_onephoto($parm) {
   # do not force http:// protocol, but allow for both
   # local (starting with one slash) urls as well as
   # remote but same protocol (starting with //)
-  #if (substr($url,0,4)!='http') $url = 'http://' . $url;
   if (substr($url,-1)!='/') $url .= '/';
-  if ($previous_url != $url) update_option( 'PiwigoPress_previous_url', $url );
+  // Only persist the URL when it actually changed AND the writer is an
+  // editor — avoids a DB write on every front-end shortcode render and
+  // prevents low-privileged users from stomping the site-wide default.
+  if ( $previous_url != $url && is_user_logged_in() && current_user_can( 'edit_others_posts' ) ) {
+    update_option( 'PiwigoPress_previous_url', $url );
+  }
   $deriv = array ( 'sq' => 'square', 'th' => 'thumb', 'sm' => 'small', 'xs' => 'xsmall', '2s' => '2small', 
            'me' => 'medium', 'la' => 'large', 'xl' => 'xlarge', 'xx' => 'xxlarge');
   $response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=json&image_id=' . (int) $id);
@@ -202,41 +206,53 @@ class PiwigoPress extends WP_Widget
   }
   function update($new_gallery, $old_gallery){
     $gallery = $old_gallery;
-    $gallery['title'] = strip_tags(stripslashes($new_gallery['title']));
-    $gallery['thumbnail'] = (bool) $new_gallery['thumbnail'];
-    $gallery['thumbnail_size'] = strip_tags(stripslashes($new_gallery['thumbnail_size']));
-    $gallery['format'] = strip_tags(stripslashes($new_gallery['format']));
-    $gallery['piwigo'] = strip_tags(stripslashes($new_gallery['piwigo']));
-    $gallery['external'] = strip_tags(stripslashes($new_gallery['external']));
-    $gallery['number'] = intval(strip_tags(stripslashes($new_gallery['number'])));
-    $gallery['category'] = intval(strip_tags(stripslashes($new_gallery['category'])));
-    $gallery['from'] = intval(strip_tags(stripslashes($new_gallery['from'])));
-    $gallery['divclass'] = strip_tags(stripslashes($new_gallery['divclass']));
-    $gallery['class'] = strip_tags(stripslashes($new_gallery['class']));
-    $gallery['most_visited'] = (strip_tags(stripslashes($new_gallery['most_visited'])) == 'true') ? 'true':'false';
-    $gallery['best_rated'] = (strip_tags(stripslashes($new_gallery['best_rated'])) == 'true') ? 'true':'false';
-    $gallery['most_commented'] = (strip_tags(stripslashes($new_gallery['most_commented'])) == 'true') ? 'true':'false';
-    $gallery['random'] = (strip_tags(stripslashes($new_gallery['random'])) == 'true') ? 'true':'false';
-    $gallery['recent_pics'] = (strip_tags(stripslashes($new_gallery['recent_pics'])) == 'true') ? 'true':'false';
-    $gallery['calendar'] = (strip_tags(stripslashes($new_gallery['calendar'])) == 'true') ? 'true':'false';
-    $gallery['tags'] = (strip_tags(stripslashes($new_gallery['tags'])) == 'true') ? 'true':'false';
-    $gallery['comments'] = (strip_tags(stripslashes($new_gallery['comments'])) == 'true') ? 'true':'false';
-    $gallery['mbcategories'] = (strip_tags(stripslashes($new_gallery['mbcategories'])) == 'true') ? 'true':'false';
-    $gallery['allsel'] = (strip_tags(stripslashes($new_gallery['allsel'])) == 'true') ? 'true':'false';
-    $gallery['filter'] = (strip_tags(stripslashes($new_gallery['filter'])) == 'true') ? 'true':'false';
-    $gallery['lnktype'] = strip_tags(stripslashes($new_gallery['lnktype']));
-    $gallery['opntype'] = strip_tags(stripslashes($new_gallery['opntype']));
-    $gallery['ordertype'] = strip_tags(stripslashes($new_gallery['ordertype']));
-    $gallery['orderasc'] = (strip_tags(stripslashes($new_gallery['orderasc'])) == 'true') ? 'true':'false';
+    $text  = function($k) use ($new_gallery) {
+      return isset($new_gallery[$k]) ? strip_tags( stripslashes( (string) $new_gallery[$k] ) ) : '';
+    };
+    $tbool = function($k) use ($new_gallery) {
+      $v = isset($new_gallery[$k]) ? strip_tags( stripslashes( (string) $new_gallery[$k] ) ) : '';
+      return ($v === 'true') ? 'true' : 'false';
+    };
+
+    $gallery['title']          = $text('title');
+    $gallery['thumbnail']      = !empty($new_gallery['thumbnail']);
+    $gallery['thumbnail_size'] = $text('thumbnail_size');
+    $gallery['format']         = $text('format');
+    $gallery['piwigo']         = $text('piwigo');
+    $gallery['external']       = $text('external');
+    $gallery['number']         = intval($text('number'));
+    $gallery['category']       = intval($text('category'));
+    $gallery['from']           = intval($text('from'));
+    $gallery['divclass']       = $text('divclass');
+    $gallery['class']          = $text('class');
+    $gallery['most_visited']   = $tbool('most_visited');
+    $gallery['best_rated']     = $tbool('best_rated');
+    $gallery['most_commented'] = $tbool('most_commented');
+    $gallery['random']         = $tbool('random');
+    $gallery['recent_pics']    = $tbool('recent_pics');
+    $gallery['calendar']       = $tbool('calendar');
+    $gallery['tags']           = $tbool('tags');
+    $gallery['comments']       = $tbool('comments');
+    $gallery['mbcategories']   = $tbool('mbcategories');
+    $gallery['allsel']         = $tbool('allsel');
+    $gallery['filter']         = $tbool('filter');
+    $gallery['lnktype']        = $text('lnktype');
+    $gallery['opntype']        = $text('opntype');
+    $gallery['ordertype']      = $text('ordertype');
+    $gallery['orderasc']       = $tbool('orderasc');
+
+    $raw = function($k) use ($new_gallery) {
+      return isset($new_gallery[$k]) ? (string) $new_gallery[$k] : '';
+    };
     if ( current_user_can('unfiltered_html') ) {
-      $gallery['text'] =  $new_gallery['text'];
-      $gallery['precode'] =  $new_gallery['precode'];
-      $gallery['postcode'] =  $new_gallery['postcode'];
+      $gallery['text']     = $raw('text');
+      $gallery['precode']  = $raw('precode');
+      $gallery['postcode'] = $raw('postcode');
     } else {
       // wp_filter_post_kses() expects slashed
-      $gallery['text'] = stripslashes( wp_filter_post_kses( addslashes($new_gallery['text']) ) );
-      $gallery['precode'] = stripslashes( wp_filter_post_kses( addslashes($new_gallery['precode']) ) );
-      $gallery['postcode'] = stripslashes( wp_filter_post_kses( addslashes($new_gallery['postcode']) ) );
+      $gallery['text']     = stripslashes( wp_filter_post_kses( addslashes( $raw('text') ) ) );
+      $gallery['precode']  = stripslashes( wp_filter_post_kses( addslashes( $raw('precode') ) ) );
+      $gallery['postcode'] = stripslashes( wp_filter_post_kses( addslashes( $raw('postcode') ) ) );
     }
     return $gallery;
   }
@@ -246,11 +262,20 @@ class PiwigoPress extends WP_Widget
   }
 }
 
-// Register 
+// Register
 function PiwigoPress_Init() {
       register_widget('PiwigoPress');
 }
 add_action('widgets_init', PWGP_NAME . '_Init');
+
+// Enqueue the widget-form helper script on the widgets screen.
+function PiwigoPress_widget_admin_assets( $hook ) {
+  if ( $hook !== 'widgets.php' ) return;
+  wp_enqueue_script( 'piwigopress_ws',
+    plugins_url( 'piwigopress/js/piwigopress_widgets.js' ),
+    array( 'jquery' ), PWGP_VERSION, true );
+}
+add_action( 'admin_enqueue_scripts', PWGP_NAME . '_widget_admin_assets' );
 
 // Style allocation
 function PiwigoPress_load_in_head() {
@@ -273,7 +298,7 @@ function PiwigoPress_load_in_footer() {
   wp_register_script( 'piwigopress_s', plugins_url( 'piwigopress/js/piwigopress.js'), array('jquery'), PWGP_VERSION );
   wp_enqueue_script( 'jquery'); // include it even if it's done
   if ( is_admin() ) {
-    wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.min.js'), array('jquery'), PWGP_VERSION );
+    wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.js'), array('jquery'), PWGP_VERSION );
     wp_localize_script( 'piwigopress_a', 'PwgpAjax', array(
       'ajaxUrl' => admin_url('admin-ajax.php'),
       'nonce' => wp_create_nonce('piwigopress-admin-nonce')
@@ -344,7 +369,7 @@ add_action('init', PWGP_NAME . '_register_plugin');
 
 // Admin code only if distributed and in Admin
 if ( is_admin() ) {
-    @include 'piwigopress_admin.php';
+    require_once __DIR__ . '/piwigopress_admin.php';
 }
 function piwigopress_plugin_links($links, $file) {  
   $plugin = plugin_basename(__FILE__);  

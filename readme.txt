@@ -1,8 +1,9 @@
 === PiwigoPress ===
 Contributors: norbusan, vpiwigo
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
-Requires at least: 2.8.4
-Tested up to: 4.9.4
+Requires at least: 5.0
+Tested up to: 6.7
+Requires PHP: 7.4
 Stable tag: 2.33dev
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -224,6 +225,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * fix: `array_change_key_case($parm)` would TypeError on PHP 8 when the shortcode had no attributes (cast to array first)
 * fix: drop dead `get_magic_quotes_gpc()` branch in `PWGP_secure` (removed in PHP 8.0 — was a fatal error)
 * fix: compute the "since X months" cutoff in PHP instead of via raw SQL on `wpdb`
+* fix: `PiwigoPress::update()` no longer triggers PHP 8 warnings for missing widget-form keys; every field is now read through an `isset()` helper
+* drop dead TinyMCE 3 fallback (`tinyMCE.execInstanceCommand`); WordPress has shipped TinyMCE 4+ since 3.9
+* harden direct-access guards: add `if (!defined('ABSPATH')) exit;` to every PHP file
+* replace `@include 'piwigopress_admin.php'` with `require_once` so real errors aren't silently swallowed
+* move the widgets-screen helper script enqueue from inside the widget `form()` method to `admin_enqueue_scripts` filtered on `widgets.php`
+* only persist `PiwigoPress_previous_url` when the writer has `edit_others_posts`, removing a per-render DB write and preventing low-privileged users from rewriting the site-wide default
+* modernize jQuery calls in `piwigopress_adm.js` (`.size()` → `.length`, `.unbind()` → `.off()`)
+* drop the stale shipped `js/piwigopress_adm.min.js` (was diverging from the source); load the unminified file instead
+* compatibility metadata: bump `Requires at least` to 5.0 and `Tested up to` to 6.7, declare `Requires PHP: 7.4`
 * fix media-button shortcode generator broken on PHP 8+ (replace PHP4-style `PiwigoPress_Admin()` constructor with `__construct()` and drop deprecated by-reference `&$this`)
 * add Gutenberg (block editor) support: new "PiwigoPress" entry in the editor's more-menu opens a modal with the existing photo picker and inserts the generated shortcode as a `core/shortcode` block
 * harden classic JS: guard `window.tinyMCE.majorVersion` access and route shortcode insertion through a `piwigopress:insert` custom event so other editors can intercept

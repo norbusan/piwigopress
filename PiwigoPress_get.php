@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) exit;
 if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 
