@@ -4,15 +4,8 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 
 function pwg_ret_protocol() {
-        if ( isset($_SERVER['HTTPS']) ) {
-                if ( 'on' == strtolower($_SERVER['HTTPS']) )
-                        return "https:";
-                if ( '1' == $_SERVER['HTTPS'] )
-                        return "https:";
-        } elseif ( isset($_SERVER['SERVER_PORT']) && ( '443' == $_SERVER['SERVER_PORT'] ) ) {
-                return "https:";
-        }
-        return "http:";
+        // Honour reverse-proxy X-Forwarded-Proto via WP's is_ssl().
+        return is_ssl() ? 'https:' : 'http:';
 }
 
 function pwg_get_contents($url) {
@@ -29,6 +22,12 @@ function pwg_get_contents($url) {
 	  $fullurl = $url;
 	}
 
-	return wp_remote_get($fullurl);
+	// wp_safe_remote_get applies the http_request_host_is_external /
+	// reject_unsafe_urls filters; combined with redirection=0 this prevents
+	// SSRF via 30x redirects to internal hosts.
+	return wp_safe_remote_get( $fullurl, array(
+	  'timeout'     => 5,
+	  'redirection' => 0,
+	) );
 }
 

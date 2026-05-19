@@ -83,9 +83,16 @@ if(!class_exists('PiwigoPress_Admin')){
         'open_type'      => '_blank',
       ));
       $previous_options = get_option( 'PiwigoPress_previous_options', $PWGP_options );
-      extract( unserialize($previous_options) );
-      if ( !in_array($thumbnail_size, array('sq','th','xs','2s','sm','me','la','xl','xx'))) $thumbnail_size='la';
-      if ( !in_array($display_name, array('0','1','auto'))) $display_name='0';
+      $unserialized = @unserialize( $previous_options, array('allowed_classes' => false) );
+      if ( is_array($unserialized) ) extract( $unserialized );
+      // Defensive: legacy option data may pre-date input sanitisation.
+      $previous_url = isset($previous_url) ? esc_attr( esc_url_raw( (string) $previous_url ) ) : '';
+      $photo_class  = isset($photo_class) ? esc_attr( sanitize_html_class( (string) $photo_class ) ) : '';
+      if ( !isset($thumbnail_size) || !in_array($thumbnail_size, array('sq','th','xs','2s','sm','me','la','xl','xx'))) $thumbnail_size='la';
+      if ( !isset($display_name) || !in_array($display_name, array('0','1','auto'))) $display_name='0';
+      if ( !isset($desc_check) ) $desc_check = false;
+      if ( !isset($link_type) )  $link_type = 'picture';
+      if ( !isset($open_type) )  $open_type = '_blank';
       $url  = __('Piwigo gallery URL:','piwigopress');
       $actions = __('Actions:','piwigopress');
       $recommendation = __('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','piwigopress');

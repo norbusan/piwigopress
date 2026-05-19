@@ -38,10 +38,12 @@ require_once('piwigopress_utils.php');
 require_once('PiwigoPress_get.php');
 
 function PiwigoPress_photoblog($parm) {
-  $ids = PiwigoPress_parseids($parm['id']);
+  $id_attr = isset($parm['id']) ? $parm['id'] : null;
+  $ids = PiwigoPress_parseids($id_attr);
   if (is_string($ids)) {
     return "<!-- PiwigoPress 'id' attribute in error -->\n\n<br>"
-    . __('PiwigoPress shortcode attribute "id" is invalid: ' . $ids,'piwigopress') . "<br>\n\n" ;
+      . esc_html( sprintf( __('PiwigoPress shortcode attribute "id" is invalid: %s', 'piwigopress'), $ids ) )
+      . "<br>\n\n";
   }
   $str = '';
   foreach ($ids as $id) {
@@ -102,6 +104,19 @@ function PiwigoPress_onephoto($parm) {
     );
   $parm = array_change_key_case( (array) $parm );
   extract( shortcode_atts( $default, $parm ) );
+
+  // Whitelist enum-style attributes so a hostile shortcode author can't
+  // smuggle markup or weird values into URLs/attributes downstream.
+  $size      = in_array( $size, array('sq','th','xs','2s','sm','me','la','xl','xx'), true ) ? $size : 'la';
+  $lnktype   = in_array( $lnktype, array('none','album','picture','albumpicture'), true ) ? $lnktype : 'picture';
+  $opntype   = in_array( $opntype, array('_blank','_self','_parent','_top'), true ) ? $opntype : '_blank';
+  $ordertype = in_array( $ordertype, array('random','date_creation','date_available','rating_score','hit'), true ) ? $ordertype : 'random';
+  $name      = in_array( $name, array(0,1,'0','1','auto'), true ) ? $name : 0;
+  $class     = sanitize_html_class( $class );
+  // safecss_filter_attr strips CSS that would break out (e.g. `expression()`,
+  // `javascript:` urls) while keeping ordinary declarations.
+  $style     = ( $style !== '' ) ? safecss_filter_attr( $style ) : '';
+
   $previous_url = get_option( 'PiwigoPress_previous_url' );
   if ($previous_url === false) {
     $previous_url = home_url( '/piwigo' );
@@ -320,7 +335,7 @@ function PiwigoPress_ajax_categories() {
   // behalf of the user and reflects the response body, so we don't want to
   // expose it to Contributor accounts.
   if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
-      !current_user_can('edit_others_posts')) {
+      !current_user_can('edit_posts')) {
     http_response_code(403);
     die;
   }
@@ -351,7 +366,7 @@ add_action('wp_ajax_pwgp-categories', PWGP_NAME . '_ajax_categories');
 function PiwigoPress_ajax_thumbnails() {
   $nonce = isset($_POST['nonce']) ? (string) $_POST['nonce'] : '';
   if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
-      !current_user_can('edit_others_posts')) {
+      !current_user_can('edit_posts')) {
     http_response_code(403);
     die;
   }

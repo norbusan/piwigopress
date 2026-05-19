@@ -252,6 +252,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * modernize jQuery calls in `piwigopress_adm.js` (`.size()` → `.length`, `.unbind()` → `.off()`)
 * drop the stale shipped `js/piwigopress_adm.min.js` (was diverging from the source); load the unminified file instead
 * compatibility metadata: bump `Requires at least` to 5.0 and `Tested up to` to 6.7, declare `Requires PHP: 7.4`
+* security: fix reflected XSS in the [PiwigoPress] shortcode error message when the `id` attribute is malformed (the raw value was concatenated into a translation string and returned as HTML)
+* security: whitelist enum-style shortcode attributes (`size`, `lnktype`, `opntype`, `ordertype`, `name`) and run `class` through `sanitize_html_class` / `style` through `safecss_filter_attr` to block CSS-based payloads
+* security: switch outbound HTTP from `wp_remote_get` to `wp_safe_remote_get` with `redirection => 0` and `timeout => 5` — blocks SSRF via 30x redirects to internal hosts and bounds the request window
+* security: `unserialize()` of the legacy `PiwigoPress_previous_options` option now uses `allowed_classes => false`
+* security: escape `previous_url` and `photo_class` when rendering the picker form (defensive against legacy unsanitised option values)
+* fix: detect HTTPS via `is_ssl()` so reverse-proxy `X-Forwarded-Proto` is honoured
+* fix: restore AJAX endpoint capability to `edit_posts` (the URL safety guard already blocks SSRF surface), so Contributors can use the picker as designed
 * fix media-button shortcode generator broken on PHP 8+ (replace PHP4-style `PiwigoPress_Admin()` constructor with `__construct()` and drop deprecated by-reference `&$this`)
 * add Gutenberg (block editor) support: new "PiwigoPress" entry in the editor's more-menu opens a modal with the existing photo picker and inserts the generated shortcode as a `core/shortcode` block
 * harden classic JS: guard `window.tinyMCE.majorVersion` access and route shortcode insertion through a `piwigopress:insert` custom event so other editors can intercept
