@@ -258,7 +258,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * security: `unserialize()` of the legacy `PiwigoPress_previous_options` option now uses `allowed_classes => false`
 * security: escape `previous_url` and `photo_class` when rendering the picker form (defensive against legacy unsanitised option values)
 * fix: detect HTTPS via `is_ssl()` so reverse-proxy `X-Forwarded-Proto` is honoured
-* fix: restore AJAX endpoint capability to `edit_posts` (the URL safety guard already blocks SSRF surface), so Contributors can use the picker as designed
+* security: tighten `pwgp-categories` / `pwgp-thumbnails` to `edit_others_posts` (Editor+) — these endpoints perform server-side HTTP fetches, so we want them above Contributor scope even though the URL guard is in place
+* security: escape every URL/text in the widget's category-menu output via `esc_url` / `esc_attr` / `esc_html`; store `external` widget URL with `esc_url_raw` on save
+* security: wrap every translated string used in the admin picker heredoc with `esc_html__` / `esc_attr__` so a malicious translation can't inject HTML
+* fix: guard `$PWG_Adm` with `isset()` to suppress the PHP 8 undefined-variable warning when `piwigopress_admin.php` is reloaded
+* fix: stop hard-coding the plugin directory name in asset URLs — use `plugins_url( ..., __FILE__ )` so the plugin keeps working if the directory is renamed
 * fix media-button shortcode generator broken on PHP 8+ (replace PHP4-style `PiwigoPress_Admin()` constructor with `__construct()` and drop deprecated by-reference `&$this`)
 * add Gutenberg (block editor) support: new "PiwigoPress" entry in the editor's more-menu opens a modal with the existing photo picker and inserts the generated shortcode as a `core/shortcode` block
 * harden classic JS: guard `window.tinyMCE.majorVersion` access and route shortcode insertion through a `piwigopress:insert` custom event so other editors can intercept

@@ -234,7 +234,7 @@ class PiwigoPress extends WP_Widget
     $gallery['thumbnail_size'] = $text('thumbnail_size');
     $gallery['format']         = $text('format');
     $gallery['piwigo']         = $text('piwigo');
-    $gallery['external']       = $text('external');
+    $gallery['external']       = esc_url_raw( $text('external') );
     $gallery['number']         = intval($text('number'));
     $gallery['category']       = intval($text('category'));
     $gallery['from']           = intval($text('from'));
@@ -287,7 +287,7 @@ add_action('widgets_init', PWGP_NAME . '_Init');
 function PiwigoPress_widget_admin_assets( $hook ) {
   if ( $hook !== 'widgets.php' ) return;
   wp_enqueue_script( 'piwigopress_ws',
-    plugins_url( 'piwigopress/js/piwigopress_widgets.js' ),
+    plugins_url( 'js/piwigopress_widgets.js', __FILE__ ),
     array( 'jquery' ), PWGP_VERSION, true );
 }
 add_action( 'admin_enqueue_scripts', PWGP_NAME . '_widget_admin_assets' );
@@ -296,24 +296,22 @@ add_action( 'admin_enqueue_scripts', PWGP_NAME . '_widget_admin_assets' );
 function PiwigoPress_load_in_head() {
   if (defined('PWGP_CSS_FILE')) return; // Avoid several links to CSS in case of several usage of PiwigoPress... 
   define('PWGP_CSS_FILE','');
-  if ( is_admin() ) {
-    echo '<link media="all" type="text/css" href="' . 
-      plugins_url( 'piwigopress/css/piwigopress_adm.min.css?ver=') . PWGP_VERSION . '" id="piwigopress_a-css" rel="stylesheet">'; // that's fine
-  }
-  else {
-    echo '<link media="all" type="text/css" href="' . 
-      plugins_url( 'piwigopress/css/piwigopress.css?ver=') . PWGP_VERSION . '" id="piwigopress_c-css" rel="stylesheet">'; // that's fine
-  }
+  $css = is_admin()
+    ? plugins_url( 'css/piwigopress_adm.min.css', __FILE__ )
+    : plugins_url( 'css/piwigopress.css', __FILE__ );
+  $id  = is_admin() ? 'piwigopress_a-css' : 'piwigopress_c-css';
+  echo '<link media="all" type="text/css" href="' . esc_url( add_query_arg( 'ver', PWGP_VERSION, $css ) )
+     . '" id="' . esc_attr( $id ) . '" rel="stylesheet">';
 }
 add_action('wp_head',  PWGP_NAME . '_load_in_head');
 
 // Script to be used
 function PiwigoPress_load_in_footer() {
   /* Scripts */
-  wp_register_script( 'piwigopress_s', plugins_url( 'piwigopress/js/piwigopress.js'), array('jquery'), PWGP_VERSION );
+  wp_register_script( 'piwigopress_s', plugins_url( 'js/piwigopress.js', __FILE__ ), array('jquery'), PWGP_VERSION );
   wp_enqueue_script( 'jquery'); // include it even if it's done
   if ( is_admin() ) {
-    wp_register_script( 'piwigopress_a', plugins_url( 'piwigopress/js/piwigopress_adm.js'), array('jquery'), PWGP_VERSION );
+    wp_register_script( 'piwigopress_a', plugins_url( 'js/piwigopress_adm.js', __FILE__ ), array('jquery'), PWGP_VERSION );
     wp_localize_script( 'piwigopress_a', 'PwgpAjax', array(
       'ajaxUrl' => admin_url('admin-ajax.php'),
       'nonce' => wp_create_nonce('piwigopress-admin-nonce')
@@ -335,7 +333,7 @@ function PiwigoPress_ajax_categories() {
   // behalf of the user and reflects the response body, so we don't want to
   // expose it to Contributor accounts.
   if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
-      !current_user_can('edit_posts')) {
+      !current_user_can('edit_others_posts')) {
     http_response_code(403);
     die;
   }
@@ -366,7 +364,7 @@ add_action('wp_ajax_pwgp-categories', PWGP_NAME . '_ajax_categories');
 function PiwigoPress_ajax_thumbnails() {
   $nonce = isset($_POST['nonce']) ? (string) $_POST['nonce'] : '';
   if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
-      !current_user_can('edit_posts')) {
+      !current_user_can('edit_others_posts')) {
     http_response_code(403);
     die;
   }

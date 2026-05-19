@@ -163,29 +163,33 @@ if ($most_visited == 'true' or $best_rated == 'true' or
     $most_commented == 'true' or $random == 'true' or $recent_pics == 'true' or 
     $calendar == 'true' or $tags == 'true' or $comments == 'true') echo '<ul style="clear: both;">';
 
-if ($most_visited == 'true') 
-	echo '<li><a title="' . __('Most visited','piwigopress') . '" href="' . $piwigo_url . 'index.php?most_visited' . '">' . __('Most visited','piwigopress') . '</a></li>';
+$pwgp_menu_link = function( $label, $href ) {
+	echo '<li><a title="' . esc_attr( $label ) . '" href="' . esc_url( $href ) . '">' . esc_html( $label ) . '</a></li>';
+};
 
-if ($best_rated == 'true') 
-	echo '<li><a title="' . __('Best rated','piwigopress') . '" href="' . $piwigo_url . 'index.php?best_rated' . '">' . __('Best rated','piwigopress') . '</a></li>';
+if ($most_visited == 'true')
+	$pwgp_menu_link( __('Most visited','piwigopress'),   $piwigo_url . 'index.php?most_visited' );
 
-if ($most_commented == 'true') 
-	echo '<li><a title="' . __('Most commented','piwigopress') . '" href="' . $piwigo_url . 'index.php?most_commented' . '">' . __('Most commented','piwigopress') . '</a></li>';
+if ($best_rated == 'true')
+	$pwgp_menu_link( __('Best rated','piwigopress'),     $piwigo_url . 'index.php?best_rated' );
 
-if ($random == 'true') 
-	echo '<li><a title="' . __('Random','piwigopress') . '" href="' . $piwigo_url . 'random.php' . '">' . __('Random','piwigopress') . '</a></li>';
+if ($most_commented == 'true')
+	$pwgp_menu_link( __('Most commented','piwigopress'), $piwigo_url . 'index.php?most_commented' );
+
+if ($random == 'true')
+	$pwgp_menu_link( __('Random','piwigopress'),         $piwigo_url . 'random.php' );
 
 if ($recent_pics == 'true')
-	echo '<li><a title="' . __('Recent pics','piwigopress') . '" href="' . $piwigo_url . 'index.php?recent_pics' . '">' . __('Recent pics','piwigopress') . '</a></li>';
+	$pwgp_menu_link( __('Recent pics','piwigopress'),    $piwigo_url . 'index.php?recent_pics' );
 
-if ($calendar == 'true') 
-	echo '<li><a title="' . __('Calendar','piwigopress') . '" href="' . $piwigo_url . 'index.php?created-monthly-calendar' . '">' . __('Calendar','piwigopress') . '</a></li>';
+if ($calendar == 'true')
+	$pwgp_menu_link( __('Calendar','piwigopress'),       $piwigo_url . 'index.php?created-monthly-calendar' );
 
-if ($tags == 'true') 
-	echo '<li><a title="' . __('Tags','piwigopress') . '" href="' . $piwigo_url . 'tags.php' . '">' . __('Tags','piwigopress') . '</a></li>';
+if ($tags == 'true')
+	$pwgp_menu_link( __('Tags','piwigopress'),           $piwigo_url . 'tags.php' );
 
-if ($comments == 'true') 
-	echo '<li><a title="' . __('Comments','piwigopress') . '" href="' . $piwigo_url . 'comments.php' . '">' . __('Comments','piwigopress') . '</a></li>';
+if ($comments == 'true')
+	$pwgp_menu_link( __('Comments','piwigopress'),       $piwigo_url . 'comments.php' );
 
 
 if ($most_visited == 'true' or $best_rated == 'true' or 

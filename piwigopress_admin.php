@@ -25,7 +25,7 @@ if(!class_exists('PiwigoPress_Admin')){
 
       wp_register_script(
         'piwigopress-gutenberg',
-        plugins_url( 'piwigopress/js/piwigopress_gutenberg.js' ),
+        plugins_url( 'js/piwigopress_gutenberg.js', __FILE__ ),
         array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components',
                'wp-data', 'wp-blocks', 'wp-i18n', 'jquery',
                'jquery-ui-draggable', 'jquery-ui-droppable' ),
@@ -46,7 +46,7 @@ if(!class_exists('PiwigoPress_Admin')){
       // CSS shared with the classic admin UI.
       wp_enqueue_style(
         'piwigopress-admin-css',
-        plugins_url( 'piwigopress/css/piwigopress_adm.min.css' ),
+        plugins_url( 'css/piwigopress_adm.min.css', __FILE__ ),
         array(), PWGP_VERSION
       );
     }
@@ -93,34 +93,34 @@ if(!class_exists('PiwigoPress_Admin')){
       if ( !isset($desc_check) ) $desc_check = false;
       if ( !isset($link_type) )  $link_type = 'picture';
       if ( !isset($open_type) )  $open_type = '_blank';
-      $url  = __('Piwigo gallery URL:','piwigopress');
-      $actions = __('Actions:','piwigopress');
-      $recommendation = __('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','piwigopress');
-      $load = __('Start with 5 recent pics','piwigopress');
-      $loaddesc = __('Load or reload the 5 most latest squared thumbnails from the url (might be changed or not)','piwigopress');
-      $loadcat = __('Load list of albums','piwigopress');
-      $loadcatdesc = __('After loading the list of albums, photos can be loaded from one of them','piwigopress');
-      $allcats = __('All albums/photos','piwigopress');
-      $more = __('Get more','piwigopress');
-      $moredesc = __('Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, and continues by 100','piwigopress');
-      $hide = __('Hide 50%','piwigopress');
-      $hidedesc = __('Hide 50% or less of current available squared thumbnails','piwigopress');
-      $show = __('Show hidden','piwigopress');
-      $showdesc  = __('Display all currently hidden squared thumbnails','piwigopress');
-      $drop = __('Drop one or several thumbnails over the blue border here above !','piwigopress');
-      $loadreq = __('Loaded, hidden & dropped vs. Requested thumbnails: ','piwigopress');
-      $desc_options = __('Shortcode options','piwigopress');
-      $catiddesc = __("This is the Album ID from where pictures will be obtained; use 0 for 'all albums' (most recent pictures first, regardless of album), use a specific Album ID number (e.g. 123) to get pictures from the specific album with that ID (CatID=123 in the example)",'piwigopress');
-      $Lib_size =  __('Picture size','piwigopress');
-      $Lib_sq =  __('Square','piwigopress');
-      $Lib_th =  __('Thumbnail','piwigopress');
-      $Lib_xs =  __('XS - extra small','piwigopress');
-      $Lib_2s =  __('XXS - tiny','piwigopress');
-      $Lib_sm =  __('S - small','piwigopress');
-      $Lib_me =  __('M - medium','piwigopress');
-      $Lib_la =  __('L - large','piwigopress');
-      $Lib_xl =  __('XL - extra large','piwigopress');
-      $Lib_xx =  __('XXL - huge','piwigopress');
+      $url  = esc_html__('Piwigo gallery URL:','piwigopress');
+      $actions = esc_html__('Actions:','piwigopress');
+      $recommendation = esc_html__('Folder URL of any up-to-date Piwigo Gallery with public photos and opened webservices (MUST END with a "/")','piwigopress');
+      $load = esc_html__('Start with 5 recent pics','piwigopress');
+      $loaddesc = esc_html__('Load or reload the 5 most latest squared thumbnails from the url (might be changed or not)','piwigopress');
+      $loadcat = esc_html__('Load list of albums','piwigopress');
+      $loadcatdesc = esc_html__('After loading the list of albums, photos can be loaded from one of them','piwigopress');
+      $allcats = esc_html__('All albums/photos','piwigopress');
+      $more = esc_html__('Get more','piwigopress');
+      $moredesc = esc_html__('Getting more squared thumbnails: starts by 5, then 5, 10, 10, 10, 10, 50, and continues by 100','piwigopress');
+      $hide = esc_html__('Hide 50%','piwigopress');
+      $hidedesc = esc_html__('Hide 50% or less of current available squared thumbnails','piwigopress');
+      $show = esc_html__('Show hidden','piwigopress');
+      $showdesc  = esc_html__('Display all currently hidden squared thumbnails','piwigopress');
+      $drop = esc_html__('Drop one or several thumbnails over the blue border here above !','piwigopress');
+      $loadreq = esc_html__('Loaded, hidden & dropped vs. Requested thumbnails: ','piwigopress');
+      $desc_options = esc_html__('Shortcode options','piwigopress');
+      $catiddesc = esc_html__("This is the Album ID from where pictures will be obtained; use 0 for 'all albums' (most recent pictures first, regardless of album), use a specific Album ID number (e.g. 123) to get pictures from the specific album with that ID (CatID=123 in the example)",'piwigopress');
+      $Lib_size =  esc_html__('Picture size','piwigopress');
+      $Lib_sq =  esc_html__('Square','piwigopress');
+      $Lib_th =  esc_html__('Thumbnail','piwigopress');
+      $Lib_xs =  esc_html__('XS - extra small','piwigopress');
+      $Lib_2s =  esc_html__('XXS - tiny','piwigopress');
+      $Lib_sm =  esc_html__('S - small','piwigopress');
+      $Lib_me =  esc_html__('M - medium','piwigopress');
+      $Lib_la =  esc_html__('L - large','piwigopress');
+      $Lib_xl =  esc_html__('XL - extra large','piwigopress');
+      $Lib_xx =  esc_html__('XXL - huge','piwigopress');
       $csq = checked($thumbnail_size,'sq',false);
       $cth = checked($thumbnail_size,'th',false);
       $cxs = checked($thumbnail_size,'xs',false);
@@ -130,40 +130,41 @@ if(!class_exists('PiwigoPress_Admin')){
       $cla = checked($thumbnail_size,'la',false);
       $cxl = checked($thumbnail_size,'xl',false);
       $cxx = checked($thumbnail_size,'xx',false);
-      $Lib_disp_name = __('Display name','piwigopress');
-      $Lib_name_off = __('off  - don\'t diplay name', 'piwigopress');
-      $Lib_name_on  = __('on   - diplay name', 'piwigopress');
-      $Lib_name_auto = __('auto - display not auto-gen names', 'piwigopress');
+      $Lib_disp_name = esc_html__('Display name','piwigopress');
+      $Lib_name_off = esc_html__('off  - don\'t diplay name', 'piwigopress');
+      $Lib_name_on  = esc_html__('on   - diplay name', 'piwigopress');
+      $Lib_name_auto = esc_html__('auto - display not auto-gen names', 'piwigopress');
       $dispnoff = checked($display_name,'0',false);
       $dispnon  = checked($display_name,'1',false);
       $dispnauto  = checked($display_name,'auto',false);
       $descrip_check = checked($desc_check,true,false);
-      $Lib_desc =  __('Display description','piwigopress');
-      $Lib_CSS_div =  __('CSS DIV class','piwigopress');
-      $Gen_insert =  __('Generate and insert','piwigopress');
-      $gendesc = __('Generate shortcodes of all dropped squared thumbnails','piwigopress');
-      $Reset_drop =  __('Reset dropping zone','piwigopress');
-      $rstdesc = __('Remove all squared thumbnails from the dropping zone','piwigopress');
+      $Lib_desc =  esc_html__('Display description','piwigopress');
+      $Lib_CSS_div =  esc_html__('CSS DIV class','piwigopress');
+      $Gen_insert =  esc_html__('Generate and insert','piwigopress');
+      $gendesc = esc_html__('Generate shortcodes of all dropped squared thumbnails','piwigopress');
+      $Reset_drop =  esc_html__('Reset dropping zone','piwigopress');
+      $rstdesc = esc_html__('Remove all squared thumbnails from the dropping zone','piwigopress');
 
       if ( !in_array($link_type, array('album','none','picture','albumpicture'))) $link_type='picture';
       $clnkno  = checked($link_type,'none',false);
       $clnkalb = checked($link_type,'album',false);
       $clnkpic = checked($link_type,'picture',false);
       $clnkalbpic = checked($link_type,'albumpicture',false);
-      $Lib_lnktype =  __('Link type','piwigopress');
-      $Lib_link_no  =  __('No link','piwigopress');
-      $Lib_link_alb =  __('Album page','piwigopress');
-      $Lib_link_pic =  __('Picture page','piwigopress');
-      $Lib_link_albpic = __('Picture in album page', 'piwigopress');
+      $Lib_lnktype =  esc_html__('Link type','piwigopress');
+      $Lib_link_no  =  esc_html__('No link','piwigopress');
+      $Lib_link_alb =  esc_html__('Album page','piwigopress');
+      $Lib_link_pic =  esc_html__('Picture page','piwigopress');
+      $Lib_link_albpic = esc_html__('Picture in album page', 'piwigopress');
 
       if ( !in_array($open_type, array('_blank','_self'))) $open_type='_blank';
       $copnnew  = checked($open_type,'_blank',false);
       $copnsel = checked($open_type,'_new',false);
-      $Lib_opntype =  __('Open type','piwigopress');
-      $Lib_open_new = __('New window/tab','piwigopress');
-      $Lib_open_self = __('Same window/tab','piwigopress');
+      $Lib_opntype =  esc_html__('Open type','piwigopress');
+      $Lib_open_new = esc_html__('New window/tab','piwigopress');
+      $Lib_open_self = esc_html__('Same window/tab','piwigopress');
       
       $nonce_field = wp_nonce_field( 'piwigopress-admin-nonce', '_pwgp_nonce', true, false );
+      $load_active_img = esc_url( plugins_url( 'img/LoadActive.gif', __FILE__ ) );
       echo <<<EOF
 <div id="PWGP_Gal_finder" style="display:none">
   $nonce_field
@@ -182,7 +183,7 @@ if(!class_exists('PiwigoPress_Admin')){
       </ul>
       <span id="PWGP_show_stats" class="hidden">$loadreq<span id="PWGP_stats"> </span></span>  &nbsp;    &nbsp;  
 
-      <img id="PWGP_Load_Active" src="../wp-content/plugins/piwigopress/img/LoadActive.gif" style="display: none;"/>
+      <img id="PWGP_Load_Active" src="$load_active_img" style="display: none;"/>
 
       <div id="PWGP_dropping"> 
         <ul class='gallery ui-helper-reset'></ul>
@@ -264,13 +265,16 @@ if(!class_exists('PiwigoPress_Admin')){
   </div>
 </div>
 EOF;
-      return $context . '<a id="PWGP_button" rel="nofollow" href="javascript:void(0);" 
-      title="'. __('Insert a PiwigoPress shortcode from a Piwigo dragged photo','piwigopress') . '">
-      <img src="../wp-content/plugins/piwigopress/img/PiwigoPress.png"/></a>';
+      return $context . '<a id="PWGP_button" rel="nofollow" href="javascript:void(0);"
+      title="'. esc_attr__('Insert a PiwigoPress shortcode from a Piwigo dragged photo','piwigopress') . '">
+      <img src="' . esc_url( plugins_url( 'img/PiwigoPress.png', __FILE__ ) ) . '"/></a>';
     }
   }
 }
-if (!is_object($PWG_Adm)) {
+// Low-priv access can hit the file include path on PHP 8 with strict
+// undefined-variable handling, so guard the global instantiation.
+global $PWG_Adm;
+if ( !isset($PWG_Adm) || !is_object($PWG_Adm) ) {
   $PWG_Adm = new PiwigoPress_Admin();
 }
 
