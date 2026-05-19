@@ -6,12 +6,12 @@ require_once('PiwigoPress_get.php');
 if(!class_exists('PiwigoPress_Admin')){
   class PiwigoPress_Admin {
 
-    function PiwigoPress_Admin(){
-      add_filter( 'media_buttons_context', array(&$this,'Add_new_button'), 9999 );
-      add_action( 'in_admin_header', PWGP_NAME . '_load_in_head' ); 
-      add_action( 'in_admin_footer', PWGP_NAME . '_load_in_footer' ); 
-       
-      add_action( 'save_post',  array(&$this, 'Save_options'));
+    function __construct(){
+      add_filter( 'media_buttons_context', array($this, 'Add_new_button'), 9999 );
+      add_action( 'in_admin_header', PWGP_NAME . '_load_in_head' );
+      add_action( 'in_admin_footer', PWGP_NAME . '_load_in_footer' );
+
+      add_action( 'save_post', array($this, 'Save_options'));
     }
     function Save_options( $post_ID ) {
       if (array_key_exists('piwigopress_url', $_POST)) {
