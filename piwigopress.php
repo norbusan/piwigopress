@@ -3,7 +3,7 @@
 Plugin Name: PiwigoPress
 Plugin URI: http://wordpress.org/plugins/piwigopress/
 Description: PiwigoPress from any open API Piwigo gallery, swiftly includes your photos in Posts/Pages and/or add randomized thumbnails and menus in your sidebar.
-Version: 2.33
+Version: 2.34
 Author: Norbert Preining
 Author URI: http://www.preining.info/
 Text Domain: piwigopress
@@ -29,7 +29,7 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid Automatic install under Piwigo 
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 if (!defined('PWGP_NAME')) define('PWGP_NAME','PiwigoPress');
-if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.3.3');
+if (!defined('PWGP_VERSION')) define('PWGP_VERSION','2.3.4');
 
 load_plugin_textdomain('piwigopress', false, dirname (plugin_basename( __FILE__ ) ) . '/languages/');
 add_shortcode('PiwigoPress', 'PiwigoPress_photoblog');
@@ -149,11 +149,11 @@ function PiwigoPress_onephoto($parm) {
       if ( $lnktype == 'none' )
         $atag = NULL;
       elseif ( $lnktype == 'album' )
-        $atag = '<a title="' . htmlspecialchars($cats[0]['name']) . '" href="' 
-          . $url . 'index.php?' . $catlink . '" target="' . $opntype . '">';
+        $atag = '<a title="' . esc_attr($cats[0]['name']) . '" href="'
+          . esc_url( $url . 'index.php?' . $catlink ) . '" target="' . esc_attr($opntype) . '">';
       else
-        $atag = '<a title="' . htmlspecialchars($picturename) . '" href="' 
-          . $targetlink . '" target="' . $opntype . '">';
+        $atag = '<a title="' . esc_attr($picturename) . '" href="'
+          . esc_url($targetlink) . '" target="' . esc_attr($opntype) . '">';
 
       $picturedesc = $picture['comment'];
 
@@ -165,7 +165,7 @@ function PiwigoPress_onephoto($parm) {
       }
 
       if (!$desc) $picturedesc = NULL;
-      $div = '<div class="PWGP_shortcode ' . $class . '">' . $atag. '<img class="PWGP_photo" src="' . $picture['tn_url'] . '" alt="' . htmlspecialchars($alt) . '"/>';
+      $div = '<div class="PWGP_shortcode ' . esc_attr($class) . '">' . $atag. '<img class="PWGP_photo" src="' . esc_url($picture['tn_url']) . '" alt="' . esc_attr($alt) . '"/>';
       if ($picturename or $picturedesc) {
         $div .= '<blockquote class="PWGP_caption">';
         if ($picturename) {
@@ -181,8 +181,8 @@ function PiwigoPress_onephoto($parm) {
       </div>";
     }
   }
-  if ($style!='') $style = ' style="'.$style.'"';
-  $str =  '<div id="Photo-' . $id . '-'. $size .'" class="PiwigoPress_photoblog"' . $style . '><!-- PiwigoPress Started -->';
+  if ($style!='') $style = ' style="'.esc_attr($style).'"';
+  $str =  '<div id="Photo-' . (int)$id . '-'. esc_attr($size) .'" class="PiwigoPress_photoblog"' . $style . '><!-- PiwigoPress Started -->';
   $str .=  $div . '</div><!-- PiwigoPress Ended -->';
   return $str;
 }
