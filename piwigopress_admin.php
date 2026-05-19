@@ -10,8 +10,44 @@ if(!class_exists('PiwigoPress_Admin')){
       add_filter( 'media_buttons_context', array($this, 'Add_new_button'), 9999 );
       add_action( 'in_admin_header', PWGP_NAME . '_load_in_head' );
       add_action( 'in_admin_footer', PWGP_NAME . '_load_in_footer' );
+      add_action( 'enqueue_block_editor_assets', array($this, 'Enqueue_gutenberg') );
 
       add_action( 'save_post', array($this, 'Save_options'));
+    }
+    function Enqueue_gutenberg() {
+      // Capture the picker HTML by calling the same renderer used for the
+      // classic editor. The returned value is the media-button anchor (not
+      // needed in Gutenberg); the picker markup is echoed into the buffer.
+      ob_start();
+      $this->Add_new_button('');
+      $picker_html = ob_get_clean();
+
+      wp_register_script(
+        'piwigopress-gutenberg',
+        plugins_url( 'piwigopress/js/piwigopress_gutenberg.js' ),
+        array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components',
+               'wp-data', 'wp-blocks', 'wp-i18n', 'jquery',
+               'jquery-ui-draggable', 'jquery-ui-droppable' ),
+        PWGP_VERSION,
+        true
+      );
+      wp_localize_script( 'piwigopress-gutenberg', 'PwgpAjax', array(
+        'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+        'nonce'   => wp_create_nonce( 'piwigopress-admin-nonce' ),
+      ) );
+      wp_add_inline_script(
+        'piwigopress-gutenberg',
+        'window.PwgpGutenberg = { pickerHtml: ' . wp_json_encode( $picker_html ) . ' };',
+        'before'
+      );
+      wp_enqueue_script( 'piwigopress-gutenberg' );
+
+      // CSS shared with the classic admin UI.
+      wp_enqueue_style(
+        'piwigopress-admin-css',
+        plugins_url( 'piwigopress/css/piwigopress_adm.min.css' ),
+        array(), PWGP_VERSION
+      );
     }
     function Save_options( $post_ID ) {
       if (array_key_exists('piwigopress_url', $_POST)) {

@@ -203,7 +203,7 @@ Compiler on http://refresh-sf.com/yui/
                 var $list = $( "ul", $trash );
                 $item.appendTo( $list ).fadeIn(); // Available to be shortcoded
                 $("a#PWGP_Gen").unbind().click(function () {
-                  var tmce_ver=window.tinyMCE.majorVersion;
+                  var tmce_ver = window.tinyMCE ? window.tinyMCE.majorVersion : 0;
                   $("img", $trash).each(function () {
                     var $Shortcode = $(this).attr('title').split(']');
                     var $scode = $Shortcode[0];
@@ -225,13 +225,21 @@ Compiler on http://refresh-sf.com/yui/
 
                     var $scode = "\t"+$scode+"] \n\r";
 
+                    // Let Gutenberg (or any other consumer) intercept.
+                    var ev = $.Event('piwigopress:insert');
+                    ev.shortcode = $scode;
+                    $(document).trigger(ev);
+                    if (ev.isDefaultPrevented()) return;
+
                     // HTML Editor only insert statement
                     $('#content').insertAtCaret( $scode );
                     // Visual Editor Only insert statement
-                    if (tmce_ver>="4") {
-                      tinyMCE.execCommand('mceInsertContent', false, $scode);
-                    } else {
-                      tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, $scode);
+                    if ( window.tinyMCE ) {
+                      if (tmce_ver>="4") {
+                        tinyMCE.execCommand('mceInsertContent', false, $scode);
+                      } else {
+                        tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, $scode);
+                      }
                     }
 
                     // If you are using another WordPress Post Editor 

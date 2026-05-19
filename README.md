@@ -3,7 +3,7 @@
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 2.8.4  
 **Tested up to:** 4.9.4
-**Stable tag:** 2.33
+**Stable tag:** 2.33dev
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -230,6 +230,12 @@ along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 ## Changelog ##
+
+### 2.33dev ###
+* security: fix authenticated (Contributor+) stored XSS in the [PiwigoPress] shortcode by escaping the `class`, `style`, `size`, `opntype`, URL and title attributes (Wordfence advisory)
+* fix media-button shortcode generator broken on PHP 8+ (replace PHP4-style `PiwigoPress_Admin()` constructor with `__construct()` and drop deprecated by-reference `&$this`)
+* add Gutenberg (block editor) support: new "PiwigoPress" entry in the editor's more-menu opens a modal with the existing photo picker and inserts the generated shortcode as a `core/shortcode` block
+* harden classic JS: guard `window.tinyMCE.majorVersion` access and route shortcode insertion through a `piwigopress:insert` custom event so other editors can intercept
 
 ### 2.33 ###
 * fix widget initialization for newer PHP versions
