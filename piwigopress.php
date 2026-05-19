@@ -95,16 +95,16 @@ function PiwigoPress_onephoto($parm) {
         'desc' => 0,   // Generate picture description
         'class' => '',  // Specific class
         'style' => '',  // Specific style
-        'lnktype' => 'picture', // Default generated link 
+        'lnktype' => 'picture', // Default generated link
         'opntype' => '_blank', // Default open type
         'ordertype' => 'random', // Default sort order
         'orderasc' => 0, // Default sort order
     );
-  $parm = array_change_key_case( $parm );
+  $parm = array_change_key_case( (array) $parm );
   extract( shortcode_atts( $default, $parm ) );
   $previous_url = get_option( 'PiwigoPress_previous_url' );
   if ($previous_url === false) {
-    $previous_url = $_SERVER['HTTP_HOST'] . '/piwigo';
+    $previous_url = home_url( '/piwigo' );
     add_option( 'PiwigoPress_previous_url', $previous_url );
   }
   if ($url == '') $url = $previous_url;
@@ -116,11 +116,10 @@ function PiwigoPress_onephoto($parm) {
   if ($previous_url != $url) update_option( 'PiwigoPress_previous_url', $url );
   $deriv = array ( 'sq' => 'square', 'th' => 'thumb', 'sm' => 'small', 'xs' => 'xsmall', '2s' => '2small', 
            'me' => 'medium', 'la' => 'large', 'xl' => 'xlarge', 'xx' => 'xxlarge');
-  $response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=php&image_id=' . $id);
+  $response = pwg_get_contents( $url . 'ws.php?method=pwg.images.getInfo&format=json&image_id=' . (int) $id);
   if (!is_wp_error($response)) {
-    $thumbc = unserialize($response['body']);
-    echo ('<!-- DEBUG ' . $response['body'] . " -->\n");
-    //var_dump($thumbc);
+    $thumbc = json_decode( wp_remote_retrieve_body($response), true );
+    if (!is_array($thumbc)) $thumbc = array('stat' => 'fail', 'message' => 'invalid response');
     $div = '';
     if ($thumbc["stat"] == 'fail') {
       $div = "PiwigoPress warning: id=$id, http error: " . $thumbc['message'];
@@ -289,25 +288,35 @@ add_action('wp_footer',  PWGP_NAME . '_load_in_footer');
 
 // proxy a categories call from another server
 function PiwigoPress_ajax_categories() {
-  $url = PWGP_secure($_POST['url']);
-  $nonce = $_POST['nonce'];
+  $nonce = isset($_POST['nonce']) ? (string) $_POST['nonce'] : '';
+  $raw_url = isset($_POST['url']) ? (string) $_POST['url'] : '';
 
-  // check nonce and permissions
+  // Editor-or-above only; the endpoint performs an outbound HTTP fetch on
+  // behalf of the user and reflects the response body, so we don't want to
+  // expose it to Contributor accounts.
   if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
-    (!current_user_can('edit_posts') && !current_user_can('edit_pages'))) {
-    http_response_code(400);
+      !current_user_can('edit_others_posts')) {
+    http_response_code(403);
     die;
   }
 
-  $url.= "ws.php?format=json&method=pwg.categories.getList&recursive=true";
+  $url = esc_url_raw( wp_unslash( $raw_url ) );
+  if (!PWGP_url_is_safe($url)) {
+    http_response_code(400);
+    die('Refusing to fetch this URL.');
+  }
+
+  $url .= "ws.php?format=json&method=pwg.categories.getList&recursive=true";
   $response = pwg_get_contents($url);
   if (is_wp_error($response)) {
     http_response_code(400);
-    $error_message = $response->get_error_message();
-    echo "Error: $error_message";
+    echo 'Error: ' . esc_html( $response->get_error_message() );
   } else {
-    header("Content-Type: application/json");
-    echo $response['body'];
+    $body = wp_remote_retrieve_body($response);
+    // Decode/re-encode to make sure we only ever return well-formed JSON.
+    $decoded = json_decode($body, true);
+    header('Content-Type: application/json');
+    echo wp_json_encode( is_array($decoded) ? $decoded : array('stat' => 'fail') );
   }
   exit;
 }
@@ -315,6 +324,12 @@ add_action('wp_ajax_pwgp-categories', PWGP_NAME . '_ajax_categories');
 
 // proxy thumbnails call from another server
 function PiwigoPress_ajax_thumbnails() {
+  $nonce = isset($_POST['nonce']) ? (string) $_POST['nonce'] : '';
+  if (!wp_verify_nonce($nonce, 'piwigopress-admin-nonce') ||
+      !current_user_can('edit_others_posts')) {
+    http_response_code(403);
+    die;
+  }
   require_once('piwigopress_thumbnails_reloader.php');
   exit;
 }

@@ -20,15 +20,14 @@ function pwg_get_contents($url) {
 	if (substr($url,0,2) == '//') {
 	  # support protocol ignorant URLs
 	  $fullurl = pwg_ret_protocol() . $url;
-	} elseif ((strtolower(substr($url,0,7)) !== 'http://') and 
+	} elseif ((strtolower(substr($url,0,7)) !== 'http://') and
 	    (strtolower(substr($url,0,8)) !== 'https://')) {
-	  # support local path only
-	  $fullurl = pwg_ret_protocol() . "//" . $_SERVER['HTTP_HOST'] . $url;
+	  # support local path only — derive host from WP, not from the Host: header
+	  $fullurl = home_url( $url );
 	} else {
 	  $fullurl = $url;
 	}
 
-	echo ("<!-- DEBUG pwg_get_contents: calling wp_remote_get fullurl = $fullurl -->\n");
 	return wp_remote_get($fullurl);
 }
 

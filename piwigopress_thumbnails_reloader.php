@@ -5,10 +5,11 @@ if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 // error_reporting(E_ALL);
 require_once('PiwigoPress_get.php');
 
-$url = PWGP_secure($_POST['url']); // Sanitised
-
-// for loading of thumbnails
-// echo '<li> REQUEST_URI = '.$_SERVER['REQUEST_URI'].'</li>\n';
+$url = isset($_POST['url']) ? esc_url_raw( wp_unslash( (string) $_POST['url'] ) ) : '';
+if (!PWGP_url_is_safe($url)) {
+  http_response_code(400);
+  return;
+}
 
 $loaded = ( isset($_POST['loaded']) ) ? ((int) $_POST['loaded']) : 0;
 $catid  = ( isset($_POST['category']) ) ? ((int) $_POST['category']) : 0;
@@ -32,25 +33,28 @@ for ($i = 1; $i <= $loop; $i++) {
         $catstr = "&cat_id=$catid" ;
     }
     // echo "<li>loading : ".$url."ws.php?method=pwg.categories.getImages".$catstr.'&recursive='.$recur.'&format=php&per_page='.$by.'&order=id%20desc&page='.$page."</li>\n";
-    $response = pwg_get_contents( $url.'ws.php?method=pwg.categories.getImages'.$catstr.'&recursive='.$recur.'&format=php&per_page='.$by.'&order=id%20desc&page='.$page );
+    $response = pwg_get_contents( $url.'ws.php?method=pwg.categories.getImages'.$catstr.'&recursive='.$recur.'&format=json&per_page='.$by.'&order=id%20desc&page='.$page );
     $page++;
     if (!is_wp_error($response)) {
-        $thumbc = unserialize($response['body']);
-        /* try to fix loading for piwigo 2.6
-        ** $pictures = $thumbc["result"][ "images"]["_content"]; */
-        $pictures = $thumbc["result"][ "images"];
+        $thumbc = json_decode( wp_remote_retrieve_body($response), true );
+        if (!is_array($thumbc) || !isset($thumbc['result']['images'])) {
+            echo '<li>' . esc_html__( 'Warning: invalid response from Piwigo', 'piwigopress' ) . "</li>\n";
+            return;
+        }
+        $pictures = $thumbc['result']['images'];
         if (!isset($pictures[0]['derivatives']['square']['url'])) {
-            echo "<li>Warning: No available public picture or Piwigo release < 2.4.x</li>\n"; // How POedit that ???
+            echo '<li>' . esc_html__( 'Warning: No available public picture or Piwigo release < 2.4.x', 'piwigopress' ) . "</li>\n";
             return;
         }
         echo "\n\n";
         foreach ($pictures as $picture) {
-            $thumburl = $picture['derivatives']['square']['url'] ;
-            echo "\n
-       <li class=\"img-shadow\">\n
-          <img src=\"" . $thumburl . '" title="[PiwigoPress id='
-            . $picture['id'] . " url='" . $url . "'] " . $picture['name'] . "\"/>\n
-       </li>\n";
+            $thumburl = isset($picture['derivatives']['square']['url']) ? $picture['derivatives']['square']['url'] : '';
+            $pid   = isset($picture['id']) ? (int) $picture['id'] : 0;
+            $pname = isset($picture['name']) ? (string) $picture['name'] : '';
+            echo "\n       <li class=\"img-shadow\">\n"
+               . '          <img src="' . esc_url($thumburl) . '" title="'
+               . esc_attr( '[PiwigoPress id=' . $pid . " url='" . $url . "'] " . $pname )
+               . "\"/>\n       </li>\n";
         }
         echo "\n\n";
     }

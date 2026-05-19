@@ -233,6 +233,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 ### 2.33dev ###
 * security: fix authenticated (Contributor+) stored XSS in the [PiwigoPress] shortcode by escaping the `class`, `style`, `size`, `opntype`, URL and title attributes (Wordfence advisory)
+* security: switch all Piwigo web-service calls from `format=php` + `unserialize()` to `format=json` + `json_decode()` to remove a PHP object-injection / RCE primitive on responses from the (potentially untrusted or MITM'd) remote Piwigo gallery
+* security: tighten AJAX endpoints — `pwgp-categories` and `pwgp-thumbnails` now require `edit_others_posts` and a verified nonce; URLs go through an SSRF guard that rejects non-http(s) schemes and private/loopback/link-local hosts
+* security: `Save_options` (post-save handler) now verifies a nonce, capability and skips autosaves/revisions, and sanitises every field before writing the global picker defaults
+* security: stop leaking remote API responses and outbound URLs as HTML comments on rendered pages
+* security: stop trusting `$_SERVER['HTTP_HOST']` — use `home_url()` for default URL construction
+* security: escape every value rendered by the widget (`esc_attr`/`esc_url`/`esc_html`), including data coming back from the remote Piwigo gallery
+* fix: `array_change_key_case($parm)` would TypeError on PHP 8 when the shortcode had no attributes (cast to array first)
+* fix: drop dead `get_magic_quotes_gpc()` branch in `PWGP_secure` (removed in PHP 8.0 — was a fatal error)
+* fix: compute the "since X months" cutoff in PHP instead of via raw SQL on `wpdb`
 * fix media-button shortcode generator broken on PHP 8+ (replace PHP4-style `PiwigoPress_Admin()` constructor with `__construct()` and drop deprecated by-reference `&$this`)
 * add Gutenberg (block editor) support: new "PiwigoPress" entry in the editor's more-menu opens a modal with the existing photo picker and inserts the generated shortcode as a `core/shortcode` block
 * harden classic JS: guard `window.tinyMCE.majorVersion` access and route shortcode insertion through a `piwigopress:insert` custom event so other editors can intercept

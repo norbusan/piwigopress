@@ -3,14 +3,13 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 require_once('PiwigoPress_get.php');
 
-global $wpdb; /* Need for recent thumbnail access */
 extract($args);
 
 $title = apply_filters('widget_title', empty($gallery['title']) ? '&nbsp;' : $gallery['title']);
 if ( $title ) $title = $before_title . $title . $after_title;
 
 $piwigo = empty($gallery['piwigo']) ? '' : $gallery['piwigo'];
-$piwigo_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $piwigo ;
+$piwigo_url = home_url( '/' . ltrim( (string) $piwigo, '/' ) );
 if (!empty($gallery['external'])) $piwigo_url = $gallery['external'];
 if (substr($piwigo_url,-1)!='/') $piwigo_url .= '/';
 
@@ -23,14 +22,13 @@ $options = '';
 $number = empty($gallery['number']) ? 1 : intval($gallery['number']);
 $options .= '&per_page=' . intval($gallery['number']);
 if (!empty($gallery['category'])) $options .= '&cat_id=' . intval($gallery['category']);
-$from = empty($gallery['from']) ? '12' : intval($gallery['from']);
-$r = (array) $wpdb->get_results('SELECT date_sub( date( now( ) ) , INTERVAL ' . $from . ' MONTH ) as begin');
-$from = $r[0]->begin;
-if (!empty($gallery['from'])) $options .= '&f_min_date_created=' . $from;
+$from = empty($gallery['from']) ? 12 : intval($gallery['from']);
+$from_date = gmdate( 'Y-m-d', strtotime( '-' . $from . ' months' ) );
+if (!empty($gallery['from'])) $options .= '&f_min_date_created=' . rawurlencode( $from_date );
 if  ($gallery['format']=='portrait') $options .= '&f_max_ratio=0.99';
 if  ($gallery['format']=='landscape') $options .= '&f_min_ratio=1.01';
 
-$PiwigoPress_divclass = empty($gallery['divclass']) ? ' class="PWGP_widget"' : (' class="' . $gallery['divclass'] .' PWGP_widget"');
+$PiwigoPress_divclass = empty($gallery['divclass']) ? ' class="PWGP_widget"' : (' class="' . esc_attr($gallery['divclass']) .' PWGP_widget"');
 $PiwigoPress_class = empty($gallery['class']) ? '' : $gallery['class'];
 $mbcategories = empty($gallery['mbcategories']) ? '' : $gallery['mbcategories'];
 $most_visited = empty($gallery['most_visited']) ? '' : $gallery['most_visited'];
@@ -58,20 +56,18 @@ echo $title;
 
 if ($thumbnail) {
 	// Make the Piwigo link
-	$callstr = $piwigo_url . 'ws.php?method=pwg.categories.getImages&format=php' . $options . '&recursive=true&order=' . $ordertype;
+	$callstr = $piwigo_url . 'ws.php?method=pwg.categories.getImages&format=json' . $options . '&recursive=true&order=' . rawurlencode( $ordertype );
 	if ($orderasc == 'false') {
 		$callstr .= '%20DESC';
 	}
-	//var_dump($callstr);
 	$response = pwg_get_contents( $callstr );
 	if (!is_wp_error($response)) {
-		$thumbc = unserialize($response['body']);
-		/* fix from http://wordpress.org/support/topic/piwigo-260-and-piwigopress-223
-		** for piwigo 2.6
-		$pictures = $thumbc["result"]["images"]["_content"];
-		*/
+		$thumbc = json_decode( wp_remote_retrieve_body($response), true );
+		if (!is_array($thumbc) || !isset($thumbc['result']['images']) || !is_array($thumbc['result']['images'])) {
+			$thumbc = array('result' => array('images' => array()));
+		}
 		if (!empty($precode)) { echo $precode; }
-		$pictures = $thumbc["result"]["images"];
+		$pictures = $thumbc['result']['images'];
 		// var_dump($pictures);
 		foreach ($pictures as $picture) {
 			if (isset($picture['derivatives']['square']['url'])) {
@@ -95,39 +91,45 @@ if ($thumbnail) {
 			}
 			//
 			//var_dump($picture);
+			$pic_name = isset($picture['name']) ? (string) $picture['name'] : '';
+			$pic_id   = isset($picture['id']) ? (int) $picture['id'] : 0;
+			$tn_url   = isset($picture['tn_url']) ? (string) $picture['tn_url'] : '';
+			$pic_comment = isset($picture['comment']) ? (string) $picture['comment'] : '';
+
 			// value of alt tag: title + comment (if present)
-			$alt = htmlspecialchars($picture['name']);
-			if (isset($picture['comment'])) $alt .= ( ' -- ' . htmlspecialchars($picture['comment']) );
+			$alt = $pic_name;
+			if ($pic_comment !== '') $alt .= ' -- ' . $pic_comment;
 
 			echo '<div' . $PiwigoPress_divclass . '>';
 			if ( $lnktype=='picture' ) {
-				echo '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
-					. $piwigo_url . 'picture.php?/' . $picture['id'] . '" target="' . $opntype . '"><img class="PWGP_thumb '
-					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
+				echo '<a title="' . esc_attr($pic_name) . '" href="'
+					. esc_url( $piwigo_url . 'picture.php?/' . $pic_id ) . '" target="' . esc_attr($opntype) . '"><img class="PWGP_thumb '
+					. esc_attr($PiwigoPress_class) . '" src="' . esc_url($tn_url) . '" alt="' . esc_attr($alt) . '"/>';
 			}
 			if ( $lnktype=='album' ) {
-				echo '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
-					. $piwigo_url . 'index.php?/category/' . $category . '" target="' . $opntype . '"><img class="PWGP_thumb '
-					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
+				echo '<a title="' . esc_attr($pic_name) . '" href="'
+					. esc_url( $piwigo_url . 'index.php?/category/' . (int) $category ) . '" target="' . esc_attr($opntype) . '"><img class="PWGP_thumb '
+					. esc_attr($PiwigoPress_class) . '" src="' . esc_url($tn_url) . '" alt="' . esc_attr($alt) . '"/>';
 				$lnktype='picture';
 			}
 			if ( $lnktype=='albumpicture' ) {
-				echo '<a title="' . htmlspecialchars($picture['name']) . '" href="' 
-					. $piwigo_url . 'picture.php?/' . $picture['id'] . '/category/' . $category . '" target="' . $opntype . '"><img class="PWGP_thumb '
-					. $PiwigoPress_class . '" src="' . $picture['tn_url'] . '" alt="' . $alt . '"/>';
+				echo '<a title="' . esc_attr($pic_name) . '" href="'
+					. esc_url( $piwigo_url . 'picture.php?/' . $pic_id . '/category/' . (int) $category ) . '" target="' . esc_attr($opntype) . '"><img class="PWGP_thumb '
+					. esc_attr($PiwigoPress_class) . '" src="' . esc_url($tn_url) . '" alt="' . esc_attr($alt) . '"/>';
 			}
-				
-			if (isset( $picture['comment'] )) { 
-				$picture['comment'] = stripslashes(htmlspecialchars(strip_tags($picture['comment'])));
-				if (trim($picture['comment']) != '')
-					echo '<blockquote class="PWGP_caption">' . $picture['comment'] . '</blockquote>'; 
+
+			if ($pic_comment !== '') {
+				$clean_comment = trim( strip_tags( $pic_comment ) );
+				if ($clean_comment !== '') {
+					echo '<blockquote class="PWGP_caption">' . esc_html( $clean_comment ) . '</blockquote>';
+				}
 			}
 			if ( $lnktype!='none' ) echo '</a>';
-			// if quering a remote piwigo, the "element_url" is not set
-			// TODO ask why this is the case
 			if (isset($picture['element_url'])) {
-				echo '<a class="img_selector" name="' . $picture['element_url'] . '" rel="nofollow" href="javascript:void(0);" title="' 
-				. $picture['width'] .'x' . $picture['height'] .'"></a>';
+				$dim = ( isset($picture['width']) ? (int) $picture['width'] : 0 )
+				     . 'x' . ( isset($picture['height']) ? (int) $picture['height'] : 0 );
+				echo '<a class="img_selector" name="' . esc_attr( (string) $picture['element_url'] )
+				   . '" rel="nofollow" href="javascript:void(0);" title="' . esc_attr($dim) . '"></a>';
 			}
 			echo '</div>';
 		}
@@ -138,15 +140,21 @@ if ($thumbnail) {
 
 if ($mbcategories == 'true') {
 	// Make the Piwigo category list
-	$response = pwg_get_contents( $piwigo_url 
-			. 'ws.php?method=pwg.categories.getList&format=php&public=true');
+	$response = pwg_get_contents( $piwigo_url
+			. 'ws.php?method=pwg.categories.getList&format=json&public=true');
 	if (!is_wp_error($response)) {
-		$cats = unserialize($response['body']);
-		echo '<ul style="clear: both;"><li>' . __('Pictures categories','piwigopress') . '<ul>';
-		foreach ($cats["result"]["categories"] as $cat) {
-			echo '<li><a title="' . $cat['name'] . '" href="' . $piwigo_url . 'index.php?category/' . $cat['id'] . '">' . $cat['name'] . '</a></li>';
+		$cats = json_decode( wp_remote_retrieve_body($response), true );
+		if ( is_array($cats) && isset($cats['result']['categories']) && is_array($cats['result']['categories']) ) {
+			echo '<ul style="clear: both;"><li>' . esc_html__('Pictures categories','piwigopress') . '<ul>';
+			foreach ($cats['result']['categories'] as $cat) {
+				$cname = isset($cat['name']) ? (string) $cat['name'] : '';
+				$cid   = isset($cat['id']) ? (int) $cat['id'] : 0;
+				echo '<li><a title="' . esc_attr($cname) . '" href="'
+				   . esc_url( $piwigo_url . 'index.php?category/' . $cid ) . '">'
+				   . esc_html($cname) . '</a></li>';
+			}
+			echo '</ul></li></ul>';
 		}
-		echo '</ul></li></ul>';
 	}
 }
 

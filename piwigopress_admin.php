@@ -50,18 +50,25 @@ if(!class_exists('PiwigoPress_Admin')){
       );
     }
     function Save_options( $post_ID ) {
-      if (array_key_exists('piwigopress_url', $_POST)) {
-        $PWGP_options = serialize(array(
-          'previous_url'     =>  (string) $_POST['piwigopress_url'],
-          'thumbnail_size'   =>  (string) $_POST['thumbnail_size'],
-          'desc_check'    =>  (bool) $_POST['desc_check'],
-          'display_name'    =>  (string) $_POST['display_name'],
-          'photo_class'    =>  (string) $_POST['photo_class'],
-          'link_type'      =>  (string) $_POST['link_type'],
-          'open_type'      =>  (string) $_POST['open_type'],
-          ));
-        # support local path, too
-        if ( strlen($_POST['piwigopress_url']) > 1 ) update_option( 'PiwigoPress_previous_options', $PWGP_options );
+      if ( !array_key_exists('piwigopress_url', $_POST) ) return;
+      if ( wp_is_post_autosave($post_ID) || wp_is_post_revision($post_ID) ) return;
+      // The picker UI uses the piwigopress-admin-nonce nonce; require it
+      // here so a CSRF can't flip the site-wide picker defaults.
+      $nonce = isset($_POST['_pwgp_nonce']) ? (string) $_POST['_pwgp_nonce'] : '';
+      if ( !wp_verify_nonce( $nonce, 'piwigopress-admin-nonce' ) ) return;
+      if ( !current_user_can( 'edit_post', $post_ID ) ) return;
+
+      $PWGP_options = serialize(array(
+        'previous_url'   => esc_url_raw( wp_unslash( (string) $_POST['piwigopress_url'] ) ),
+        'thumbnail_size' => sanitize_key( isset($_POST['thumbnail_size']) ? $_POST['thumbnail_size'] : '' ),
+        'desc_check'     => !empty($_POST['desc_check']),
+        'display_name'   => sanitize_key( isset($_POST['display_name']) ? $_POST['display_name'] : '' ),
+        'photo_class'    => sanitize_html_class( isset($_POST['photo_class']) ? $_POST['photo_class'] : '' ),
+        'link_type'      => sanitize_key( isset($_POST['link_type']) ? $_POST['link_type'] : '' ),
+        'open_type'      => sanitize_key( isset($_POST['open_type']) ? $_POST['open_type'] : '' ),
+      ));
+      if ( strlen( (string) $_POST['piwigopress_url'] ) > 1 ) {
+        update_option( 'PiwigoPress_previous_options', $PWGP_options );
       }
     }
     function Add_new_button($context=''){
@@ -148,8 +155,10 @@ if(!class_exists('PiwigoPress_Admin')){
       $Lib_open_new = __('New window/tab','piwigopress');
       $Lib_open_self = __('Same window/tab','piwigopress');
       
+      $nonce_field = wp_nonce_field( 'piwigopress-admin-nonce', '_pwgp_nonce', true, false );
       echo <<<EOF
 <div id="PWGP_Gal_finder" style="display:none">
+  $nonce_field
   <label id="PWGP_label">$url
   <input id="PWGP_finder" type="text" value="$previous_url" name="piwigopress_url" style="width: 250px;" title="$recommendation">
   &nbsp;  <select id="PWGP_catscroll" name="piwigo_catsel" rel="nofollow" href="javascript:void(0);" class="hidden"><option value="0">$allcats</option></select>

@@ -4,8 +4,42 @@ if (defined('PHPWG_ROOT_PATH')) return; /* Avoid direct usage under Piwigo */
 if (!defined('PWGP_NAME')) return; /* Avoid unpredicted access */
 
 function PWGP_secure($data) {
-  if ( get_magic_quotes_gpc() ) return urldecode ( trim ( htmlentities ( stripslashes( trim($data) ) , ENT_NOQUOTES ) ) );
-  else return urldecode ( trim ( htmlentities ( trim($data) , ENT_NOQUOTES ) ) );
+  // magic_quotes_gpc was removed in PHP 5.4 and the function in PHP 8.0;
+  // WordPress already slashes $_POST, so we wp_unslash to undo that.
+  return esc_url_raw( trim( wp_unslash( (string) $data ) ) );
+}
+
+// Reject URLs that would let a logged-in user pivot to internal/loopback/
+// link-local hosts or non-HTTP schemes (SSRF guard for the AJAX endpoints).
+// Returns true if $url is safe to fetch, false otherwise. Path-only URLs
+// (e.g. "/piwigo/") are allowed and resolved against the WP host by
+// pwg_get_contents().
+function PWGP_url_is_safe($url) {
+  if (!is_string($url) || $url === '') return false;
+  // Local path — handled by home_url() in pwg_get_contents, always safe.
+  if (substr($url, 0, 1) === '/' && substr($url, 0, 2) !== '//') return true;
+
+  $normalized = (substr($url, 0, 2) === '//') ? 'http:' . $url : $url;
+  $parts = wp_parse_url($normalized);
+  if (!$parts || empty($parts['host'])) return false;
+  if (!isset($parts['scheme']) || !in_array(strtolower($parts['scheme']), array('http','https'), true)) return false;
+
+  $host = strtolower($parts['host']);
+  // Resolve to IPs. gethostbynamel returns IPv4 only; that's enough to
+  // block the common metadata/loopback/private cases.
+  $ips = @gethostbynamel($host);
+  if (!$ips) {
+    // Could be an IPv6 literal or unresolvable host — try filter_var.
+    $ip = filter_var(trim($host, '[]'), FILTER_VALIDATE_IP);
+    $ips = $ip ? array($ip) : array();
+  }
+  if (!$ips) return false;
+  foreach ($ips as $ip) {
+    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 //  $mode can be 0 (don't use name), 1 (always use name) and 'auto' (use name if it's not camera-generated)
