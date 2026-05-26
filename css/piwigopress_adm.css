@@ -35,21 +35,62 @@
     top: -50px;
     z-index: -1;
 } 
-.PWGP_system #PWGP_dropping {
-	background: -moz-linear-gradient(top,  rgba(140,185,206,0.65) 0%, rgba(140,185,206,0) 53%, rgba(140,185,206,0) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(140,185,206,0.65)), color-stop(53%,rgba(140,185,206,0)), color-stop(100%,rgba(140,185,206,0)));
-	background: -webkit-linear-gradient(top,  rgba(140,185,206,0.65) 0%,rgba(140,185,206,0) 53%,rgba(140,185,206,0) 100%);
-	background: -o-linear-gradient(top,  rgba(140,185,206,0.65) 0%,rgba(140,185,206,0) 53%,rgba(140,185,206,0) 100%);
-	background: -ms-linear-gradient(top,  rgba(140,185,206,0.65) 0%,rgba(140,185,206,0) 53%,rgba(140,185,206,0) 100%);
-	background: linear-gradient(to bottom,  rgba(140,185,206,0.65) 0%,rgba(140,185,206,0) 53%,rgba(140,185,206,0) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a68cb9ce', endColorstr='#008cb9ce',GradientType=0 );
-    border: 1px dotted #DFDFDF;
-    border-radius: 16px 16px 0 0;
-    border-bottom: 0;
+#PWGP_drop_hint {
     clear: both;
-    min-height: 150px;
-    height: 150px;
-    padding: 20px 20px 0;
+    margin: 12px 0 6px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #1a6b8c;
+}
+.PWGP_system #PWGP_dropping {
+    background: linear-gradient(to bottom, rgba(140,185,206,0.35) 0%, rgba(140,185,206,0.10) 100%);
+    border: 3px dashed #6a9bb3;
+    border-radius: 16px;
+    box-sizing: border-box;
+    clear: both;
+    min-height: 90px;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+}
+.PWGP_system #PWGP_dropping > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-content: flex-start;
+    line-height: 0;
+}
+.PWGP_system #PWGP_dropping > ul > li {
+    margin: 0;
+    padding: 0;
+    float: none;
+    display: block;
+    line-height: 0;
+}
+.PWGP_system #PWGP_dropping > ul > li img,
+#PWGP_dragger > li.img-shadow img {
+    display: block;
+    margin: 0;
+}
+.PWGP_system #PWGP_dropping.ui-state-highlight {
+    border-color: #1a6b8c;
+    background: linear-gradient(to bottom, rgba(140,185,206,0.65) 0%, rgba(140,185,206,0.25) 100%);
+}
+/* "Drop thumbnails here" hint, shown only while the drop zone is empty. */
+.PWGP_system #PWGP_dropping > ul:empty::before {
+    content: attr(data-empty-hint);
+    display: block;
+    text-align: center;
+    color: #4a6b78;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 60px;
+    pointer-events: none;
 }
 #PWGP_Load_Active {
     clear: left;

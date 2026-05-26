@@ -1,10 +1,7 @@
 
 PACKAGE=piwigopress
 
-all: css/piwigopress_adm.min.css README.md
-
-css/piwigopress_adm.min.css: css/piwigopress_adm.css
-	yui-compressor css/piwigopress_adm.css -o css/piwigopress_adm.min.css
+all: README.md
 
 
 README.md: readme.txt

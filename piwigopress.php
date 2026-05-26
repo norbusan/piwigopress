@@ -296,7 +296,7 @@ add_action( 'admin_enqueue_scripts', PWGP_NAME . '_widget_admin_assets' );
 function PiwigoPress_load_in_head() {
   if ( is_admin() ) {
     wp_enqueue_style( 'piwigopress_a-css',
-      plugins_url( 'css/piwigopress_adm.min.css', __FILE__ ),
+      plugins_url( 'css/piwigopress_adm.css', __FILE__ ),
       array(), PWGP_VERSION );
   } else {
     wp_enqueue_style( 'piwigopress_c-css',

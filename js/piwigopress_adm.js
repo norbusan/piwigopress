@@ -180,10 +180,12 @@ Compiler on http://refresh-sf.com/yui/
             }
             function Drag_n_Drop(thumbs) {
               $($gallery).append(thumbs);
-              var hgal = ($('#PWGP_dragger img').first().height())+20;  
-              $gallery.height(hgal); // Ajust loading area height to thumbnail height
-              $trash.height(hgal+25).css('min-height', hgal+25); // Adjust dropping zone as well
-              $('#PWGP_dropping ul').height(hgal);
+              // Let CSS handle the drop-zone sizing (min-height + overflow);
+              // setting a fixed height clipped large/multiple thumbnails.
+              // The dragger strip still wants a tight height so it doesn't
+              // grow beyond one row of thumbnails.
+              var hgal = ($('#PWGP_dragger img').first().height()) + 20;
+              if (hgal > 20) $gallery.height(hgal);
               $('li', $gallery).draggable({
                 revert: true, cursor: "move", zIndex: 50
               });

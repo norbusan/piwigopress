@@ -49,7 +49,7 @@ if(!class_exists('PiwigoPress_Admin')){
       // CSS shared with the classic admin UI.
       wp_enqueue_style(
         'piwigopress-admin-css',
-        plugins_url( 'css/piwigopress_adm.min.css', __FILE__ ),
+        plugins_url( 'css/piwigopress_adm.css', __FILE__ ),
         array(), PWGP_VERSION
       );
     }
@@ -188,11 +188,10 @@ if(!class_exists('PiwigoPress_Admin')){
 
       <img id="PWGP_Load_Active" src="$load_active_img" style="display: none;"/>
 
-      <div id="PWGP_dropping"> 
-        <ul class='gallery ui-helper-reset'></ul>
+      <p id="PWGP_drop_hint">$drop</p>
+      <div id="PWGP_dropping">
+        <ul class='gallery ui-helper-reset' data-empty-hint="$drop"></ul>
       </div>
-
-      <h3><span>$drop</span></h3>
     </div>
   </div>
   <div id="PWGP_short_option">
