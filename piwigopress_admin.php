@@ -9,8 +9,11 @@ if(!class_exists('PiwigoPress_Admin')){
 
     function __construct(){
       add_filter( 'media_buttons_context', array($this, 'Add_new_button'), 9999 );
-      add_action( 'in_admin_header', PWGP_NAME . '_load_in_head' );
-      add_action( 'in_admin_footer', PWGP_NAME . '_load_in_footer' );
+      // admin_enqueue_scripts fires *before* admin_print_*_scripts, so script
+      // and style enqueues actually reach the page. in_admin_footer fires
+      // after admin_print_footer_scripts and is too late for enqueueing.
+      add_action( 'admin_enqueue_scripts', PWGP_NAME . '_load_in_head' );
+      add_action( 'admin_enqueue_scripts', PWGP_NAME . '_load_in_footer' );
       add_action( 'enqueue_block_editor_assets', array($this, 'Enqueue_gutenberg') );
 
       add_action( 'save_post', array($this, 'Save_options'));

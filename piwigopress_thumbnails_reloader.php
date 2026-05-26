@@ -33,31 +33,51 @@ for ($i = 1; $i <= $loop; $i++) {
         $catstr = "&cat_id=$catid" ;
     }
     // echo "<li>loading : ".$url."ws.php?method=pwg.categories.getImages".$catstr.'&recursive='.$recur.'&format=php&per_page='.$by.'&order=id%20desc&page='.$page."</li>\n";
-    $response = pwg_get_contents( $url.'ws.php?method=pwg.categories.getImages'.$catstr.'&recursive='.$recur.'&format=json&per_page='.$by.'&order=id%20desc&page='.$page );
+    $api_url      = $url.'ws.php?method=pwg.categories.getImages'.$catstr.'&recursive='.$recur.'&format=json&per_page='.$by.'&order=id%20desc&page='.$page;
+    $resolved_url = pwg_resolve_url( $api_url );
+    $response     = pwg_get_contents( $api_url );
     $page++;
-    if (!is_wp_error($response)) {
-        $thumbc = json_decode( wp_remote_retrieve_body($response), true );
-        if (!is_array($thumbc) || !isset($thumbc['result']['images'])) {
-            echo '<li>' . esc_html__( 'Warning: invalid response from Piwigo', 'piwigopress' ) . "</li>\n";
-            return;
-        }
-        $pictures = $thumbc['result']['images'];
-        if (!isset($pictures[0]['derivatives']['square']['url'])) {
-            echo '<li>' . esc_html__( 'Warning: No available public picture or Piwigo release < 2.4.x', 'piwigopress' ) . "</li>\n";
-            return;
-        }
-        echo "\n\n";
-        foreach ($pictures as $picture) {
-            $thumburl = isset($picture['derivatives']['square']['url']) ? $picture['derivatives']['square']['url'] : '';
-            $pid   = isset($picture['id']) ? (int) $picture['id'] : 0;
-            $pname = isset($picture['name']) ? (string) $picture['name'] : '';
-            echo "\n       <li class=\"img-shadow\">\n"
-               . '          <img src="' . esc_url($thumburl) . '" title="'
-               . esc_attr( '[PiwigoPress id=' . $pid . " url='" . $url . "'] " . $pname )
-               . "\"/>\n       </li>\n";
-        }
-        echo "\n\n";
+    if ( is_wp_error($response) ) {
+        echo '<li>' . esc_html( sprintf( __( 'Warning: HTTP error contacting Piwigo (%1$s): %2$s', 'piwigopress' ), $resolved_url, $response->get_error_message() ) ) . "</li>\n";
+        return;
     }
+    $code = (int) wp_remote_retrieve_response_code( $response );
+    $body = wp_remote_retrieve_body( $response );
+    if ( $code !== 200 ) {
+        echo '<li>' . esc_html( sprintf( __( 'Warning: Piwigo returned HTTP %1$d for %2$s', 'piwigopress' ), $code, $resolved_url ) ) . "</li>\n";
+        return;
+    }
+    $thumbc = json_decode( $body, true );
+    if ( !is_array($thumbc) ) {
+        $excerpt = trim( wp_strip_all_tags( substr( $body, 0, 120 ) ) );
+        echo '<li>' . esc_html( sprintf( __( 'Warning: Piwigo did not return JSON. Response begins: %s', 'piwigopress' ), $excerpt ) ) . "</li>\n";
+        return;
+    }
+    if ( isset($thumbc['stat']) && $thumbc['stat'] === 'fail' ) {
+        $msg = isset($thumbc['message']) ? (string) $thumbc['message'] : 'unknown error';
+        echo '<li>' . esc_html( sprintf( __( 'Warning: Piwigo API error: %s', 'piwigopress' ), $msg ) ) . "</li>\n";
+        return;
+    }
+    if ( !isset($thumbc['result']['images']) ) {
+        echo '<li>' . esc_html__( 'Warning: Piwigo response missing result.images', 'piwigopress' ) . "</li>\n";
+        return;
+    }
+    $pictures = $thumbc['result']['images'];
+    if ( !isset($pictures[0]['derivatives']['square']['url']) ) {
+        echo '<li>' . esc_html__( 'Warning: No available public picture or Piwigo release < 2.4.x', 'piwigopress' ) . "</li>\n";
+        return;
+    }
+    echo "\n\n";
+    foreach ( $pictures as $picture ) {
+        $thumburl = isset($picture['derivatives']['square']['url']) ? $picture['derivatives']['square']['url'] : '';
+        $pid   = isset($picture['id']) ? (int) $picture['id'] : 0;
+        $pname = isset($picture['name']) ? (string) $picture['name'] : '';
+        echo "\n       <li class=\"img-shadow\">\n"
+           . '          <img src="' . esc_url($thumburl) . '" title="'
+           . esc_attr( '[PiwigoPress id=' . $pid . " url='" . $url . "'] " . $pname )
+           . "\"/>\n       </li>\n";
+    }
+    echo "\n\n";
 }
 return;
 /* TODO Seeing full pic */

@@ -294,35 +294,34 @@ add_action( 'admin_enqueue_scripts', PWGP_NAME . '_widget_admin_assets' );
 
 // Style allocation
 function PiwigoPress_load_in_head() {
-  if (defined('PWGP_CSS_FILE')) return; // Avoid several links to CSS in case of several usage of PiwigoPress... 
-  define('PWGP_CSS_FILE','');
-  $css = is_admin()
-    ? plugins_url( 'css/piwigopress_adm.min.css', __FILE__ )
-    : plugins_url( 'css/piwigopress.css', __FILE__ );
-  $id  = is_admin() ? 'piwigopress_a-css' : 'piwigopress_c-css';
-  echo '<link media="all" type="text/css" href="' . esc_url( add_query_arg( 'ver', PWGP_VERSION, $css ) )
-     . '" id="' . esc_attr( $id ) . '" rel="stylesheet">';
+  if ( is_admin() ) {
+    wp_enqueue_style( 'piwigopress_a-css',
+      plugins_url( 'css/piwigopress_adm.min.css', __FILE__ ),
+      array(), PWGP_VERSION );
+  } else {
+    wp_enqueue_style( 'piwigopress_c-css',
+      plugins_url( 'css/piwigopress.css', __FILE__ ),
+      array(), PWGP_VERSION );
+  }
 }
-add_action('wp_head',  PWGP_NAME . '_load_in_head');
+add_action( 'wp_enqueue_scripts', PWGP_NAME . '_load_in_head' );
 
 // Script to be used
 function PiwigoPress_load_in_footer() {
-  /* Scripts */
-  wp_register_script( 'piwigopress_s', plugins_url( 'js/piwigopress.js', __FILE__ ), array('jquery'), PWGP_VERSION );
-  wp_enqueue_script( 'jquery'); // include it even if it's done
+  wp_register_script( 'piwigopress_s', plugins_url( 'js/piwigopress.js', __FILE__ ), array('jquery'), PWGP_VERSION, true );
   if ( is_admin() ) {
-    wp_register_script( 'piwigopress_a', plugins_url( 'js/piwigopress_adm.js', __FILE__ ), array('jquery'), PWGP_VERSION );
+    wp_register_script( 'piwigopress_a', plugins_url( 'js/piwigopress_adm.js', __FILE__ ),
+      array( 'jquery', 'jquery-ui-draggable', 'jquery-ui-droppable' ),
+      PWGP_VERSION, true );
     wp_localize_script( 'piwigopress_a', 'PwgpAjax', array(
       'ajaxUrl' => admin_url('admin-ajax.php'),
-      'nonce' => wp_create_nonce('piwigopress-admin-nonce')
+      'nonce'   => wp_create_nonce('piwigopress-admin-nonce')
     ));
-    wp_enqueue_script( 'jquery-ui-draggable' );
-    wp_enqueue_script( 'jquery-ui-droppable' );
     wp_enqueue_script( 'piwigopress_a' );
   }
   wp_enqueue_script( 'piwigopress_s' );
 }
-add_action('wp_footer',  PWGP_NAME . '_load_in_footer');
+add_action( 'wp_enqueue_scripts', PWGP_NAME . '_load_in_footer' );
 
 // proxy a categories call from another server
 function PiwigoPress_ajax_categories() {
@@ -372,13 +371,6 @@ function PiwigoPress_ajax_thumbnails() {
   exit;
 }
 add_action('wp_ajax_pwgp-thumbnails', PWGP_NAME . '_ajax_thumbnails');
-
-function PiwigoPress_register_plugin() {
-    if (!current_user_can('edit_posts') && !current_user_can('edit_pages'))
-        return;
-    add_action('admin_head', PWGP_NAME . '_load_in_head');
-}
-add_action('init', PWGP_NAME . '_register_plugin');
 
 // Admin code only if distributed and in Admin
 if ( is_admin() ) {

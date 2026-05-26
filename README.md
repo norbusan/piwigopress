@@ -263,6 +263,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * security: wrap every translated string used in the admin picker heredoc with `esc_html__` / `esc_attr__` so a malicious translation can't inject HTML
 * fix: guard `$PWG_Adm` with `isset()` to suppress the PHP 8 undefined-variable warning when `piwigopress_admin.php` is reloaded
 * fix: stop hard-coding the plugin directory name in asset URLs — use `plugins_url( ..., __FILE__ )` so the plugin keeps working if the directory is renamed
+* fix: move CSS/JS enqueueing from `in_admin_header` / `in_admin_footer` to `admin_enqueue_scripts` / `wp_enqueue_scripts`. The previous hooks fire *after* `admin_print_*_scripts`, so `wp_enqueue_script` was a no-op and the classic-editor picker (`#PWGP_button`) never appeared on modern WordPress — replace the hand-rolled `<link>` echo with `wp_enqueue_style` while we're at it
 * fix media-button shortcode generator broken on PHP 8+ (replace PHP4-style `PiwigoPress_Admin()` constructor with `__construct()` and drop deprecated by-reference `&$this`)
 * add Gutenberg (block editor) support: new "PiwigoPress" entry in the editor's more-menu opens a modal with the existing photo picker and inserts the generated shortcode as a `core/shortcode` block
 * harden classic JS: guard `window.tinyMCE.majorVersion` access and route shortcode insertion through a `piwigopress:insert` custom event so other editors can intercept
