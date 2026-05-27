@@ -5,9 +5,7 @@ all: README.md
 
 
 README.md: readme.txt
-	echo "CONVERSION BROKEN, DO MANUALLY"
-	exit 1
-	# wp2md convert -i readme.txt -o README.md
+	php bin/generate-readme.php
 
 update-pot:
 	xgettext				\

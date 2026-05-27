@@ -1,10 +1,10 @@
 === PiwigoPress ===
 Contributors: norbusan, vpiwigo
-Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
+Tags: piwigo, gallery, picture, shortcode, media
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.35
+Stable tag: 2.36dev
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -180,7 +180,7 @@ to either custom css or child theme css:
 PiwigoPress WordPress Plugin
 
   Copyright 2009-2012  VDigital
-  Copyright 2014-2024  Norbert Preining
+  Copyright 2014-2026  Norbert Preining
 
 Contributions by
 
@@ -213,6 +213,9 @@ along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 == Changelog ==
+
+= 2.36dev =
+* fix tags and copyrights
 
 = 2.35 =
 * classic editor: restyle the "Insert Piwigo image" media button with a frame, icon and label so it matches the other media buttons

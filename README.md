@@ -1,17 +1,11 @@
-# PiwigoPress #
-**Contributors:** norbusan, vpiwigo  
-**Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
-**Requires at least:** 5.0  
-**Tested up to:** 6.9.4  
-**Requires PHP:** 7.4
-**Stable tag:** 2.34
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+# PiwigoPress
+
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white) ![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-21759B?logo=wordpress&logoColor=white) ![License](https://img.shields.io/badge/License-GPLv2%20or%20later-blue.svg)
 
 From any open API Piwigo gallery, swiftly include your photos in
 Posts/Pages and/or add randomized thumbnails and menus in your sidebar.
 
-## Description ##
+## Description
 
 On the one hand, PiwigoPress is a WordPress **Sidebar Widget** that links
 your blog to some public pictures of a Piwigo gallery.  Thus, a Piwigo
@@ -52,7 +46,7 @@ Development of PiwigoPress is open to contributions, please use the
 [download page]: http://piwigo.org/basics/downloads  "Piwigo download page"
 [github page]: https://github.com/norbusan/piwigopress
 
-## Installation ##
+## Installation
 
 How to install manually PiwigoPress and get it working ? (automatic
 installation is working perfectly).
@@ -112,37 +106,37 @@ in the Edit photo [Properties] admin page if there is a filled description there
 
 "style" is not used by the Shortcode generator
 
-## Frequently Asked Questions ##
+## Frequently Asked Questions
 
-### Widget (only): How can I get any thumbnails ? ###
+### Widget (only): How can I get any thumbnails ?
 * Just have the URL without the /index.php? on the end.
 * Just have recent pictures in the gallery.
 * Change Since X months (0=all) from 12 to 0
 * Set "Number of pictures (0=none)" to 1 or 2  
 * If it doesn't work, see the provided screenshots...
 
-### How can I get other sizes ? I only have thumbs and squares. ###
+### How can I get other sizes ? I only have thumbs and squares.
 * In your gallery admin pages, find Configuration 
 and there select: Options > Photo sizes > Multiple size > show details
 
-### How can I get squared thumbnails ? ###
+### How can I get squared thumbnails ?
 * maybe you should try to upgrade your gallery to Piwigo 2.4.x or above.
 * See screenshots
 
-### Widget (Only): With Link type Album which album would be selected ? ###
+### Widget (Only): With Link type Album which album would be selected ?
 If Album = 0 the link will remain to the picture page.
 Otherwise, if Number of pictures > 0 the first picture will link the Album page, next pictures will refer to their picture page.
 
-### Shortcode (Only): With Link type Album which album would be selected ? ###
+### Shortcode (Only): With Link type Album which album would be selected ?
 Picture is going to have a link to its most recent Album page (Upcoming releases should cover other cases).
 
-### Shortcode generator (only): Why did I get a warning message ? ###
+### Shortcode generator (only): Why did I get a warning message ?
 * Message is "No available public picture or Piwigo release < 2.4.x" (Won't be translated)
 * Disconnect you from the gallery and try to access to any Albums, maybe all pictures are locked or private
 * Second possible cause: Old piwigo release. Only recent releases (2.4 and above) provide several picture sizes.
 * Backward compatibility below Piwigo 2.4 is limited to Widget sidebar functions
 
-### How do I arrange images horizontally? ###
+### How do I arrange images horizontally?
 
 Since images are generated in the following way:
 `````
@@ -163,42 +157,41 @@ to either custom css or child theme css:
 }
 `````
 
-## Screenshots ##
+## Screenshots
 
-###1. Widget parameters for the demo gallery ###
-![Widget parameters for the demo gallery ](https://s.w.org/plugins/piwigopress/screenshot-1.jpg)
+![Widget parameters for the demo gallery](https://s.w.org/plugins/piwigopress/screenshot-1.png)
+*Widget parameters for the demo gallery*
 
-###2. Expected result in your sidebar###
-![Expected result in your sidebar](https://s.w.org/plugins/piwigopress/screenshot-2.jpg)
+![Expected result in your sidebar](https://s.w.org/plugins/piwigopress/screenshot-2.png)
+*Expected result in your sidebar*
 
-###3. Widget parameters for your gallery (on the same domain)###
-![Widget parameters for your gallery (on the same domain)](https://s.w.org/plugins/piwigopress/screenshot-3.jpg)
+![Widget parameters for your gallery (on the same domain)](https://s.w.org/plugins/piwigopress/screenshot-3.png)
+*Widget parameters for your gallery (on the same domain)*
 
-###4. Piwigo admin Photo sizes (from a Gallery website)###
-![Piwigo admin Photo sizes (from a Gallery website)](https://s.w.org/plugins/piwigopress/screenshot-4.jpg)
+![Piwigo admin Photo sizes (from a Gallery website)](https://s.w.org/plugins/piwigopress/screenshot-4.png)
+*Piwigo admin Photo sizes (from a Gallery website)*
 
-###5. PiwigoPress shortcode samples###
-![PiwigoPress shortcode samples](https://s.w.org/plugins/piwigopress/screenshot-5.jpg)
+![PiwigoPress shortcode samples](https://s.w.org/plugins/piwigopress/screenshot-5.png)
+*PiwigoPress shortcode samples*
 
-###6. PiwigoPress shortcode generator above Post/Page editor usable with both Visual/HTML editor.###
-![PiwigoPress shortcode generator above Post/Page editor usable with both Visual/HTML editor.](https://s.w.org/plugins/piwigopress/screenshot-6.jpg)
+![PiwigoPress shortcode generator above Post/Page editor usable with both Visual/HTML editor.](https://s.w.org/plugins/piwigopress/screenshot-6.png)
+*PiwigoPress shortcode generator above Post/Page editor usable with both Visual/HTML editor.*
 
-###7. Buttons, Drag and Drop zones for a total intuitive interface.###
-![Buttons, Drag and Drop zones for a total intuitive interface.](https://s.w.org/plugins/piwigopress/screenshot-7.jpg)
+![Buttons, Drag and Drop zones for a total intuitive interface.](https://s.w.org/plugins/piwigopress/screenshot-7.png)
+*Buttons, Drag and Drop zones for a total intuitive interface.*
 
-###8. Generation and insertion of the shortcodes are done at caret (insert cursor) position.###
-![Generation and insertion of the shortcodes are done at caret (insert cursor) position.](https://s.w.org/plugins/piwigopress/screenshot-8.jpg)
+![Generation and insertion of the shortcodes are done at caret (insert cursor) position.](https://s.w.org/plugins/piwigopress/screenshot-8.png)
+*Generation and insertion of the shortcodes are done at caret (insert cursor) position.*
 
-###9. Expected result on your page or post of your Wordpress blog. ###
-![Expected result on your page or post of your Wordpress blog. ](https://s.w.org/plugins/piwigopress/screenshot-9.jpg)
+![Expected result on your page or post of your Wordpress blog.](https://s.w.org/plugins/piwigopress/screenshot-9.png)
+*Expected result on your page or post of your Wordpress blog.*
 
-
-## Copyright/License ##
+## Copyright/License
 
 PiwigoPress WordPress Plugin
 
   Copyright 2009-2012  VDigital
-  Copyright 2014-2024  Norbert Preining
+  Copyright 2014-2026  Norbert Preining
 
 Contributions by
 
@@ -230,9 +223,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-## Changelog ##
+## Changelog
 
-### 2.34 ###
+### 2.36dev
+* fix tags and copyrights
+
+### 2.35
+* classic editor: restyle the "Insert Piwigo image" media button with a frame, icon and label so it matches the other media buttons
+* Gutenberg: widen the picker modal so the option panels fit without horizontal scrolling
+* Gutenberg: fix drag-and-drop inside the modal — thumbnails now follow the cursor and dropping into the drop zone works
+* Gutenberg: let the drop zone grow as more thumbnails are added (no longer pinned to a fixed height)
+* compatibility metadata: bump `Tested up to` to 7.0
+
+### 2.34
 * security: fix authenticated (Contributor+) stored XSS in the [PiwigoPress] shortcode by escaping the `class`, `style`, `size`, `opntype`, URL and title attributes (Wordfence advisory)
 * security: switch all Piwigo web-service calls from `format=php` + `unserialize()` to `format=json` + `json_decode()` to remove a PHP object-injection / RCE primitive on responses from the (potentially untrusted or MITM'd) remote Piwigo gallery
 * security: tighten AJAX endpoints — `pwgp-categories` and `pwgp-thumbnails` now require `edit_others_posts` and a verified nonce; URLs go through an SSRF guard that rejects non-http(s) schemes and private/loopback/link-local hosts
@@ -268,41 +271,41 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * add Gutenberg (block editor) support: new "PiwigoPress" entry in the editor's more-menu opens a modal with the existing photo picker and inserts the generated shortcode as a `core/shortcode` block
 * harden classic JS: guard `window.tinyMCE.majorVersion` access and route shortcode insertion through a `piwigopress:insert` custom event so other editors can intercept
 
-### 2.33 ###
+### 2.33
 * fix widget initialization for newer PHP versions
 
-### 2.32 ###
+### 2.32
 
-### 2.31 ###
+### 2.31
 * relax requirement what image sizes galleries have to provide (Issue 21)
 * allow selecting the order of photos for the widget (Issue 20)
 
-### 2.30 ###
+### 2.30
 * multiple image ids can be used in the shortcode (by Anton Lavrov)
 * support for displaying the photo name (title) (by Anton Lavrov)
 * shortcode generator - support name setting
 * fix 'albumpicture' setting not being preserved
 
-### 2.29 ###
+### 2.29
 * security related improvements by Rüdiger Schulz, big thanks!
 
-### 2.28 ###
+### 2.28
 * use "album" instead of "category" in the user interface, as this is what Piwigo calls it (Issue 14)
 * allow loading of albums from remote installations (Issue 13, 5)
 
-### 2.27 ###
+### 2.27
 * widget configuration now allows adding html code just before and after the included photos, but before the divs. This requires the 'unfiltered_html' permission for the user editing the widget.
 
-### 2.26 ###
+### 2.26
 * new parameter for widget and shortcode: opntype: '_blank' (open in new window/tab) or '_self' (open in same) (Issue 10)
 * set alt parameter of images to 'name' (plus 'comment', if available) if the piwigo image (Issue 8)
 * make widget configuration background white instead of transparent for readability
 
-### 2.25 ###
+### 2.25
 * fix some peculiarities with the album list download
 * update compatibility to 4.1
 
-### 2.24 ###
+### 2.24
 * new maintainership
 * fix compatibility with piwigo 1.6 and wordpress 4.0
 * allow url to be "/foo/bar" like on local server, preserving http(s)
@@ -312,12 +315,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * permalinks are used for albums as far as possible
 * support pulling from a specific album instead of only from all photos
 
-### 2.23 ###
+### 2.23
 * WordPress 3.5.1 support  
 * Bug: WordPress corrupted RSS feeds ( http://wordpress.org/support/topic/rss-feed-100?replies=4 ) 
 * Support of Piwigo 2.4.x and 2.5.x (and probably above)
 
-### 2.22 ###
+### 2.22
 * **New shortcode parameter** lnktype = 'picture', 'none', or 'album' (most recent album id) : indicates the link type of the shortcoded picture
 * Small bugs (functional defects) within Shortcode generator have been corrected 
 * Shortcode generator generates lnktype parameter
@@ -325,22 +328,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * **New Caption widget parameter** to have the caption directly with the displayed and selected pictures.
 * Sidebar widget has been totally rewritten  
 
-### 2.21 ###
+### 2.21
 * Minor issues solved in drag & drop.
 * jQuery code reviewed
 * WordPress 3.4.2 support 
 If you don't have your own up-to-date Piwigo gallery, just try it with Piwigo demo URL: http://piwigo.org/demo/
 
-### 2.20 ###
+### 2.20
 * Edit post/page shortcode generator using Drag-n-drop (a useful tool for your photoblog). 
 If you don't have your own up-to-date Piwigo gallery, just try it with Piwigo demo URL: http://piwigo.org/demo/
 
-### 2.10 ###
+### 2.10
 * I18n version (Hugarian)
 * Widget: Largest sizes added (from user request)
 * WordPress shortcode for post/page: e.g. [PiwigoPress id=72 url='http://piwigo.org/demo/']
 
-### 2.00 ###
+= 2.00 = 
 * Support of WordPress from 2.8.0 to 3.4.1 (and probably above)
 * Support of Piwigo 2.4.x (and probably above)
 * Support of Piwigo 2.0.x - 2.3.x assumed 
@@ -348,33 +351,33 @@ If you don't have your own up-to-date Piwigo gallery, just try it with Piwigo de
 * CSS DIV class: img-shadow and/or img-show-desc are now provided
 * Orientation filtering
 
-### 1.04 ###
+= 1.04 = 
 * Alternate pwg_get_contents (file\_get\_contents, fsockopen, ...)
 * cURL is coming
 
-### 1.03 ###
+= 1.03 = 
 * Project rename: Directory name changed for WordPress constraints
 * Language issue solved 
 * Pre-version for WordPress publication
 
-### 1.02 ###
+= 1.02 = 
 * Project rename: Public Piwigo WordPress Widget becomes PiwigoPress
 * I18n version (Italian)
 
-### 1.01 ###
+= 1.01 = 
 * I18n version (French, Spanish,...)
 * Link bug with some theme... Solved.
 
-### 1.0 ###
+### 1.0
 * First version.
 
-## Upgrade Notice ##
+## Upgrade Notice
 
-### 2.21 ###
+### 2.21
 Performances
 
-### 2.20 ###
+### 2.20
 Swiftly transform your blog in a photoblog. 
 
-### 2.00 ###
+= 2.00 = 
 Previous PiwigoPress releases didn't support the most Piwigo recent releases (if you upgrade your Piwigo Gallery to 2.4.x or above, PiwigoPress 1.04 and older releases will fail).
