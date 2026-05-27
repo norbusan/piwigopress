@@ -1,0 +1,10 @@
+# Files excluded from `git archive` (wp.org zip) and from `deploy.sh`'s
+# git-archive-based SVN export. Anything tagged export-ignore here is part
+# of the repository but not part of the runtime plugin.
+/.github          export-ignore
+/.gitattributes   export-ignore
+/.gitignore       export-ignore
+/.wordpress-org   export-ignore
+/README.md        export-ignore
+/bin              export-ignore
+/deploy.sh        export-ignore
