@@ -2,9 +2,9 @@
 Contributors: norbusan, vpiwigo
 Tags: galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo
 Requires at least: 5.0
-Tested up to: 6.9.4
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.34
+Stable tag: 2.35
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -213,6 +213,13 @@ along with this program.  If not, see if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 == Changelog ==
+
+= 2.35 =
+* classic editor: restyle the "Insert Piwigo image" media button with a frame, icon and label so it matches the other media buttons
+* Gutenberg: widen the picker modal so the option panels fit without horizontal scrolling
+* Gutenberg: fix drag-and-drop inside the modal — thumbnails now follow the cursor and dropping into the drop zone works
+* Gutenberg: let the drop zone grow as more thumbnails are added (no longer pinned to a fixed height)
+* compatibility metadata: bump `Tested up to` to 7.0
 
 = 2.34 =
 * security: fix authenticated (Contributor+) stored XSS in the [PiwigoPress] shortcode by escaping the `class`, `style`, `size`, `opntype`, URL and title attributes (Wordfence advisory)
