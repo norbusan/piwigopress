@@ -250,3 +250,20 @@ a#PWGP_loadcat.button {
 	/* background: url(../img/PiwigoPress-widget-bg.png) no-repeat scroll 1px 2px transparent; */
 	background-color: white;
 }
+#PWGP_button img {
+	width: 18px;
+	height: 18px;
+	vertical-align: text-top;
+	margin: 0 4px 0 0;
+}
+.components-modal__frame.pwgp-gutenberg-modal {
+	max-width: 1400px;
+	width: 95vw;
+}
+.pwgp-gutenberg-modal .components-modal__content {
+	overflow-x: auto;
+}
+/* jQuery UI draggable clone needs to render above the WP modal backdrop. */
+body > .ui-draggable-dragging {
+	z-index: 1000000 !important;
+}

@@ -63,7 +63,8 @@
     return el(Modal, {
       title: __('Insert PiwigoPress shortcode', 'piwigopress'),
       onRequestClose: props.onClose,
-      style: { maxWidth: '900px', width: '90vw' }
+      className: 'pwgp-gutenberg-modal',
+      size: 'large'
     }, el('div', { ref: containerRef }));
   }
 
@@ -161,11 +162,22 @@
 
         function dragNDrop(thumbs) {
           $gallery.append(thumbs);
+          // Match the classic-editor sizing: only constrain the source
+          // strip height; let the drop zone grow via CSS min-height so it
+          // expands as more thumbnails are dropped.
           var h = ($gallery.find('img').first().height()) + 20;
-          $gallery.height(h);
-          $trash.height(h + 25).css('min-height', h + 25);
-          $trash.find('ul').height(h);
-          $gallery.find('li').draggable({ revert: true, cursor: 'move', zIndex: 50 });
+          if (h > 20) $gallery.height(h);
+          // The WP Modal frame uses a CSS transform for centering, which
+          // breaks jQuery UI's draggable offset math (the helper drifts away
+          // from the cursor). Cloning into <body> sidesteps the transformed
+          // ancestor; a high zIndex keeps the helper above the modal.
+          $gallery.find('li').draggable({
+            revert: 'invalid',
+            cursor: 'move',
+            helper: 'clone',
+            appendTo: 'body',
+            zIndex: 1000000
+          });
           var obtained = $trash.find('li').length + $gallery.find('li').length;
           $root.find('#PWGP_show_stats').show().find('#PWGP_stats').text(' ' + obtained + ' / ' + loaded);
           $trash.droppable({

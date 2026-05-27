@@ -2,9 +2,9 @@
 **Contributors:** norbusan, vpiwigo  
 **Tags:** galleries, pictures, randomize, shortcode, gallery, integration, photos, drag, drop, widget, media, piwigo  
 **Requires at least:** 5.0  
-**Tested up to:** 6.7  
+**Tested up to:** 6.9.4  
 **Requires PHP:** 7.4
-**Stable tag:** 2.33dev
+**Stable tag:** 2.34
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -232,7 +232,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 ## Changelog ##
 
-### 2.33dev ###
+### 2.34 ###
 * security: fix authenticated (Contributor+) stored XSS in the [PiwigoPress] shortcode by escaping the `class`, `style`, `size`, `opntype`, URL and title attributes (Wordfence advisory)
 * security: switch all Piwigo web-service calls from `format=php` + `unserialize()` to `format=json` + `json_decode()` to remove a PHP object-injection / RCE primitive on responses from the (potentially untrusted or MITM'd) remote Piwigo gallery
 * security: tighten AJAX endpoints — `pwgp-categories` and `pwgp-thumbnails` now require `edit_others_posts` and a verified nonce; URLs go through an SSRF guard that rejects non-http(s) schemes and private/loopback/link-local hosts
@@ -251,7 +251,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 * only persist `PiwigoPress_previous_url` when the writer has `edit_others_posts`, removing a per-render DB write and preventing low-privileged users from rewriting the site-wide default
 * modernize jQuery calls in `piwigopress_adm.js` (`.size()` → `.length`, `.unbind()` → `.off()`)
 * drop the stale shipped `js/piwigopress_adm.min.js` (was diverging from the source); load the unminified file instead
-* compatibility metadata: bump `Requires at least` to 5.0 and `Tested up to` to 6.7, declare `Requires PHP: 7.4`
+* compatibility metadata: bump `Requires at least` to 5.0 and `Tested up to` to 6.9.4, declare `Requires PHP: 7.4`
 * security: fix reflected XSS in the [PiwigoPress] shortcode error message when the `id` attribute is malformed (the raw value was concatenated into a translation string and returned as HTML)
 * security: whitelist enum-style shortcode attributes (`size`, `lnktype`, `opntype`, `ordertype`, `name`) and run `class` through `sanitize_html_class` / `style` through `safecss_filter_attr` to block CSS-based payloads
 * security: switch outbound HTTP from `wp_remote_get` to `wp_safe_remote_get` with `redirection => 0` and `timeout => 5` — blocks SSRF via 30x redirects to internal hosts and bounds the request window

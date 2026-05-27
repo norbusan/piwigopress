@@ -267,9 +267,10 @@ if(!class_exists('PiwigoPress_Admin')){
   </div>
 </div>
 EOF;
-      return $context . '<a id="PWGP_button" rel="nofollow" href="javascript:void(0);"
+      return $context . '<a id="PWGP_button" class="button" rel="nofollow" href="javascript:void(0);"
       title="'. esc_attr__('Insert a PiwigoPress shortcode from a Piwigo dragged photo','piwigopress') . '">
-      <img src="' . esc_url( plugins_url( 'img/PiwigoPress.png', __FILE__ ) ) . '"/></a>';
+      <img src="' . esc_url( plugins_url( 'img/PiwigoPress.png', __FILE__ ) ) . '" alt=""/>'
+      . esc_html__('Piwigo image','piwigopress') . '</a>';
     }
   }
 }
