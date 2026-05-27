@@ -70,7 +70,7 @@ $body = preg_replace_callback(
 		foreach ( $entries as $entry ) {
 			if ( preg_match( '/^\s*(\d+)\.\s*(.+?)\s*$/', $entry, $em ) ) {
 				$images[] = sprintf(
-					"![%s](.wordpress-org/screenshot-%d.png)\n*%s*",
+					"![%s](.wordpress-org/screenshot-%d.jpg)\n*%s*",
 					addcslashes( $em[2], ']' ),
 					(int) $em[1],
 					$em[2]

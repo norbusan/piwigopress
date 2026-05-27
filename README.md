@@ -159,31 +159,31 @@ to either custom css or child theme css:
 
 ## Screenshots
 
-![Widget parameters for the demo gallery](.wordpress-org/screenshot-1.png)
+![Widget parameters for the demo gallery](.wordpress-org/screenshot-1.jpg)
 *Widget parameters for the demo gallery*
 
-![Expected result in your sidebar](.wordpress-org/screenshot-2.png)
+![Expected result in your sidebar](.wordpress-org/screenshot-2.jpg)
 *Expected result in your sidebar*
 
-![Widget parameters for your gallery (on the same domain)](.wordpress-org/screenshot-3.png)
+![Widget parameters for your gallery (on the same domain)](.wordpress-org/screenshot-3.jpg)
 *Widget parameters for your gallery (on the same domain)*
 
-![Piwigo admin Photo sizes (from a Gallery website)](.wordpress-org/screenshot-4.png)
+![Piwigo admin Photo sizes (from a Gallery website)](.wordpress-org/screenshot-4.jpg)
 *Piwigo admin Photo sizes (from a Gallery website)*
 
-![PiwigoPress shortcode samples](.wordpress-org/screenshot-5.png)
+![PiwigoPress shortcode samples](.wordpress-org/screenshot-5.jpg)
 *PiwigoPress shortcode samples*
 
-![PiwigoPress shortcode generator above Post/Page editor usable with both Visual/HTML editor.](.wordpress-org/screenshot-6.png)
+![PiwigoPress shortcode generator above Post/Page editor usable with both Visual/HTML editor.](.wordpress-org/screenshot-6.jpg)
 *PiwigoPress shortcode generator above Post/Page editor usable with both Visual/HTML editor.*
 
-![Buttons, Drag and Drop zones for a total intuitive interface.](.wordpress-org/screenshot-7.png)
+![Buttons, Drag and Drop zones for a total intuitive interface.](.wordpress-org/screenshot-7.jpg)
 *Buttons, Drag and Drop zones for a total intuitive interface.*
 
-![Generation and insertion of the shortcodes are done at caret (insert cursor) position.](.wordpress-org/screenshot-8.png)
+![Generation and insertion of the shortcodes are done at caret (insert cursor) position.](.wordpress-org/screenshot-8.jpg)
 *Generation and insertion of the shortcodes are done at caret (insert cursor) position.*
 
-![Expected result on your page or post of your Wordpress blog.](.wordpress-org/screenshot-9.png)
+![Expected result on your page or post of your Wordpress blog.](.wordpress-org/screenshot-9.jpg)
 *Expected result on your page or post of your Wordpress blog.*
 
 ## Copyright/License
